@@ -1,0 +1,28 @@
+{
+  "name": "gramateria",
+  "version": "1.0.3",
+  "private": true,
+  "description": "Open source drag and drop website builder",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron index.js",
+    "build:mac": "electron-packager . Gramateria --overwrite --platform=darwin --arch=x64 --icon=build/icon.icns --prune=true --out=release-builds",
+    "build:win": "electron-packager . Gramateria --overwrite --platform=win32 --arch=x64 --icon=build/icon.ico --out=release-builds --version 1.8.2",
+    "build:lin": "electron-packager . Gramateria --overwrite --asar=true --platform=linux --arch=x64 --icon=build/icon.png --prune=true --out=release-builds"
+  },
+  "keywords": [
+    "Gramateria",
+    "gramateria",
+    "grapes",
+    "materialize",
+    "grapgesjs"
+  ],
+  "author": "Ronald",
+  "license": "MIT",
+  "devDependencies": {
+    "asar": "^0.14.3",
+    "electron": "^1.8.8",
+    "electron-packager": "^11.2.0"
+  },
+  "dependencies": {}
+}
