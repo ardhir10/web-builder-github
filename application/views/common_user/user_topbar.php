@@ -141,7 +141,7 @@
              <div class="media">
                <div class="avatar"><img class="align-self-start mr-3" src="<?php echo base_url() ?>assets/images/avatars/<?php echo $this->session->userdata('adminGambar'); ?>" alt="user avatar"></div>
               <div class="media-body">
-              <h6 class="mt-2 user-title"><?php echo $this->session->userdata('adminNamaTampilan'); ?></h6>
+              <h6 class="mt-2 user-title"><?php echo $this->session->userdata('userNama'); ?></h6>
               <p class="user-subtitle">
                   <?php if ($this->session->userdata('adminLevel') == 1){ ?>
                       Super Admin
@@ -162,7 +162,7 @@
           <li class="dropdown-divider"></li>
           <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
           <li class="dropdown-divider"></li>
-          <a href="<?php echo base_url() ?>admin_login/userLogout"><li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li></a>
+          <a href="<?php echo base_url() ?>user-login/userLogout"><li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li></a>
         </ul>
       </li>
     </ul>

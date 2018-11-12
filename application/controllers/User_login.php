@@ -130,5 +130,15 @@ class User_login extends CI_Controller {
        redirect('user-panel');
 
     }
+    
+      function userLogout()
+    {
+        // delete cookie dan session
+        
+        $this->session->sess_destroy();
+        redirect(base_url().'user-login');
+    }
+
+    
 
 }//end

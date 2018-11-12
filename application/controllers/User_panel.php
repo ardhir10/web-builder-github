@@ -9,6 +9,9 @@ class User_panel extends CI_Controller {
         // if ($this->session->userdata('adminLogged') != TRUE) {
         //     redirect(base_url('Admin_panel/login'));
         // }
+         if ($this->session->userdata('userLogged') != TRUE) {
+            redirect(base_url('user-login'));
+        }
     }
 
     
@@ -26,6 +29,7 @@ class User_panel extends CI_Controller {
         $data['controller'] = $this->controller;
         $data['title_page'] = 'Dashboard User | Goodeva';
 
+        
         $this->load->view('vu_dashboard',$data);
 
     	
