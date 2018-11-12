@@ -23,7 +23,13 @@ class Model_user extends CI_Model {
     function authentication_login($username,$password)
     {
         $this->db->where('username',$username);
-        $this->db->or_where('email',$username);
+        $this->db->where('password',$password);
+        return $this->db->get($this->table);
+    }
+    
+    function authentication_email($email,$password)
+    {
+        $this->db->where('email',$email);
         $this->db->where('password',$password);
         return $this->db->get($this->table);
     }
