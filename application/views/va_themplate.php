@@ -63,7 +63,7 @@
                         </ul> -->
                         <div class="card-body">
                           <a href="javascript:void();" class="card-link">Edit</a>
-                          <a href="javascript:void();" class="card-link">Lihat</a>
+                          <a href="<?php echo base_url().$controller ?>/preview/<?php echo $row_themplate->ID; ?>" target="_blank" class="card-link">Lihat</a>
                         </div>
                       </div>
                   </div><!--End Row-->
