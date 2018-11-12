@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 08 Nov 2018 pada 18.26
+-- Generation Time: 12 Nov 2018 pada 07.30
 -- Versi Server: 10.1.10-MariaDB
 -- PHP Version: 7.0.3
 
@@ -44,7 +44,34 @@ CREATE TABLE `table_admin` (
 --
 
 INSERT INTO `table_admin` (`ID`, `username`, `password`, `tanggal_dibuat`, `tanggal_diupdate`, `nama_tampilan`, `cookie`, `gambar`, `status`, `level`) VALUES
-(2, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2018-11-06 17:54:10', '0000-00-00 00:00:00', 'Ramadhan', 'poNFq87JhS1hKvxyZH9rJ0N80c5pfE51emjwFYmzYuzBIgAnsTbQHPCrtwD3eGbq', 'man.jpg', 1, 1);
+(2, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2018-11-06 17:54:10', '0000-00-00 00:00:00', 'Ramadhan', 'NDgY2n56uPJrKQdoEbDA3ed77R8aosUFIszIlStm1qhZk9GRBOx4wHf5WPi3TH2r', 'man.jpg', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `table_users`
+--
+
+CREATE TABLE `table_users` (
+  `ID` int(11) NOT NULL,
+  `nama` varchar(200) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `no_telp` varchar(20) NOT NULL,
+  `nama_web` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL,
+  `gambar` varchar(255) NOT NULL,
+  `tanggal_daftar` datetime NOT NULL,
+  `expired` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `table_users`
+--
+
+INSERT INTO `table_users` (`ID`, `nama`, `username`, `email`, `password`, `no_telp`, `nama_web`, `status`, `gambar`, `tanggal_daftar`, `expired`) VALUES
+(1, 'Ardhi Ramadhan', 'ardhir10', 'ramadhn10@gmail.com', '2b88c029dfc5805ad6ca4201c663ea71', '082113666778', 'Grooth Tech', 1, '', '2018-11-08 19:38:02', '2018-11-08 19:38:02');
 
 -- --------------------------------------------------------
 
@@ -78,6 +105,15 @@ ALTER TABLE `table_admin`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `table_users`
+--
+ALTER TABLE `table_users`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `nama_web` (`nama_web`);
+
+--
 -- Indexes for table `table_website`
 --
 ALTER TABLE `table_website`
@@ -92,6 +128,11 @@ ALTER TABLE `table_website`
 --
 ALTER TABLE `table_admin`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `table_users`
+--
+ALTER TABLE `table_users`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `table_website`
 --
