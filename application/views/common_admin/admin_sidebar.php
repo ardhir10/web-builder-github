@@ -20,6 +20,12 @@
         </a>
       </li>
 
+      <li>
+        <a href="<?php echo base_url() ?>admin_themplate" >
+          <i class="zmdi zmdi-collection-folder-image"></i> Themplate website</span> 
+        </a>
+      </li>
+
 
 
      
