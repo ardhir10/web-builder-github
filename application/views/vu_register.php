@@ -62,7 +62,7 @@
                 <div class="container">
                     <!-- Start Atribute Navigation -->
                     <div class="attr-nav">
-                        <a href="#">Buy Now</a>
+                       <a href="<?php echo base_url();?>sites/register">Register Now</a>
                     </div>
                     <!-- End Atribute Navigation -->
 
@@ -71,7 +71,7 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i class="icofont icofont-navigation-menu"></i>
                         </button>
-                        <a class="navbar-brand" href="index.html"><img src="<?php echo base_url() ?>assets/landing/assets/images/logo.png" class="logo" alt=""></a>
+                        <a class="navbar-brand" href="<?php echo base_url();?>"><img src="https://goodeva.co.id/my-assets/images/logo.png" style="width:100px;" class="logo" alt=""></a>
                     </div>
                     <!-- End Header Navigation -->
 
@@ -118,7 +118,7 @@
                     <div class="col-md-6 col-md-offset-3">
                         <div class="section-heading text-center">
                             <h2>Sign Up</h2>
-                            <h3>Already have a Goodeva account? <a href="<?php echo base_url().$controller ?>/register"><u>Log In</u></a></h3>
+                            <h3>Already have a Goodeva account? <a href="<?php echo base_url().$controller ?>/login"><u>Log In</u></a></h3>
                         </div>
                     </div>
                 </div>

@@ -60,7 +60,7 @@ class User_Authentication extends CI_Controller {
                 // 1. Daftarkan Session
                 $sess = array(
                     'userLogged'       => TRUE,
-                    'loginGoogle'        => 1,
+                    'loginGoogle'       => 1,
                     'userID'           => '',
                     'userEmail'        => $userData['email'],
                     'userNama'         => $nama   ,
