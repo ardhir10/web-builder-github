@@ -32,11 +32,10 @@
       <!-- Breadcrumb-->
        <div class="row pt-2 pb-2">
           <div class="col-sm-9">
-  		    <h4 class="page-title">Blank Page</h4>
+  		    <h4 class="page-title">Data User</h4>
   		    <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="javaScript:void();">Rukada</a></li>
-              <li class="breadcrumb-item"><a href="javaScript:void();">Pages</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
+              <li class="breadcrumb-item"><a href="javaScript:void();">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Data User</li>
            </ol>
   	   </div>
   	   <div class="col-sm-3">
@@ -59,7 +58,7 @@
          <div class="row">
           <div class="col-lg-12">
             <div class="card">
-              <div class="card-header"><i class="fa fa-table"></i> Data Table Example</div>
+              <div class="card-header"><i class="fa fa-table"></i> Data User Table</div>
               <div class="card-body">
                 <div class="table-responsive">
                 <table id="default-datatable" class="table table-bordered">
@@ -76,37 +75,32 @@
                       </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Ardhi Ramadhan</td>
-                      <td>ramadhn10@gmail.com</td>
-                      <td>088-888-8888</td>
-                      <td>Mayoones.com</td>
-                      <td><span class="btn btn-sm btn-outline-success btn-round btn-block">Aktif</span></td>
-                      <td>2018-11-10</td>
-                      <td>2019-07-10</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Faiz</td>
-                      <td>faiz@gmail.com</td>
-                      <td>088-999-7777</td>
-                      <td>Grooth.com</td>
-                      <td><span class="btn btn-sm btn-outline-info btn-round btn-block">Trial</span></td>
-                      <td>2018-11-10</td>
-                      <td>2019-07-10</td>
-                    </tr>
 
-                    <tr>
-                      <td>3</td>
-                      <td>Imam</td>
-                      <td>imam@gmail.com</td>
-                      <td>088-000-666</td>
-                      <td>Mams.com</td>
-                      <td><span class="btn btn-sm btn-outline-danger btn-round btn-block">Suspend</span></td>
-                      <td>2018-11-10</td>
-                      <td>2019-07-10</td>
-                    </tr>
+                    <?php $no = 1; foreach($data_user as $row_user): ?>
+                      <tr>
+                        <td><?php echo $no++; ?></td>
+                        <td><?php echo  $row_user->nama ?></td>
+                        <td><?php echo  $row_user->email ?></td>
+                        <td><?php echo  $row_user->no_telp ?></td>
+                        <td><?php echo  $row_user->nama_web ?></td>
+
+                        
+                        <td>
+                          <?php foreach ($data_user_status as $row_status): ?>
+                            <?php if ($row_user->id_status == $row_status->ID): ?>
+                              <span class="btn btn-sm btn-outline-<?php echo $row_status->index_color ?> btn-round btn-block"><?php echo  $row_status->keterangan_status ?></span>
+                            <?php endif ?>
+                          <?php endforeach ?>
+                        </td>
+
+                        <td><?php echo  $row_user->tanggal_daftar ?></td>
+                        <td><?php echo  $row_user->expired ?></td>
+                      </tr>
+                    <?php endforeach ?>
+                    
+
+
+                  
                  
                   </tbody>
                   <tfoot>
@@ -118,7 +112,7 @@
                           <th>Nama Web</th>
                           <th>Status</th>
                           <th>Tanggal daftar</th>
-                          <th>Action</th>
+                          <th>Expired</th>
                       </tr>
                   </tfoot>
               </table>

@@ -162,7 +162,7 @@
           <li class="dropdown-divider"></li>
           <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
           <li class="dropdown-divider"></li>
-          <a href="<?php echo base_url() ?>admin_login/userLogout"><li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li></a>
+          <a href="<?php echo base_url() ?>admin_login/adminLogout"><li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li></a>
         </ul>
       </li>
     </ul>

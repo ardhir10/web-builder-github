@@ -10,7 +10,7 @@ class User_panel extends CI_Controller {
         //     redirect(base_url('Admin_panel/login'));
         // }
          if ($this->session->userdata('userLogged') != TRUE) {
-            redirect(base_url('user-login'));
+            redirect(base_url('sites/login'));
         }
     }
 

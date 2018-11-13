@@ -6,6 +6,7 @@ class Admin_user extends CI_Controller {
     parent::__construct();
         $this->load->model('admin_model/Model_admin');
         $this->load->model('admin_model/Model_admin_login');
+        $this->load->model('Model_user');
         $this->load->helper(array('Form', 'Cookie', 'String'));
 
         // cek session
@@ -30,8 +31,11 @@ class Admin_user extends CI_Controller {
         // cek session
         if ($this->session->userdata('adminLogged')) {
             //==== Inisiasi Awal 
-            $data['controller'] = $this->controller;
-            $data['title_page'] = 'Data User | Goodeva';
+            $data['controller']         = $this->controller;
+            $data['title_page']         = 'Data User | Goodeva';
+            $data['data_user']          = $this->Model_user->get_data()->result();
+            $data['data_user_status']   = $this->db->get('table_status')->result();
+
 
             $this->load->view('va_user',$data);
 
