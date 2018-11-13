@@ -110,8 +110,6 @@
              
         } ?>
 
-      
-        <!--Start Contact Area-->
         <section id="contact-area">
             <!--Start Container-->
             <div class="container">
@@ -119,9 +117,8 @@
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <div class="section-heading text-center">
-                            <h2>Log In</h2>
-                            <h3>New to Goodeva? <a href="<?php echo base_url().$controller ?>/register"><u>Sign Up</u></a></h3>
-
+                            <h2>Sign Up</h2>
+                            <h3>Already have a Goodeva account? <a href="<?php echo base_url().$controller ?>/register"><u>Log In</u></a></h3>
                         </div>
                     </div>
                 </div>
@@ -132,9 +129,12 @@
                     <!--Start Contact Form-->
                     <div class="col-md-6 col-md-offset-1 col-sm-8" style="border-right: 1px solid;">
                         <div class="contact-form">
-                            <form action="<?php echo base_url(); ?>user-login/login" method="post">
+                            <form action="<?php echo base_url(); ?>User-login/register" method="post">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="username" placeholder="username">
+                                    <input type="text" class="form-control" name="nama" placeholder="Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="Email">
                                 </div>
 
                                 <div class="form-group">
@@ -171,7 +171,8 @@
             </div>
             <!--End Container-->
         </section>
-        <!--End Contact Area-->
+
+  
         <!--Start Footer-->
         <!--  <footer id="footer" class="bg-gray">
             <div class="container">

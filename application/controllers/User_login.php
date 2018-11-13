@@ -8,35 +8,10 @@ class User_login extends CI_Controller {
     }
     
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	
     private $controller = 'User_login';
 	
-    public function index()
-	{
-        
-         //==== Inisiasi Awal 
-        $data['controller'] = $this->controller;
-        $data['title_page'] = 'Login Page | Goodeva';
-        $data['get']=$this->input->get('p');
-        
-      
-        
-		$this->load->view('vu_login',$data);
-	}
+  
     public function register()
 	{
         $nama=$this->input->post('nama');
@@ -58,23 +33,18 @@ class User_login extends CI_Controller {
         
 
         
-         $cek = $this->Model_user->cek_email($email);
+        $cek = $this->Model_user->cek_email($email);
         if( $cek==1 ){
             
             $this->session->set_flashdata('pesan','Email Anda Sudah Terdaftar');
-           redirect('user-login?p=register');
+           redirect('sites/register');
         }
         else {
             
                   $this->Model_user->insert_data($data_user);
               $this->session->set_flashdata('pesan','Berhasil ! silahkan Login');
             redirect('user-login');
-        }
-        
-        
-        
-        
-        
+        }        
 	}
     
     public function login(){
@@ -102,8 +72,8 @@ class User_login extends CI_Controller {
                 
             }
             else {
-                 $this->session->set_flashdata('pesan-login','Username atau Password Salah!');
-            redirect('user-login');
+                $this->session->set_flashdata('pesan-login','Username atau Password Salah!');
+                redirect('sites/login');
        
             }
           
