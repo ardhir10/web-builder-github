@@ -35,9 +35,10 @@ class Model_user extends CI_Model {
     }
     
     
-	function get_data($table){
-		return $this->db->get($table);
-	}
+	function get_data(){
+        return $this->db->get($this->table);
+    }
+
 
 	function insert_data($data){
         

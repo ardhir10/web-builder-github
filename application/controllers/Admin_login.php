@@ -80,11 +80,19 @@ class Admin_login extends CI_Controller {
 
     }
 
-    function userLogout()
+    function adminLogout()
     {
         // delete cookie dan session
         delete_cookie('gwb_cookie');
-        $this->session->sess_destroy();
+        $sess = array(
+            'adminLogged'     ,
+            'adminID'          ,
+            'adminUsername'    ,
+            'adminNamaTampilan',
+            'adminLevel'       ,
+            'adminGambar'      ,
+        );
+        $this->session->unset_userdata($sess);
         redirect(base_url().'Admin_panel');
     }
 
