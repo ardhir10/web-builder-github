@@ -16,3 +16,5 @@
       <!--Data Tables -->
       <link href="<?php echo base_url(); ?>assets/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
       <link href="<?php echo base_url(); ?>assets/plugins/bootstrap-datatable/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css">
+      <!-- notifications css -->
+      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/notifications/css/lobibox.min.css"/>

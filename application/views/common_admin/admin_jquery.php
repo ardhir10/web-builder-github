@@ -27,3 +27,11 @@
       <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-datatable/js/buttons.html5.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-datatable/js/buttons.print.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js"></script>
+
+
+      <!--notification js -->
+      <script src="<?php echo base_url(); ?>assets/plugins/notifications/js/lobibox.min.js"></script>
+      <script src="<?php echo base_url(); ?>assets/plugins/notifications/js/notifications.min.js"></script>
+      <!--Sweet Alerts -->
+      <script src="<?php echo base_url(); ?>assets/plugins/alerts-boxes/js/sweetalert.min.js"></script>
+      <script src="<?php echo base_url(); ?>assets/plugins/alerts-boxes/js/sweet-alert-script.js"></script>

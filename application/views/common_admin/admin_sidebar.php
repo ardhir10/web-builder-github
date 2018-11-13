@@ -21,6 +21,12 @@
       </li>
 
       <li>
+        <a href="<?php echo base_url() ?>admin_package" >
+          <i class="zmdi zmdi-money-box"></i> Menu Package</span> 
+        </a>
+      </li>
+
+      <li>
         <a href="<?php echo base_url() ?>admin_template" >
           <i class="zmdi zmdi-collection-folder-image"></i> Template website</span> 
         </a>
