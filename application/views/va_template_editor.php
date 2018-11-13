@@ -43,14 +43,14 @@
                <!--Start Dashboard Content-->
             
               
-                <div class="demo-heading"><?php echo $title_card; ?> | LIVE THEMPLATE EDITOR</div>
+                <div class="demo-heading"><?php echo $title_card; ?> | LIVE TEMPLATE EDITOR</div>
                 <!-- <button class="btn btn-success" onclick="anim5_noti()">SHOW ME</button> -->
                 
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
-                        <label>Nama Themplate :</label>
-                        <input type="text" name="title" class="form-control" id="title-themplate">
+                        <label>Nama Template :</label>
+                        <input type="text" name="title" class="form-control" id="title-template">
                     </div>
                     
                   </div>
@@ -107,17 +107,17 @@
         var html=htmlContent.innerHTML; //get html content of document
         var css=editor.getCss(); //get css content of document
 
-        var title_themplate = $('#title-themplate').val();
+        var title_template = $('#title-template').val();
         console.log(html);
 
-        if (title_themplate == ''){
-          alert('Isi Title Themplate');
+        if (title_template == ''){
+          alert('Isi Title Template');
            // anim5_noti();
         }else{
           $.ajax({
           type:'post',
-          url: "<?php echo base_url('ApiEditorThemplate/save'); ?>",
-          data :{html:html,css:css,title_themplate:title_themplate},
+          url: "<?php echo base_url('ApiEditorTemplate/save'); ?>",
+          data :{html:html,css:css,title_template:title_template},
           dataType: 'json',
           async:true,
           type:'POST',
@@ -126,7 +126,7 @@
           // complete: function (data) {
           // },
           success: function(result) {
-              alert('DATA THEMPLATE DISIMPAN ');
+              alert('DATA TEMPLATE DISIMPAN ');
               // anim5_noti();
               // console.log('Save ', result);
           },

@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class ApiEditorThemplate extends CI_Controller {
+class ApiEditorTemplate extends CI_Controller {
 
 	function __construct(){
     parent::__construct();
         $this->load->model('Model_editor');
-        $this->load->model('Model_editor_themplate');
+        $this->load->model('Model_editor_template');
         $this->load->helper(array('Form', 'Cookie', 'String'));
         // cek session
         // if ($this->session->userdata('adminLogged') != TRUE) {
@@ -17,7 +17,7 @@ class ApiEditorThemplate extends CI_Controller {
 
 
 
-    private $controller = 'ApiEditorThemplate';
+    private $controller = 'ApiEditorTemplate';
    
 
     // public function index()
@@ -36,7 +36,7 @@ class ApiEditorThemplate extends CI_Controller {
 
     function save()
     {
-            $title       = $this->input->post('title_themplate');
+            $title       = $this->input->post('title_template');
             $css         = $this->input->post('css');
             $html_firts  = str_replace("'", "---?---?", $this->input->post('html'));
             $html        = str_replace('---?---?', '"', $html_firts);
@@ -51,7 +51,7 @@ class ApiEditorThemplate extends CI_Controller {
             'tanggal_dibuat'    => date("Y-m-d H:i:s")
         );
 
-        $create = $this->Model_editor_themplate->create($data);
+        $create = $this->Model_editor_template->create($data);
 
         echo "{}";
     }
@@ -59,7 +59,7 @@ class ApiEditorThemplate extends CI_Controller {
     function update()
     {
             $id          = $this->input->post('id');
-            $title       = $this->input->post('title_themplate');
+            $title       = $this->input->post('title_template');
             $css         = $this->input->post('css');
             $html_firts  = str_replace("'", "---?---?", $this->input->post('html'));
             $html        = str_replace('---?---?', '"', $html_firts);
@@ -78,7 +78,7 @@ class ApiEditorThemplate extends CI_Controller {
             'ID' => $id            
         );
 
-        $update = $this->Model_editor_themplate->update_data($where,$data);
+        $update = $this->Model_editor_template->update_data($where,$data);
         echo "{}";
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-class Model_editor_themplate extends CI_Model {
+class Model_editor_template extends CI_Model {
     
     public function __construct() {
         parent::__construct();
@@ -8,7 +8,7 @@ class Model_editor_themplate extends CI_Model {
 
 
 
-    private $table = 'table_themplate';
+    private $table = 'table_template';
     
     function create($data)
     {

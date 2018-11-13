@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Admin_themplate extends CI_Controller {
+class Admin_template extends CI_Controller {
 
 	function __construct(){
     parent::__construct();
         $this->load->model('admin_model/Model_admin');
         $this->load->model('admin_model/Model_admin_login');
-        $this->load->model('Model_editor_themplate');
+        $this->load->model('Model_editor_template');
         $this->load->helper(array('Form', 'Cookie', 'String'));
 
         // cek session
@@ -19,7 +19,7 @@ class Admin_themplate extends CI_Controller {
 
 
 
-    private $controller = 'Admin_themplate';
+    private $controller = 'Admin_template';
    
 
     public function index()
@@ -32,12 +32,12 @@ class Admin_themplate extends CI_Controller {
         if ($this->session->userdata('adminLogged')) {
             //==== Inisiasi Awal 
             $data['controller'] = $this->controller;
-            $data['title_page'] = 'Data Themplate | Goodeva';
-            $data['title_card'] = 'Data Themplate';
+            $data['title_page'] = 'Data Template | Goodeva';
+            $data['title_card'] = 'Data Template';
 
-            $data['themplate_result'] = $this->Model_editor_themplate->get_data()->result();
+            $data['template_result'] = $this->Model_editor_template->get_data()->result();
 
-            $this->load->view('va_themplate',$data);
+            $this->load->view('va_template',$data);
 
         } else if($cookie <> '') {
             // cek cookie
@@ -63,11 +63,11 @@ class Admin_themplate extends CI_Controller {
         if ($this->session->userdata('adminLogged')) {
             //==== Inisiasi Awal 
             $data['controller'] = $this->controller;
-            $data['title_page'] = 'Add Themplate | Goodeva';
-            $data['title_card'] = 'Add Themplate';
+            $data['title_page'] = 'Add Template | Goodeva';
+            $data['title_card'] = 'Add Template';
 
 
-            $this->load->view('va_themplate_editor',$data);
+            $this->load->view('va_template_editor',$data);
 
         } else if($cookie <> '') {
             // cek cookie
@@ -87,15 +87,15 @@ class Admin_themplate extends CI_Controller {
     {
         //==== Inisiasi Awal 
         $data['controller'] = $this->controller;
-        $data['title_page'] = 'Edit Themplate | Goodeva';
-        $data['title_card'] = 'Edit Themplate';
+        $data['title_page'] = 'Edit Template | Goodeva';
+        $data['title_card'] = 'Edit Template';
 
 
         $where = array(
             'ID' => $id
         );
-        $data['data_edit']  = $this->Model_editor_themplate->edit_data($where)->row();
-        $this->load->view('va_themplate_editor_edit',$data);
+        $data['data_edit']  = $this->Model_editor_template->edit_data($where)->row();
+        $this->load->view('va_template_editor_edit',$data);
     }
 
 
@@ -112,8 +112,8 @@ class Admin_themplate extends CI_Controller {
         $where = array(
             'ID' => $id
         );
-        $data['data_edit']  = $this->Model_editor_themplate->edit_data($where)->row();
-        $this->load->view('va_preview_themplate',$data);
+        $data['data_edit']  = $this->Model_editor_template->edit_data($where)->row();
+        $this->load->view('va_preview_template',$data);
     } 
 
     function create_session($data_admin) {

@@ -21,8 +21,8 @@
       </li>
 
       <li>
-        <a href="<?php echo base_url() ?>admin_themplate" >
-          <i class="zmdi zmdi-collection-folder-image"></i> Themplate website</span> 
+        <a href="<?php echo base_url() ?>admin_template" >
+          <i class="zmdi zmdi-collection-folder-image"></i> Template website</span> 
         </a>
       </li>
 
