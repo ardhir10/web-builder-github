@@ -110,7 +110,7 @@
                         <div class="wecome-content">
                             <h1>Create theWebsite You Want</h1>
                             <!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit</p>-->
-                            <a href="user-login">Get Started</a>
+                            <a href="sites/login">Get Started</a>
                         </div>
                     </div>
                     <!--End Welcome Content-->
