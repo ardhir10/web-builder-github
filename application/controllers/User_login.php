@@ -20,6 +20,7 @@ class User_login extends CI_Controller {
         $pass=md5($password);
         $tanggal= date('Y-m-d H:i:s');
         $web=$this->input->post('web');
+        $exp =  date('Y-m-d H:i:s', time() + (60 * 60 * 24 * 15));
         
         $data_user = array (
         
@@ -27,7 +28,8 @@ class User_login extends CI_Controller {
             'username'=>$email,
             'email'=>$email,
             'password'=>$pass,
-            'tanggal_daftar'=>$tanggal
+            'tanggal_daftar'=>$tanggal,
+            'expired'=>$exp
         
         );
         
