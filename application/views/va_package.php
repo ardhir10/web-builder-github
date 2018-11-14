@@ -95,17 +95,28 @@
             <div class="card">
               <div class="card-header"><i class="fa fa-table"></i> Data Package Table
                 <br>
-              <?php if ($this->session->flashdata('status_tambah')): ?>''
 
+              <?php if ($this->session->flashdata('status_tambah')): ?>''
                 <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <div class="alert-icon">
-                 <i class="fa fa-check"></i>
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <div class="alert-icon">
+                      <i class="fa fa-check"></i>
+                  </div>
+                  <div class="alert-message">
+                      <span><?php echo $this->session->flashdata('status_tambah') ?></span>
+                  </div>
                 </div>
-                <div class="alert-message">
-                
-                  <span><?php echo $this->session->flashdata('status_tambah') ?></span>
-                </div>
+              <?php endif ?>
+
+              <?php if ($this->session->flashdata('status_update')): ?>''
+                <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <div class="alert-icon">
+                      <i class="fa fa-check"></i>
+                  </div>
+                  <div class="alert-message">
+                      <span><?php echo $this->session->flashdata('status_update') ?></span>
+                  </div>
                 </div>
               <?php endif ?>
 
@@ -130,7 +141,9 @@
                         <td><?php echo $row_package->nama_package; ?></td>
                         <td><?php echo number_format($row_package->harga,0,',','.')  ?></td>
                         <td><?php echo $row_package->keterangan ?></td>
-                        <td><a href="<?php echo base_url().$controller ?>/edit/<?php echo $row_package->ID ?>"><button type="button" class="btn btn-info btn-sm waves-effect waves-light m-1"><i class="zmdi zmdi-edit"></i> Edit</button></a><button type="button" onclick="" data-id="<?php echo $row_package->ID; ?>" class="btn btn-danger btn-sm waves-effect waves-light m-1 delete"><i class="zmdi zmdi-delete "></i> Hapus</button></td>
+                        <td><a href="<?php echo base_url().$controller ?>/edit/<?php echo $row_package->ID ?>"><button type="button" class="btn btn-info btn-sm waves-effect waves-light m-1"><i class="zmdi zmdi-edit"></i> Edit</button></a>
+
+                          <button type="button" onclick="" data-id="<?php echo $row_package->ID; ?>" class="btn btn-danger btn-sm waves-effect waves-light m-1 delete"><i class="zmdi zmdi-delete "></i> Hapus</button></td>
                       </tr>
                     <?php endforeach ?>
                     

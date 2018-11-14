@@ -99,6 +99,26 @@ class Admin_package extends CI_Controller {
         $this->load->view('va_package_edit',$data);
     }
 
+    function update()
+    {
+        $id           = $this->input->post('id');
+        $nama_package = $this->input->post('nama_package');
+        $harga        = $this->input->post('harga');
+        $keterangan   = $this->input->post('keterangan');
+
+        $data = array(
+            'nama_package' => $nama_package,
+            'harga'        => $harga,
+            'keterangan'   => $keterangan
+        );
+        $where = array(
+            'ID' => $id
+        );
+        $update = $this->Model_package->update_data($where,$data);
+        $this->session->set_flashdata('status_update','Data Berhasil diupdate');
+        redirect(base_url().$this->controller);
+    }
+
 
     public function login()
     {

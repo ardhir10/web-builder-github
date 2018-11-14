@@ -58,18 +58,33 @@
          <div class="row">
           <div class="col-lg-12">
             <div class="card">
-              <div class="card-header"><i class="fa fa-table"></i> Data User Table</div>
+              <div class="card-header"><i class="fa fa-table"></i> Data User Table
+                <br>
+                <?php if ($this->session->flashdata('status_update')): ?>''
+                  <div class="alert alert-info alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <div class="alert-icon">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="alert-message">
+                        <span><?php echo $this->session->flashdata('status_update') ?></span>
+                    </div>
+                  </div>
+                <?php endif ?>
+              </div>
               <div class="card-body">
                 <div class="table-responsive">
                 <table id="default-datatable" class="table table-bordered">
-                  <thead>
+                  <thead class="table-dark">
                       <tr>
                           <th>No</th>
+                          <th class="sticky-th-dark">Action</th>
                           <th>Nama</th>
                           <th>Email</th>
                           <th>No Telp</th>
                           <th>Nama Web</th>
                           <th>Status</th>
+                          <th>Pakcage</th>
                           <th>Tanggal daftar</th>
                           <th>Expired</th>
                       </tr>
@@ -79,6 +94,7 @@
                     <?php $no = 1; foreach($data_user as $row_user): ?>
                       <tr>
                         <td><?php echo $no++; ?></td>
+                        <td class="sticky-td"><a href="<?php echo base_url().$controller ?>/edit/<?php echo $row_user->ID ?>"><button type="button" class="btn btn-info btn-sm waves-effect waves-light m-1"><i class="zmdi zmdi-edit"></i> Edit</button></a></td>
                         <td><?php echo  $row_user->nama ?></td>
                         <td><?php echo  $row_user->email ?></td>
                         <td><?php echo  $row_user->no_telp ?></td>
@@ -93,8 +109,23 @@
                           <?php endforeach ?>
                         </td>
 
+                        <td>
+                          <?php foreach ($data_package as $row_package): ?>
+                            <?php if ($row_user->id_package == $row_package->ID): ?>
+                             <?php echo  $row_package->nama_package ?>
+                            <?php endif ?>
+                          <?php endforeach ?>
+                          <?php if ($row_user->id_package == 0): ?>
+                              <p>Default</p>
+                          <?php endif ?>
+                        </td>
+
+
+
+
                         <td><?php echo  $row_user->tanggal_daftar ?></td>
                         <td><?php echo  $row_user->expired ?></td>
+                       
                       </tr>
                     <?php endforeach ?>
                     
@@ -103,18 +134,7 @@
                   
                  
                   </tbody>
-                  <tfoot>
-                      <tr>
-                          <th>No</th>
-                          <th>Nama</th>
-                          <th>Email</th>
-                          <th>No Telp</th>
-                          <th>Nama Web</th>
-                          <th>Status</th>
-                          <th>Tanggal daftar</th>
-                          <th>Expired</th>
-                      </tr>
-                  </tfoot>
+                  
               </table>
               </div>
               </div>

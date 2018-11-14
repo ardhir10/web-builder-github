@@ -45,9 +45,9 @@ class Model_package extends CI_Model {
      $this->db->insert($this->table,$data);
 	}
 
-	function update_data($where,$data,$table){
+	function update_data($where,$data){
 		$this->db->where($where);
-		$this->db->update($table,$data);
+		$this->db->update($this->table,$data);
 	}
 
 	function delete_data($where){

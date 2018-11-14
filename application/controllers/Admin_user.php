@@ -7,6 +7,7 @@ class Admin_user extends CI_Controller {
         $this->load->model('admin_model/Model_admin');
         $this->load->model('admin_model/Model_admin_login');
         $this->load->model('Model_user');
+        $this->load->model('Model_package');
         $this->load->helper(array('Form', 'Cookie', 'String'));
 
         // cek session
@@ -35,6 +36,8 @@ class Admin_user extends CI_Controller {
             $data['title_page']         = 'Data User | Goodeva';
             $data['data_user']          = $this->Model_user->get_data()->result();
             $data['data_user_status']   = $this->db->get('table_status')->result();
+            $data['data_package']       = $this->Model_package->get_data()->result();
+
 
 
             $this->load->view('va_user',$data);
@@ -51,6 +54,44 @@ class Admin_user extends CI_Controller {
                 $this->login();
         }
     	
+    }
+
+
+    function edit($id)
+    {
+        $data['controller']         = $this->controller;
+        $data['title_page']         = 'Edit User Package | Goodeva';
+
+        $where = array(
+            'ID' => $id
+        );
+        $data['data_user']          = $this->Model_user->edit_data($where)->row();
+        $data['data_status']        = $this->db->get('table_status')->result();
+        $data['data_package']       = $this->Model_package->get_data()->result();
+
+
+        $this->load->view('va_user_edit',$data);
+    }
+
+    function update()
+    {
+        $id         = $this->input->post('id');
+        $id_status  = $this->input->post('status');
+        $id_package = $this->input->post('package');
+        $expired    = $this->input->post('expired');
+
+        $data = array(
+            'id_status'  => $id_status,
+            'id_package' => $id_package,
+            'expired'    => $expired,
+        );
+        $where = array(
+            'ID' => $id
+        );
+
+        $update = $this->Model_user->update_data($where,$data);
+        $this->session->set_flashdata('status_update','Data Berhasil diupdate');
+        redirect(base_url().$this->controller);
     }
 
 

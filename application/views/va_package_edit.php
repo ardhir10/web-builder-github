@@ -93,7 +93,7 @@
          <div class="row">
           <div class="col-lg-12">
             <div class="card">
-              <div class="card-header"><i class="fa fa-table"></i> Data Package Table
+              <div class="card-header"><i class="fa fa-table"></i> Edit Data Package Form
                 <br>
               <?php if ($this->session->flashdata('status_tambah')): ?>''
 
@@ -112,11 +112,12 @@
               </div>
 
               <div class="card-body">
-                  <form>
+                  <form action="<?php echo base_url().$controller ?>/update" method="post">
 
                     <div class="form-group">
                       <label>Nama Package</label>
                       <input type="text" name="nama_package" class="form-control" value="<?php echo $data_package_edit->nama_package ?>" >
+                      <input type="hidden" name="id" class="form-control" value="<?php echo $data_package_edit->ID; ?>" >
                     </div>
 
                     <div class="form-group">
@@ -126,8 +127,7 @@
 
                     <div class="form-group">
                       <label>Keterangan</label>
-                      <textarea class="form-control"><?php echo $data_package_edit->keterangan ?>
-                      </textarea>
+                      <textarea class="form-control" name="keterangan"><?php echo $data_package_edit->keterangan ?></textarea>
                     </div>
 
                     <div class="form-group">
@@ -139,6 +139,8 @@
             </div>
           </div>
         </div><!-- End Row-->
+
+
 
     </div>
     <!-- End container-fluid-->

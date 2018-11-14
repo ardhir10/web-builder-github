@@ -46,9 +46,9 @@ class Model_user extends CI_Model {
 		
 	}
 
-	function update_data($where,$data,$table){
+	function update_data($where,$data){
 		$this->db->where($where);
-		$this->db->update($table,$data);
+		$this->db->update($this->table,$data);
 	}
 
 	function delete_data($where,$table){

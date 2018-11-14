@@ -35,3 +35,11 @@
       <!--Sweet Alerts -->
       <script src="<?php echo base_url(); ?>assets/plugins/alerts-boxes/js/sweetalert.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/alerts-boxes/js/sweet-alert-script.js"></script>
+
+
+      <!--Bootstrap Datepicker Js-->
+      <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+      <!--material date picker js-->
+      <script src="<?php echo base_url(); ?>assets/plugins/material-datepicker/js/moment.min.js"></script>
+      <script src="<?php echo base_url(); ?>assets/plugins/material-datepicker/js/bootstrap-material-datetimepicker.min.js"></script>
+      <script src="<?php echo base_url(); ?>assets/plugins/material-datepicker/js/ja.js"></script>
