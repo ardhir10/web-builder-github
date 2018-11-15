@@ -16,6 +16,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+     <meta name="google-signin-client_id" content="518758685550-09lcn41snleiakss2v5od5cgi1011sn1.apps.googleusercontent.com">
     <title>
         <?php echo $title_page;  ?>
     </title>
@@ -35,13 +36,14 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/landing/assets/css/style.css">
     <!--Responsive CSS-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/landing/assets/css/responsive.css">
- <!-- notifications css -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/notifications/css/lobibox.min.css"/>
+    <!-- notifications css -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/notifications/css/lobibox.min.css" />
     <!--Modanizr JS-->
     <script src="<?php echo base_url() ?>assets/landing/assets/js/modernizr.custom.js"></script>
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
@@ -63,7 +65,7 @@
                 <div class="container">
                     <!-- Start Atribute Navigation -->
                     <div class="attr-nav">
-                       <a href="<?php echo base_url();?>sites/register">Register Now</a>
+                        <a href="<?php echo base_url();?>sites/register">Register Now</a>
                     </div>
                     <!-- End Atribute Navigation -->
 
@@ -95,9 +97,9 @@
             <div class="clearfix"></div>
         </header>
         <!--End Header-->
-       
 
-      
+
+
         <!--Start Contact Area-->
         <section id="contact-area">
             <!--Start Container-->
@@ -108,9 +110,8 @@
                         <div class="section-heading text-center">
                             <h2>Log In</h2>
                             <h3>New to Goodeva? <a href="<?php echo base_url().$controller ?>/register"><u>Sign Up</u></a></h3>
-                            <div class="col-12 col-lg-4 col-xl-2">
-                              
-                            </div>
+                           
+<!--                           <div class="g-signin2" data-onsuccess="onSignIn"></div>-->
                         </div>
                     </div>
                 </div>
@@ -183,10 +184,10 @@
     <script src="<?php echo base_url() ?>assets/landing/assets/js/bootsnav.js"></script>
     <!--Main JS-->
     <script src="<?php echo base_url() ?>assets/landing/assets/js/custom.js"></script>
-    
-     <script src="<?php echo base_url() ?>assets/plugins/notifications/js/lobibox.min.js"></script>
-  <script src="<?php echo base_url() ?>assets/plugins/notifications/js/notifications.min.js"></script>
-  <script src="<?php echo base_url() ?>assets/plugins/notifications/js/notification-custom-script.js"></script>
+
+    <script src="<?php echo base_url() ?>assets/plugins/notifications/js/lobibox.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/plugins/notifications/js/notifications.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/plugins/notifications/js/notification-custom-script.js"></script>
 
     <?php
     
@@ -196,30 +197,30 @@
     
     
     ?>
-    
-    
-<script>
-    $(document).ready(function() {
-        suksesregister();
-    });
 
-    function suksesregister() {
-        Lobibox.notify('success', {
-            pauseDelayOnHover: true,
-            size: 'mini',
-            rounded: true,
-            icon: 'fa fa-check-circle',
-            delayIndicator: false,
-            continueDelayOnInactiveTab: false,
-            position: 'top center',
-            msg: '<?php echo $cek; ?>'
+
+    <script>
+        $(document).ready(function() {
+            suksesregister();
         });
-    }
-</script>
-  <?php
+
+        function suksesregister() {
+            Lobibox.notify('success', {
+                pauseDelayOnHover: true,
+                size: 'mini',
+                rounded: true,
+                icon: 'fa fa-check-circle',
+                delayIndicator: false,
+                continueDelayOnInactiveTab: false,
+                position: 'top center',
+                msg: '<?php echo $cek; ?>'
+            });
+        }
+    </script>
+    <?php
     }
     ?>
-     <?php
+    <?php
     
     if($this->session->flashdata('pesan-login'))
     {
@@ -227,30 +228,30 @@
     
     
     ?>
-    
-    
-<script>
-    $(document).ready(function() {
-        suksesregister();
-    });
 
-    function suksesregister() {
-     Lobibox.notify('error', {
-		    pauseDelayOnHover: true,
-		    size: 'mini',
-		    rounded: true,
-		    delayIndicator: false,
-		    icon: 'fa fa-times-circle',
-            continueDelayOnInactiveTab: false,
-		    position: 'top center',
-		    msg: '<?php echo $cek2; ?>'
-		    });
-    }
-</script>
-  <?php
+
+    <script>
+        $(document).ready(function() {
+            suksesregister();
+        });
+
+        function suksesregister() {
+            Lobibox.notify('error', {
+                pauseDelayOnHover: true,
+                size: 'mini',
+                rounded: true,
+                delayIndicator: false,
+                icon: 'fa fa-times-circle',
+                continueDelayOnInactiveTab: false,
+                position: 'top center',
+                msg: '<?php echo $cek2; ?>'
+            });
+        }
+    </script>
+    <?php
     }
     ?>
-   
+
 </body>
 
 

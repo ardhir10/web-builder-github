@@ -125,7 +125,8 @@ class User_login extends CI_Controller {
         $this->session->unset_userdata($sess);
           
       if ($this->session->userdata('loginGoogle')==1){
-           redirect('https://accounts.google.com/Logout');
+           redirect('https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost/ci_app/web-builder-github/sites/login');
+          
           
       }else {
            redirect(base_url().'sites/login');
