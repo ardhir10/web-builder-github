@@ -240,15 +240,10 @@
         })
         .then((willDelete) => {
           if (willDelete) {
-
-            $.ajax({
-            data:{id:id},
-            url:'<?php echo base_url() ?>'+'admin_package/delete',
-            success: function(html) {
-                $("tr[data-id='"+id+"']").fadeOut(1500,function(){
-                    $(this).remove();
-                });
-                swal({   
+            $("tr[data-id='"+id+"']").fadeOut(1500,function(){
+                $(this).remove();
+            });
+            swal({   
                     icon: "success",
                     title: "Deleted !",   
                     text: "Data berhasil dihapus",   
@@ -257,6 +252,23 @@
                     closeOnConfirm: false,   
                     closeOnCancel: false 
                 });
+
+            $.ajax({
+            data:{id:id},
+            url:'<?php echo base_url() ?>'+'admin_package/delete',
+            success: function(html) {
+                // $("tr[data-id='"+id+"']").fadeOut(1500,function(){
+                //     $(this).remove();
+                // });
+                // swal({   
+                //     icon: "success",
+                //     title: "Deleted !",   
+                //     text: "Data berhasil dihapus",   
+                //     type: "success",       
+                //     confirmButtonText: "Ok",    
+                //     closeOnConfirm: false,   
+                //     closeOnCancel: false 
+                // });
                 // location.reload();
             }
             });
