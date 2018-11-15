@@ -93,7 +93,7 @@
 
                     <div class="form-group">
                       <label>Expired</label>
-                      <input type="text" id="date-time-picker" name="expired" class="form-control" value="<?php if($data_user->expired == '0000-00-00 00:00:00') echo ''; else echo '$data_user->expired';  ?>">
+                      <input type="text" id="date-time-picker" name="expired" class="form-control" value="<?php if($data_user->expired == '0000-00-00 00:00:00') echo ''; else echo $data_user->expired;  ?>">
                     </div>
 
                   

@@ -66,7 +66,8 @@ class Admin_panel extends CI_Controller {
             'adminID'           => $data_admin->ID,
             'adminUsername'     => $data_admin->username,
             'adminNamaTampilan' => $data_admin->nama_tampilan,
-            'adminLevel'        => $data_admin->level
+            'adminLevel'        => $data_admin->level,
+            'adminGambar'       => $data_admin->gambar
         );
         $this->session->set_userdata($sess);
             

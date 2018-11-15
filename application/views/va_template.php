@@ -35,7 +35,7 @@
                <!--Start Dashboard Content-->
                <div class="row mt-3">
                   <div class="col-12 col-lg-6 col-xl-3">
-                      <a href="<?php echo base_url().$controller ?>/add"><button type="button" class="btn btn-success waves-effect waves-light m-1">TEMPLATE BARU <i class="zmdi zmdi-plus"></i></button></a>
+                      <a href="<?php echo base_url().$controller ?>/add"><button type="button" class="btn btn-success waves-effect waves-light m-1">TEMPLATE <i class="zmdi zmdi-plus"></i></button></a>
                   </div>
                   
                </div>
@@ -50,11 +50,11 @@
                       <div class="card">
                         <a href="<?php echo base_url().$controller ?>/edit/<?php echo $row_template->ID; ?>">
 
-                        <iframe src="<?php echo base_url().$controller ?>/preview/<?php echo $row_template->ID ?>"></iframe>
+                        <!-- <iframe src="<?php echo base_url().$controller ?>/preview/<?php echo $row_template->ID ?>"></iframe> -->
                         <!-- <img src="<?php echo base_url() ?>assets/images/gallery/13.jpg" class="card-img-top" alt="Card image cap"> -->
                         </a>
                         <div class="card-body">
-                          <h5 class="card-title text-dark"><?php echo $row_template->title ?></h5>
+                          <h5 class="card-title text-dark"><?php echo $row_template->nama_template ?></h5>
                         </div>
                          <!-- <ul class="list-group list-group-flush list shadow-none">
                           <li class="list-group-item d-flex justify-content-between align-items-center">Cras justo odio <span class="badge badge-dark badge-pill">14</span></li>
@@ -62,8 +62,8 @@
                           <li class="list-group-item d-flex justify-content-between align-items-center">Vestibulum at eros <span class="badge badge-danger badge-pill">1</span></li>
                         </ul> -->
                         <div class="card-body">
-                          <a href="<?php echo base_url().$controller ?>/edit/<?php echo $row_template->ID; ?>" class="card-link">Edit</a>
-                          <a href="<?php echo base_url().$controller ?>/preview/<?php echo $row_template->ID; ?>" target="_blank" class="card-link">Lihat</a>
+                          <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $row_template->slug_id; ?>" class="card-link">Edit</a>
+                          <a href="<?php echo base_url().$controller ?>/preview/<?php echo $row_template->slug_id; ?>" target="_blank" class="card-link">Lihat</a>
                         </div>
                       </div>
                   </div><!--End Row-->

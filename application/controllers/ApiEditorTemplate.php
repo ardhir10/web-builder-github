@@ -6,6 +6,7 @@ class ApiEditorTemplate extends CI_Controller {
     parent::__construct();
         $this->load->model('Model_editor');
         $this->load->model('Model_editor_template');
+        $this->load->model('Model_template_page');
         $this->load->helper(array('Form', 'Cookie', 'String'));
         // cek session
         // if ($this->session->userdata('adminLogged') != TRUE) {
@@ -36,7 +37,7 @@ class ApiEditorTemplate extends CI_Controller {
 
     function save()
     {
-            $title       = $this->input->post('title_template');
+            // $title       = $this->input->post('title_template');
             $css         = $this->input->post('css');
             $html_firts  = str_replace("'", "---?---?", $this->input->post('html'));
             $html        = str_replace('---?---?', '"', $html_firts);
@@ -45,13 +46,13 @@ class ApiEditorTemplate extends CI_Controller {
 
         $data = array(
 
-            'title'             => $title,
+            // 'title'             => $title,
             'css'               => $css,
             'html'              => $html,
             'tanggal_dibuat'    => date("Y-m-d H:i:s")
         );
 
-        $create = $this->Model_editor_template->create($data);
+        $create = $this->Model_template_page->insert_data($data);
 
         echo "{}";
     }
@@ -68,17 +69,18 @@ class ApiEditorTemplate extends CI_Controller {
 
         $data = array(
 
-            'title'             => $title,
+            // 'title'             => $title,
             'css'               => $css,
             'html'              => $html,
-            // 'tanggal_dibuat'    => date("Y-m-d H:i:s")
+            'tanggal_dibuat'    => date("Y-m-d H:i:s")
         );
+
 
         $where = array(
             'ID' => $id            
         );
 
-        $update = $this->Model_editor_template->update_data($where,$data);
+        $update = $this->Model_template_page->update_data($where,$data);
         echo "{}";
     }
 

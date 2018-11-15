@@ -1,3 +1,6 @@
+<div id="preloader">
+  <div id="status">&nbsp;</div>
+</div>
  <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
      <div class="brand-logo">
       <a href="index.html">
