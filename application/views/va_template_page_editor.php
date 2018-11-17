@@ -47,10 +47,61 @@
                   <?php echo $data_page->judul_page; ?> 
                 </div>
                 <div class="form-group">
-                  <label>List Page</label>
-                  <select class="form-control">
+                  <!-- <label>List Page</label> -->
+                  <!-- <select class="form-control">
                     <option>Home</option>
-                  </select>                  
+                  </select>   -->
+                  <button type="button" class="btn btn-sm btn-success waves-effect waves-light" data-toggle="modal" data-target="#modal-animation-14"><i aria-hidden="true" class="zmdi zmdi-view-list-alt"></i> &nbsp;LIST PAGE</button>
+                  <style type="text/css">
+                    tr:hover{
+                      cursor: pointer;
+                      background-color: #ccc;
+                    }
+                  </style>
+                      <!-- Modal Add New -->
+                        <div class="modal fade" id="modal-animation-14">
+                          <div class="modal-dialog">
+                            <div class="modal-content animated zoomInUp">
+                              <div class="modal-header">
+                                <h5 class="modal-title">List Page</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                              <div class="table-responsive">
+                                <table class="table">
+                                  <thead>
+                                    <th>Judul Page</th>
+                                    <th>Type</th>
+                                  </thead>
+                                  <tbody>
+                                    <tr >
+                                      <td>Home Page</td>
+                                      <td>index</td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>About Page</td>
+                                      <td></td>
+                                    </tr>
+                                    <tr>
+                                      <td>Contact Page</td>
+                                      <td></td>
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                                
+                              </div> 
+
+                              </div>
+                              <div class="modal-footer">
+                               
+                              </div>
+                            </div>
+                          </div>
+                        </div>                
                 </div>
                 <!-- <button class="btn btn-success" onclick="anim5_noti()">SHOW ME</button> -->
                 <div class="row">
@@ -164,6 +215,15 @@
         // }
         // );
         }
+      </script>
+
+      <script type="text/javascript">
+        $( document ).ready(function() {
+          $("tr").click(function(){
+           window.location = "http://www.google.com";
+         });
+        });
+        
       </script>
 
 
