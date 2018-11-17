@@ -8,10 +8,7 @@ class ApiEditorTemplate extends CI_Controller {
         $this->load->model('Model_editor_template');
         $this->load->model('Model_template_page');
         $this->load->helper(array('Form', 'Cookie', 'String'));
-        // cek session
-        // if ($this->session->userdata('adminLogged') != TRUE) {
-        //     redirect(base_url('Admin_panel/login'));
-        // }
+     
     }
 
     
