@@ -94,7 +94,9 @@ class User_login extends CI_Controller {
             'userNama'         => $data_user->nama,
             'userTelp'         => $data_user->no_telp,
             'userNamaweb'      => $data_user->nama_web,
-            'userGambar'       => $data_user->gambar
+            'userGambar'       => $data_user->gambar,
+            'userStatus'       => $data_user->id_status,
+            'userPackage'      => $data_user->id_package,
         );
         $this->session->set_userdata($sess);
             
@@ -109,7 +111,6 @@ class User_login extends CI_Controller {
           
            $sess = array(
                     'userLogged'   ,
-                   
                     'userID'         ,
                     'userEmail'       ,
                     'userNama'        ,

@@ -35,7 +35,7 @@
                <!--Start Dashboard Content-->
                <div class="row mt-3">
                   <div class="col-12 col-lg-6 col-xl-3">
-                      <button type="button" class="btn btn-success waves-effect waves-light m-1">WEBSITE BARU <i class="zmdi zmdi-plus"></i></button>
+                      <a href="<?php echo base_url().$controller ?>/add?usr=<?php echo md5($this->session->userdata('userID')); ?>&status=<?php echo md5($this->session->userdata('userStatus')); ?>"><button type="button" class="btn btn-success waves-effect waves-light m-1">WEBSITE BARU <i class="zmdi zmdi-plus"></i></button></a>
                   </div>
                   
                </div>
@@ -43,7 +43,7 @@
               
               <div class="demo-heading">WEBSITE ANDA</div>
 
-               <div class="row">
+              <!-- <div class="row">
                 <?php foreach ($website as $data_website): ?>
                  <div class="col-lg-4">
                   <a href="<?php echo base_url() ?>User_editor/website/<?php echo $data_website->ID ?>">
@@ -59,12 +59,11 @@
                         </div>
                     </div>
                   </a>
-                  </div><!--End Row-->
+                  </div>
                 <?php endforeach ?>
+              </div> -->
 
-
-               <!--End Dashboard Content-->
-            </div>
+              <!--End Row-->
             <!-- End container-fluid-->
          </div>
          <!--End content-wrapper-->

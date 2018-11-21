@@ -51,7 +51,20 @@
                   <!-- <select class="form-control">
                     <option>Home</option>
                   </select>   -->
-                  <button type="button" class="btn btn-sm btn-success waves-effect waves-light" data-toggle="modal" data-target="#modal-animation-14"><i aria-hidden="true" class="zmdi zmdi-view-list-alt"></i> &nbsp;LIST PAGE</button>
+                  <button type="button" class="btn btn-sm btn-default waves-effect waves-light" data-toggle="modal" data-target="#modal-animation-14"><i aria-hidden="true" class="zmdi zmdi-view-list-alt"></i> &nbsp;LIST PAGE</button>
+
+
+                  <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $data_template->slug_id ?>"><button type="button" class="btn btn-sm btn-info waves-effect waves-light" ><i aria-hidden="true" class="zmdi zmdi-globe-alt"></i> &nbsp;Detail Template</button></a>
+
+
+
+                  <a href="<?php echo base_url()?>preview/template/<?php echo $data_template->slug_id ?>/<?php echo $data_page->slug_id ?>" target="_blank"><button type="button" class="btn btn-sm btn-primary waves-effect waves-light"><i aria-hidden="true" class="zmdi zmdi-eye"></i> &nbsp;Preview</button></a>
+
+                  <button type="button" onclick="saveContent()" class="btn btn-sm btn-success waves-effect waves-light"><i aria-hidden="true" class="zmdi zmdi-save"></i> &nbsp;Save</button>
+
+
+
+
                   <style type="text/css">
                     tr:hover{
                       cursor: pointer;
@@ -71,24 +84,17 @@
                               <div class="modal-body">
                               <div class="table-responsive">
                                 <table class="table">
-                                  <thead>
-                                    <th>Judul Page</th>
-                                    <th>Type</th>
-                                  </thead>
+                                 
                                   <tbody>
-                                    <tr >
-                                      <td>Home Page</td>
-                                      <td>index</td>
-                                    </tr>
+                                    <?php foreach ($data_page_result as $result_page): ?>
+                                      <tr data-id="<?php echo $result_page->ID ?>" >
+                                        <td><?php echo $result_page->judul_page ?></td>
+                                        <td><?php echo $result_page->type_page ?></td>
+                                      </tr>
+                                    <?php endforeach ?>
+                                   
 
-                                    <tr>
-                                      <td>About Page</td>
-                                      <td></td>
-                                    </tr>
-                                    <tr>
-                                      <td>Contact Page</td>
-                                      <td></td>
-                                    </tr>
+                                   
 
                                   </tbody>
                                 </table>
@@ -106,6 +112,16 @@
                 <!-- <button class="btn btn-success" onclick="anim5_noti()">SHOW ME</button> -->
                 <div class="row">
                   <div class="col-12">
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label>Judul Page</label>
+                          <input type="text" class="form-control" name="judul-page" id="judul-page" value="<?php echo $data_page->judul_page; ?>">
+                        </div>
+                      </div>
+                    </div>
+                   
                     <!-- EDITOR START -->
                       <div id="gjs" style="height: 1000px !importants;">
                       <style type="text/css">
@@ -165,6 +181,7 @@
         var id='<?php echo $data_page->ID ?>'; //get css content of document
 
         var title_template = $('#title-template').val();
+        var judul_page     = $('#judul-page').val();
         console.log(html);
 
         if (title_template == ''){
@@ -174,7 +191,7 @@
           $.ajax({
           type:'post',
           url: "<?php echo base_url('ApiEditorTemplate/update'); ?>",
-          data :{id:id,html:html,css:css,title_template:title_template},
+          data :{id:id,html:html,css:css,title_template:title_template,judul_page:judul_page},
           dataType: 'json',
           async:true,
           type:'POST',
@@ -184,6 +201,8 @@
           // },
           success: function(result) {
               alert('DATA TEMPLATE DISIMPAN ');
+              location.reload();
+
               // anim5_noti();
               // console.log('Save ', result);
           },
@@ -219,8 +238,11 @@
 
       <script type="text/javascript">
         $( document ).ready(function() {
+
+
           $("tr").click(function(){
-           window.location = "http://www.google.com";
+            var id_page = $(this).attr("data-id");
+           window.location = "<?php echo base_url().$controller ?>/template_page/<?php echo $data_template->slug_id  ?>/"+id_page;
          });
         });
         

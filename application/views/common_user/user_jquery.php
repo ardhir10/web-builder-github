@@ -11,9 +11,9 @@
       <!-- Custom scripts -->
       <script src="<?php echo base_url(); ?>assets/js/app-script.js"></script>
       <!-- Chart js -->
-      <script src="<?php echo base_url(); ?>assets/plugins/Chart.js/Chart.min.js"></script>
+      <!-- <script src="<?php echo base_url(); ?>assets/plugins/Chart.js/Chart.min.js"></script> -->
       <!--Peity Chart -->
-      <script src="<?php echo base_url(); ?>assets/plugins/peity/jquery.peity.min.js"></script>
+      <!-- <script src="<?php echo base_url(); ?>assets/plugins/peity/jquery.peity.min.js"></script> -->
       <!-- Index js -->
 
       <!--Data Tables js-->
@@ -32,3 +32,9 @@
       <script src="<?php echo base_url(); ?>assets/plugins/notifications/js/lobibox.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/notifications/js/notifications.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/notifications/js/notification-custom-script.js"></script>
+
+      <!--Sweet Alerts -->
+      <script src="<?php echo base_url(); ?>assets/plugins/alerts-boxes/js/sweetalert.min.js"></script>
+      <script src="<?php echo base_url(); ?>assets/plugins/alerts-boxes/js/sweet-alert-script.js"></script>
+
+

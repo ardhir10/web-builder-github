@@ -75,7 +75,8 @@
                                 </tr>
                               </table> -->
                       
-                        <a href="<?php echo base_url().$controller ?>/preview/<?php echo $data_template->slug_id; ?>" target="_blank" class="btn btn-sm btn-primary waves-effect waves-light">Lihat Template</a>
+                        <a href="<?php echo base_url()?>preview/template/<?php echo $data_template->slug_id; ?>" target="_blank" class="btn btn-sm btn-primary waves-effect waves-light">Lihat Template</a>
+                        <a href="<?php echo base_url()?>Admin_template/edit/<?php echo $data_template->slug_id; ?>" target="_blank" class="btn btn-sm btn-info waves-effect waves-light">Edit Detail</a>
 
                         </div>
                       </div>
@@ -138,6 +139,13 @@
                                 <div class="card-body">
 
                                   <h5 class="card-title text-dark"><?php echo $row_page->judul_page ?></h5>
+                                  <?php 
+                                  if ($row_page->type_page != '') {
+                                    echo "<p>".$row_page->type_page."</p>";
+                                  }else{
+                                    echo "<a href='".base_url()."admin-template/update_index?id_page=".$row_page->ID."&id_template=".$row_page->id_template."'>set as index</a>";
+                                  } ?>
+
                                   <hr>
                                 </div>
                                  <!-- <ul class="list-group list-group-flush list shadow-none">
@@ -148,6 +156,7 @@
                                 <div class="card-body">
                                   <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $data_template->slug_id; ?>/<?php echo $row_page->ID ?>" class="card-link"><button class="btn btn-sm btn-info">Edit</button></a>
                                   <button class="btn btn-sm btn-danger delete" data-id="<?php echo $row_page->ID ?>">Hapus</button>
+
 
                                   <!-- <a href="<?php echo base_url().$controller ?>/preview/<?php echo $row_page->ID; ?>" target="_blank" class="card-link">Lihat</a> -->
                                 </div>
@@ -290,10 +299,32 @@
             position: 'center top',
             showClass: 'rollIn',
                 hideClass: 'rollOut',
-                icon: 'fa fa-check-circle',
+                icon: 'fa fa-trash',
                 width: 600,
             msg: 'Data berhasil dihapus.',
             title: "Deleted !",   
+
+            });
+          }
+        </script>
+      <?php endif ?>
+
+      <?php if ( $this->session->flashdata('message')=='exist'): ?>
+        <script type="text/javascript">
+          $( document ).ready(function() {
+            sukses_add_page();
+          });
+          function sukses_add_page(){
+          Lobibox.notify('warning', {
+            pauseDelayOnHover: true,
+            continueDelayOnInactiveTab: false,
+            position: 'center top',
+            showClass: 'rollIn',
+                hideClass: 'rollOut',
+                icon: 'fa fa-exclamation',
+                width: 600,
+            msg: 'Judul Page sudah ada , Silahkan gunakan judul lain.',
+            title: "Sudah ada !",   
 
             });
           }

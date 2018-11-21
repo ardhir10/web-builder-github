@@ -59,6 +59,13 @@ class Model_template_page extends CI_Model {
         return $this->db->get($this->table);
     }
 
+    function cek_slug_page($id_template,$slug_id)
+    {
+        $this->db->where('id_template',$id_template);
+        $this->db->where('slug_id',$slug_id);
+        return $this->db->get($this->table);
+    }
+
     function get_page_detail($id_template)
     {
         $this->db->where('ID',$id_template);
@@ -78,6 +85,20 @@ class Model_template_page extends CI_Model {
 		$this->db->where($where);
 		$this->db->update($this->table,$data);
 	}
+
+    function update_index($id_page,$id_template,$data)
+    {
+        $this->db->where('ID',$id_page);
+        $this->db->where('id_template',$id_template);
+        $this->db->update($this->table,$data);
+    }
+
+    function remove_index($id_template,$data)
+    {
+        $this->db->where('id_template',$id_template);
+        $this->db->where('type_page','index');
+        $this->db->update($this->table,$data);
+    }
 
 	function delete_data($where){
 		$this->db->where($where);

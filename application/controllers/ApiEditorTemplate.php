@@ -58,6 +58,7 @@ class ApiEditorTemplate extends CI_Controller {
     {
             $id          = $this->input->post('id');
             $title       = $this->input->post('title_template');
+            $judul_page  = $this->input->post('judul_page');   
             $css         = $this->input->post('css');
             $html_firts  = str_replace("'", "---?---?", $this->input->post('html'));
             $html        = str_replace('---?---?', '"', $html_firts);
@@ -68,6 +69,8 @@ class ApiEditorTemplate extends CI_Controller {
 
             // 'title'             => $title,
             'css'               => $css,
+            'judul_page'        => $judul_page,
+            'slug_id'           => $this->clean($judul_page),
             'html'              => $html,
             'tanggal_dibuat'    => date("Y-m-d H:i:s")
         );
@@ -79,6 +82,12 @@ class ApiEditorTemplate extends CI_Controller {
 
         $update = $this->Model_template_page->update_data($where,$data);
         echo "{}";
+    }
+
+    function clean($string) {
+       $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+
+       return preg_replace('/[^A-Za-z0-9\-]/', '', strtolower($string)); // Removes special chars.
     }
 
 	

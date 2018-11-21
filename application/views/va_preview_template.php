@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Preview</title>
+  <title><?php echo $data_template->nama_template ?> : <?php echo $data_page->judul_page;?></title>
   <style type="text/css">
-    <?php echo $data_edit->css;?>
+    <?php echo $data_page->css;?>
     
 
 
@@ -17,6 +17,6 @@
 
 <body>
 
-    <?php echo $data_edit->html;?>
+    <?php echo $data_page->html;?>
 </body>
 </html>

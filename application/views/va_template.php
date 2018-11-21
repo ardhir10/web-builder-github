@@ -62,8 +62,9 @@
                           <li class="list-group-item d-flex justify-content-between align-items-center">Vestibulum at eros <span class="badge badge-danger badge-pill">1</span></li>
                         </ul> -->
                         <div class="card-body">
-                          <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $row_template->slug_id; ?>" class="card-link">Edit</a>
-                          <a href="<?php echo base_url().$controller ?>/preview/<?php echo $row_template->slug_id; ?>" target="_blank" class="card-link">Lihat</a>
+                          <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $row_template->slug_id; ?>" class="card-link">Detail</a>
+                          <a href="<?php echo base_url() ?>preview/template/<?php echo $row_template->slug_id; ?>" target="_blank" class="card-link">Lihat</a>
+                          <a href="#" class="card-link delete" data-id="<?php echo $row_template->ID ?>">Hapus</a>
                         </div>
                       </div>
                   </div><!--End Row-->
@@ -90,6 +91,67 @@
       <!-- JQUERY -->
       <?php $this->load->view('common_admin/admin_jquery.php'); ?>
       <!-- END JQUERY -->
+
+           <!-- Sweet Alert -->
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $.ajaxSetup({
+      type:"post",
+      cache:false,
+      dataType: "json"
+    })
+
+    $(".delete").click(function(){
+        var id=$(this).attr("data-id");
+        swal({
+          title: "Yakin ingin dihapus  ?",
+          text: "Setelah dihapus data akan hilang",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            
+            swal({   
+                    icon: "success",
+                    title: "Deleted !",   
+                    text: "Data berhasil dihapus",   
+                    type: "success",       
+                    confirmButtonText: "Ok",    
+                    closeOnConfirm: false,   
+                    closeOnCancel: false 
+                });
+
+            $.ajax({
+            data:{id:id},
+            url:'<?php echo base_url() ?>'+'Admin_template/delete_template',
+            success: function(html) {
+                // $("tr[data-id='"+id+"']").fadeOut(1500,function(){
+                //     $(this).remove();
+                // });
+                // swal({   
+                //     icon: "success",
+                //     title: "Deleted !",   
+                //     text: "Data berhasil dihapus",   
+                //     type: "success",       
+                //     confirmButtonText: "Ok",    
+                //     closeOnConfirm: false,   
+                //     closeOnCancel: false 
+                // });
+                location.reload();
+            }
+            });
+
+          }else{
+            swal("Batal dihapus !");
+          }
+        });
+
+    });
+
+  });
+  </script>
 
      
 

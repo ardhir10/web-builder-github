@@ -48,41 +48,78 @@ class User_Authentication extends CI_Controller {
                 $exp =  date('Y-m-d H:i:s', time() + (60 * 60 * 24 * 15));
                
                   //database variable
-                 $data_user = array (
+                $data_user = array (
 
                 'nama'=>$nama,
                 'username'=>$email,
                 'email'=>$email,
                 'password'=>$pass,
                 'tanggal_daftar'=>$tanggal,
-                'expired'    => $exp 
+                'expired'    => $exp ,
+                'id_status' => 1,
+                'id_package' => 0
 
                 );
                 
                 // 1. Daftarkan Session
-                $sess = array(
-                    'userLogged'       => TRUE,
-                    'loginGoogle'       => 1,
-                    'userID'           => '',
-                    'userEmail'        => $userData['email'],
-                    'userNama'         => $nama   ,
-                    'userTelp'         => '',
-                    'userNamaweb'      => '',
-                    'userGambar'       => $userData['picture']
-                );
+                // $sess = array(
+                //     'userLogged'       => TRUE,
+                //     'loginGoogle'       => 1,
+                //     'userID'           => '',
+                //     'userEmail'        => $userData['email'],
+                //     'userNama'         => $nama   ,
+                //     'userTelp'         => '',
+                //     'userNamaweb'      => '',
+                //     'userGambar'       => $userData['picture'],
+                //     'userGambar'       => $data_user->gambar,
+                //     'userStatus'       => $data_user->id_status,
+                //     'userPackage'      => $data_user->id_package,
+                // );
+
                 
                 
                 $email=$userData['email'];
                 //cek email
                 $cek = $this->Model_user->cek_email($email);
                 if( $cek==1 ){
+
+                    $data_user = $this->Model_user->cek_by_email($userData['email'])->row();
+
+                    $sess = array(
+                        'userLogged'       => TRUE,
+                        'loginGoogle'      => 1,
+                        'userID'           => $data_user->ID,
+                        'userEmail'        => $userData['email'],
+                        'userNama'         => $nama   ,
+                        'userTelp'         => '',
+                        'userNamaweb'      => '',
+                        'userGambar'       => $userData['picture'],
+                        'userStatus'       => $data_user->id_status,
+                        'userPackage'      => $data_user->id_package,
+                    );
+                
             
                 $this->session->set_userdata($sess);
                 redirect(base_url().'user-panel');
                 }
                 else {
-            
                 $this->Model_user->insert_data($data_user);
+                $id = $this->db->insert_id();
+                $data_user = $this->Model_user->cek_by_email($userData['email'])->row();
+
+                $sess = array(
+                    'userLogged'       => TRUE,
+                    'loginGoogle'      => 1,
+                    'userID'           => $id,
+                    'userEmail'        => $userData['email'],
+                    'userNama'         => $nama   ,
+                    'userTelp'         => '',
+                    'userNamaweb'      => '',
+                    'userGambar'       => $userData['picture'],
+                    'userStatus'       => $data_user->id_status,
+                    'userPackage'      => $data_user->id_package,
+                );
+                
                 $this->session->set_userdata($sess);
                 redirect(base_url().'user-panel');
                 }        

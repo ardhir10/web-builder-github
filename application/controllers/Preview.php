@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Admin_template extends CI_Controller {
+class Preview extends CI_Controller {
 
 	function __construct(){
     parent::__construct();
@@ -23,7 +23,7 @@ class Admin_template extends CI_Controller {
 
 
 
-    private $controller = 'Admin_template';
+    private $controller = 'Preview';
    
 
     public function index()
@@ -55,6 +55,70 @@ class Admin_template extends CI_Controller {
                 $this->login();
         }
     	
+    }
+
+    function template()
+    {
+        // $where = array(
+        //     'ID' => $id
+        // );
+        // $data['data_edit']  = $this->Model_editor_template->edit_data($where)->row();
+        // $this->load->view('va_preview_template',$data);
+        if ($this->uri->segment('4')) {
+            $slug_id_template = $this->uri->segment('3');
+            $slug_id_page     = $this->uri->segment('4');
+
+            $where = array(
+                'slug_id' => $slug_id_template
+            );
+            $validasi_data      = $this->Model_template->edit_data($where)->num_rows();
+
+            if($validasi_data > 0){
+                $data['data_template']      = $this->Model_editor_template->edit_data($where)->row();
+
+                $data['data_page']          = $this->Model_template_page->get_page_child($data['data_template']->ID,$slug_id_page)->row();
+
+                $validasi_page = $this->Model_template_page->get_page_child($data['data_template']->ID,$slug_id_page)->num_rows();
+                if ($validasi_page == 0) {
+                    echo 'No Page';
+                }else{
+                    $this->load->view('va_preview_template',$data);
+                }
+
+            }else{
+                // redirect($_SERVER['HTTP_REFERER']);
+                // redirect(base_url().$this->controller);
+                redirect(base_url().'Admin_template');
+            }
+
+
+        }elseif($this->uri->segment('3')){
+            //==== Inisiasi Awal 
+
+            $data['controller'] = $this->controller;
+            $data['title_page'] = 'Edit Template | Goodeva';
+            $data['title_card'] = 'Template';
+
+            $slug_id = $this->uri->segment('3');
+            // Data Template
+            $where = array(
+                'slug_id' => $slug_id
+            );
+            $validasi_data      = $this->Model_template->edit_data($where)->num_rows();
+
+            if($validasi_data > 0){
+                $data['data_template']      = $this->Model_editor_template->edit_data($where)->row();
+
+                $data['data_page']          = $this->Model_template_page->get_index($data['data_template']->ID)->row();
+
+                $this->load->view('va_preview_template',$data);
+            }else{
+                // redirect($_SERVER['HTTP_REFERER']);
+                redirect(base_url().'Admin_template');
+            }
+        }else{
+            echo 'False';
+        }
     }
 
 
@@ -89,49 +153,19 @@ class Admin_template extends CI_Controller {
     }
 
 
-    function edit($slug_id)
+    function edit($id)
     {
-        // ambil cookie
-        $cookie = get_cookie('gwb_cookie');
-
-        // cek session
-        if ($this->session->userdata('adminLogged')) {
-            //==== Inisiasi Awal 
-            $data['controller']                 = $this->controller;
-            $data['title_page']                 = 'Edit Template | Goodeva';
-            $data['title_card']                 = 'Edit Template';
-            $data['kategori_template']          = $this->Model_kategori_template->get_data()->result();
-            $data['type_template']              = $this->Model_type_template->get_data()->result();
+        //==== Inisiasi Awal 
+        $data['controller'] = $this->controller;
+        $data['title_page'] = 'Edit Template | Goodeva';
+        $data['title_card'] = 'Edit Template';
 
 
-
-            $where = array(
-                'slug_id' => $slug_id
-            );
-            $validasi_data      = $this->Model_template->edit_data($where)->num_rows();
-
-            if($validasi_data > 0){
-                $data['data_template']      = $this->Model_editor_template->edit_data($where)->row();
-
-                $this->load->view('va_template_edit',$data);
-            }else{
-                // redirect($_SERVER['HTTP_REFERER']);
-                redirect(base_url().$this->controller);
-            }
-
-
-
-        } else if($cookie <> '') {
-            // cek cookie
-            $row = $this->Model_admin_login->get_by_cookie($cookie)->row();
-            if ($row) {
-                $this->create_session($row);
-            } else {
-                redirect(base_url('Admin_panel/login'));
-            }
-        } else {
-                $this->login();
-        }
+        $where = array(
+            'ID' => $id
+        );
+        $data['data_edit']  = $this->Model_editor_template->edit_data($where)->row();
+        $this->load->view('va_template_editor_edit',$data);
     }
 
 
@@ -228,8 +262,8 @@ class Admin_template extends CI_Controller {
                     'ID' => $data['data_page']->id_template 
                 );
 
-                $data['data_template']        = $this->Model_template->edit_data($where)->row();
-                $data['data_page_result']     = $this->Model_template_page->get_page($data['data_template']->ID)->result();
+                $data['data_template'] = $this->Model_template->edit_data($where)->row();
+
 
                 $this->load->view('va_template_page_editor',$data);
             }else{
@@ -344,11 +378,6 @@ class Admin_template extends CI_Controller {
     function create_page($id_template,$template)
     {
         $id_template = $id_template;
-
-
-
-
-
         $data = array(
             array(
                 'id_template'       => $id_template,
@@ -390,70 +419,18 @@ class Admin_template extends CI_Controller {
     {
         $judul_page  = $this->input->post('judul_page');
         $id_template = $this->input->post('id_template');
-
-        $cek_slug_page = $this->Model_template_page->cek_slug_page($id_template,$this->clean($judul_page))->num_rows();
-        if ($cek_slug_page>0) {
-            $this->session->set_flashdata('message','exist');
-            redirect($_SERVER['HTTP_REFERER']);
-        }else{
-            $data = array(
-                    'id_template'       => $id_template,
-                    'judul_page'        => $judul_page,
-                    'slug_id'           => $this->clean($judul_page),
-                    'css'               => '',
-                    'html'              =>  '',
-                    'tanggal_dibuat'    => date('Y-m-d H:i:s'),
-                );
-            $this->db->insert('table_template_page', $data);
-            $this->session->set_flashdata('message','add');
-            redirect($_SERVER['HTTP_REFERER']);
-            $insert = $this->Model_template_page->insert_page($data);
-        }
-
-        
-    }
-
-
-    function update_index()
-    {
-        $id_page     = $this->input->get('id_page');
-        $id_template = $this->input->get('id_template');
-
         $data = array(
-            'type_page' => 'index'
-        );
-
-        // Remove Index First
-        $data_remove = array(
-            'type_page' => ''
-        );
-        $remove = $this->Model_template_page->remove_index($id_template,$data_remove);
-        // Update Index
-        $update        = $this->Model_template_page->update_index($id_page,$id_template,$data);
+                'id_template'       => $id_template,
+                'judul_page'        => $judul_page,
+                'slug_id'           => $this->clean($judul_page),
+                'css'               => '',
+                'html'              =>  '',
+                'tanggal_dibuat'    => date('Y-m-d H:i:s'),
+            );
+        $this->db->insert('table_template_page', $data);
+        $this->session->set_flashdata('message','add');
         redirect($_SERVER['HTTP_REFERER']);
-    }
-
-
-    function update_detail_template()
-    {
-        $id_template    = $this->input->post('id');
-        $nama_template  = $this->input->post('nama_template');
-        $id_kategori    = $this->input->post('id_kategori');
-        $id_type        = $this->input->post('id_type');
-
-        $data = array(
-            'nama_template'         => $nama_template,
-            'slug_id'               => $this->clean($nama_template),
-            'id_kategori'           => $id_kategori,
-            'id_type'               => $id_type,
-        );
-
-        $where = array(
-            'ID' => $id_template
-        );
-        $update = $this->Model_template->update_data($where,$data);
-        redirect($_SERVER['HTTP_REFERER']);
-        
+        // $insert = $this->Model_template_page->insert_page($data);
     }
 
 

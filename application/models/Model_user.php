@@ -17,7 +17,11 @@ class Model_user extends CI_Model {
     function cek_email($email){
         $this->db->where('email',$email);
         return $this->db->get($this->table)->num_rows();
-        
+    }
+
+    function cek_by_email($email){
+        $this->db->where('email',$email);
+        return $this->db->get($this->table);
     }
 
     function authentication_login($username,$password)

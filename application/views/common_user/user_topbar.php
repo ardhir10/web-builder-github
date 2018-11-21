@@ -136,7 +136,7 @@
                 <?php if($this->session->userdata('loginGoogle')==0){?>
 
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                    <span class="user-profile"><img src="<?php echo base_url() ?>assets/images/avatars/<?php echo $this->session->userdata('userGambar'); ?>" class="img-circle" alt="user avatar"></span>
+                    <span class="user-profile"><img src="<?php echo base_url() ?>assets/images/avatars/avatar-7.png" class="img-circle" alt="user avatar"></span>
                 </a>
 
                 <?php }else{ ?>
@@ -155,7 +155,7 @@
                             <div class="media">
                                 <?php if($this->session->userdata('loginGoogle')==0){?>
 
-                                <div class="avatar"><img class="align-self-start mr-3" src="<?php echo base_url() ?>assets/images/avatars/<?php echo $this->session->userdata('userGambar'); ?>" alt="user avatar"></div>
+                                <div class="avatar"><img class="align-self-start mr-3" src="<?php echo base_url() ?>assets/images/avatars/avatar-7.png" alt="user avatar"></div>
 
                                 <?php }else{ ?>
 
