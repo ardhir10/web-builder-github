@@ -91,7 +91,7 @@ class User_Authentication extends CI_Controller {
                         'userID'           => $data_user->ID,
                         'userEmail'        => $userData['email'],
                         'userNama'         => $nama   ,
-                        'userTelp'         => '',
+                        'userTelp'         => $data_user->no_telp,
                         'userNamaweb'      => '',
                         'userGambar'       => $userData['picture'],
                         'userStatus'       => $data_user->id_status,
