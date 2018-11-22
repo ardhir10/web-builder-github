@@ -284,7 +284,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Username</label>
                             <div class="col-lg-9">
-                                <input class="form-control" name="username" type="text" value="" required>
+                                <input class="form-control" name="username" type="text" value="<?php echo $user->username; ?>" required>
                             </div>
                         </div>
                         
