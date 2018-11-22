@@ -198,7 +198,8 @@ class User_website extends CI_Controller {
 
         }
     }
- 
+
+
  
 
 
@@ -206,26 +207,122 @@ class User_website extends CI_Controller {
 
     function website($slug_id)
     {
-        $id_user = $this->session->userdata('userID');
 
-
-        $cek_data_website           = $this->Model_website->get_data_website($slug_id,$id_user)->num_rows();
-        $data['data_website']       = $this->Model_website->get_data_website($slug_id,$id_user)->row();
-
-
-        if ($cek_data_website > 0) {
+        if($this->uri->segment('4') != NULL){
             //==== Inisiasi Awal 
+            $slug_id_page       = $this->uri->segment('4');
             $data['controller'] = $this->controller;
-            $data['title_page'] = 'Website : '.$data['data_website']->nama_website.' | Goodeva';
+            $data['title_page'] = 'Edit Page | Goodeva';
+            $data['title_card'] = 'Page';
+            $id_user = $this->session->userdata('userID');
 
-            $data['data_page']  = $this->Model_website_page->get_page($data['data_website']->ID,$id_user)->result();
 
-            // print_r($data['data_page']);
 
-            $this->load->view('vu_website_edit',$data);
+            $cek_data_website           = $this->Model_website->get_data_website($slug_id,$id_user)->num_rows();
+
+            $data['data_website']       = $this->Model_website->get_data_website($slug_id,$id_user)->row();
+
+
+
+            if ($cek_data_website > 0) {
+                $cek_data_page              = $this->Model_website_page->get_page_child($data['data_website']->ID,$slug_id_page,$id_user)->num_rows();
+                $data['data_page']          = $this->Model_website_page->get_page_child($data['data_website']->ID,$slug_id_page,$id_user)->row();
+                $data['data_page_result']   = $this->Model_website_page->get_page($data['data_website']->ID,$id_user)->result();
+                
+                if ($cek_data_page>0) {
+                    // print_r($data['data_page']);
+                    $this->load->view('vu_website_page_editor',$data);
+                }else{
+                    echo "Page Not Found";
+                }
+            }else{
+                echo "Website Not Found";
+            }
+
+
+
+
+
+
+
         }else{
-            echo "Not Found";
+            $id_user = $this->session->userdata('userID');
+            $cek_data_website           = $this->Model_website->get_data_website($slug_id,$id_user)->num_rows();
+            $data['data_website']       = $this->Model_website->get_data_website($slug_id,$id_user)->row();
+            if ($cek_data_website > 0) {
+                //==== Inisiasi Awal 
+                $data['controller'] = $this->controller;
+                $data['title_page'] = 'Website : '.$data['data_website']->nama_website.' | Goodeva';
+
+                $data['data_page']  = $this->Model_website_page->get_page($data['data_website']->ID,$id_user)->result();
+
+                // print_r($data['data_page']);
+
+                $this->load->view('vu_website_edit',$data);
+            }else{
+                echo "Website Not Found";
+            }
         }
+
+        
+    }
+
+    function create_new_page()
+    {
+        $judul_page  = $this->input->post('judul_page');
+        $id_website  = $this->input->post('id_website' );
+        $id_user     = $this->session->userdata('userID');
+
+        $cek_slug_page = $this->Model_website_page->cek_slug_page($id_website,$this->clean($judul_page),$id_user)->num_rows();
+        if ($cek_slug_page>0) {
+            $this->session->set_flashdata('message','exist');
+            redirect($_SERVER['HTTP_REFERER']);
+        }else{
+            $data = array(
+                    'id_website'        => $id_website,
+                    'judul_page'        => $judul_page,
+                    'slug_id'           => $this->clean($judul_page),
+                    'css'               => '',
+                    'html'              =>  '',
+                    'tanggal_dibuat'    => date('Y-m-d H:i:s'),
+                    'id_user'           => $id_user
+                );
+            $this->Model_website_page->insert_data($data);
+            $this->session->set_flashdata('message','add');
+            redirect($_SERVER['HTTP_REFERER']);
+            // $insert = $this->Model_template_page->insert_page($data);
+        }
+
+        
+    }
+
+    function update_index()
+    {
+        $id_user    = $this->session->userdata('userID');
+        $id_page    = $this->input->get('id_page');
+        $id_website = $this->input->get('id_website');
+
+        $data = array(
+            'type_page' => 'index'
+        );
+
+        // Remove Index First
+        $data_remove = array(
+            'type_page' => ''
+        );
+        $remove = $this->Model_website_page->remove_index($id_website,$data_remove,$id_user);
+        // Update Index
+        $update        = $this->Model_website_page->update_index($id_page,$id_website,$data,$id_user);
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    function delete_page()
+    {
+        $id         = $this->input->post('id');
+        $id_user    = $this->session->userdata('userID');
+        $delete     = $this->Model_website_page->delete_page($id,$id_user);
+        $this->session->set_flashdata('message','delete');
+        echo '{}';
     }
     
     
@@ -249,12 +346,17 @@ class User_website extends CI_Controller {
          //ambil slug awal
          $data_website = $this->Model_website->edit_data($where)->row();
          $slug_awal=$data_website->slug_id;
+         $slug_baru=$this->clean($nama_website);
+
          //
-         $this->update_link_page($id_website,$slug_awal,$this->clean($nama_website));
+         $this->update_link_page($id_website,$slug_awal,$slug_baru);
          
          print_r($data);
          
-        $update = $this->Model_website->update_data($where,$data);
+         $update = $this->Model_website->update_data($where,$data);
+
+         $this->session->set_flashdata('message','update');
+         redirect( base_url().$this->controller.'/website/'.$slug_baru);
        
         
     }
@@ -262,26 +364,21 @@ class User_website extends CI_Controller {
     
     function update_link_page($id_website,$slug_awal,$slug_baru)
     {
-        // 
-        
         $id_user = $this->session->userdata('userID');
-        $website_page = $this->Model_template_page->get_page($id_website,$id_user)->result();
+        $website_page = $this->Model_website_page->get_page($id_website,$id_user)->result();
         $data_website  = $this->Model_website->get_data()->row();
 
-        foreach ($website_page as $row_template ) {
+        foreach ($website_page as $row_website ) {
            $data = array(
-               
-                'html'          =>  str_replace('./'.$slug_awal,'./'.$slug_baru, $row_template->html)
-                
+                'html'          =>  str_replace('./'.$slug_awal,'./'.$slug_baru, $row_website->html)
            );
-            
            $where =  array (
-            'ID'=>$row_template->ID,              
+            'ID'=>$row_website->ID,              
            );  
                 
            $update_link_page = $this->Model_website_page->update_data($where,$data);
-
         }
+        
     }
     
     //fungsi clean

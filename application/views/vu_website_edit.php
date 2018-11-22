@@ -55,7 +55,7 @@
                        
                         <div class="card-body">
                           <h5 class="card-title text-dark">
-                          Detail Template
+                          Detail Website
                           </h5>
                         </div>
                          <ul class="list-group list-group-flush list shadow-none">
@@ -76,7 +76,7 @@
                               </table> -->
                       
                         <a href="<?php echo base_url()?>preview/website/<?php echo $data_website->slug_id; ?>" target="_blank" class="btn btn-sm btn-primary waves-effect waves-light">Lihat Template</a>
-                        <a href="<?php echo base_url()?>User_website/edit/<?php echo $data_website->slug_id; ?>" target="_blank" class="btn btn-sm btn-info waves-effect waves-light">Edit Detail</a>
+                        <a href="<?php echo base_url()?>User_website/edit/<?php echo $data_website->slug_id; ?>"  class="btn btn-sm btn-info waves-effect waves-light">Edit Detail</a>
 
                         </div>
                       </div>
@@ -102,7 +102,7 @@
                                  <div class="form-group">
                                    <label for="input-1">Judul Page</label>
                                    <input type="text" class="form-control" name="judul_page" placeholder="Judul Page" required="">
-                                   <input type="hidden" class="form-control" name="id_template"  value="<?php echo $data_website->ID ?>">
+                                   <input type="hidden" class="form-control" name="id_website"  value="<?php echo $data_website->ID ?>">
                                  </div>
                               <!--    <div class="form-group">
                                    <div class="icheck-material-info">
@@ -143,7 +143,7 @@
                                   if ($row_page->type_page != '') {
                                     echo "<p>".$row_page->type_page."</p>";
                                   }else{
-                                    echo "<a href='".base_url()."admin-template/update_index?id_page=".$row_page->ID."&id_template=".$row_page->id_website."'>set as index</a>";
+                                    echo "<a href='".base_url()."user-website/update_index?id_page=".$row_page->ID."&id_website=".$row_page->id_website."'>set as index</a>";
                                   } ?>
 
                                   <hr>
@@ -154,7 +154,7 @@
                                   <li class="list-group-item d-flex justify-content-between align-items-center">Vestibulum at eros <span class="badge badge-danger badge-pill">1</span></li>
                                 </ul> -->
                                 <div class="card-body">
-                                  <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $data_website->slug_id; ?>/<?php echo $row_page->ID ?>" class="card-link"><button class="btn btn-sm btn-info">Edit</button></a>
+                                  <a href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id; ?>/<?php echo $row_page->slug_id ?>" class="card-link"><button class="btn btn-sm btn-info">Edit</button></a>
                                   <button class="btn btn-sm btn-danger delete" data-id="<?php echo $row_page->ID ?>">Hapus</button>
 
 
@@ -286,6 +286,26 @@
         </script>
       <?php endif ?>
 
+      <?php if ( $this->session->flashdata('message')=='update'): ?>
+        <script type="text/javascript">
+          $( document ).ready(function() {
+            sukses_add_page();
+          });
+          function sukses_add_page(){
+          Lobibox.notify('success', {
+            pauseDelayOnHover: true,
+                continueDelayOnInactiveTab: false,
+            position: 'center top',
+            showClass: 'rollIn',
+                hideClass: 'rollOut',
+                icon: 'fa fa-check-circle',
+                width: 600,
+            msg: 'Data berhasil di Update.'
+            });
+          }
+        </script>
+      <?php endif ?>
+
 
       <?php if ( $this->session->flashdata('message')=='delete'): ?>
         <script type="text/javascript">
@@ -342,7 +362,7 @@
     })
 
     $(".delete").click(function(){
-        var id=$(this).attr("data-id");
+        var id=$(this).data("id");
         swal({
           title: "Yakin ingin dihapus  ?",
           text: "Setelah dihapus data akan hilang",
@@ -365,7 +385,7 @@
 
             $.ajax({
             data:{id:id},
-            url:'<?php echo base_url() ?>'+'Admin_template/delete_page',
+            url:'<?php echo base_url() ?>'+'User_website/delete_page',
             success: function(html) {
                 // $("tr[data-id='"+id+"']").fadeOut(1500,function(){
                 //     $(this).remove();

@@ -325,9 +325,7 @@ class Admin_template extends CI_Controller {
     function delete_page()
     {
         $id = $this->input->post('id');
-
         $where = array(
-
             'ID' => $id
         );
         $delete = $this->Model_template_page->delete_data($where);
