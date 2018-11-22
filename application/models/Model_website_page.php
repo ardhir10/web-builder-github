@@ -1,13 +1,13 @@
 <?php
 
-class Model_template extends CI_Model {
+class Model_website_page extends CI_Model {
     
     public function __construct() {
         parent::__construct();
     }
 
     
-    private $table = 'table_template';
+    private $table = 'table_website_user_page';
 
  
 	function edit_data($where){
@@ -40,9 +40,29 @@ class Model_template extends CI_Model {
         return $this->db->get($this->table);
     }
 
+    function get_page($id_website,$id_user){
+        $this->db->where('id_website',$id_website);
+        $this->db->where('id_user',$id_user);
+        return $this->db->get($this->table);
+    }
+
+    function get_index($id_website,$id_user){
+        $this->db->where('id_website',$id_website);
+        $this->db->where('id_user',$id_user);
+        $this->db->where('type_page','index');
+        return $this->db->get($this->table);
+    }
+
     function get_data_free(){
         $this->db->where('id_type',1);
         $this->db->order_by('ID','desc');
+        return $this->db->get($this->table);
+    }
+
+    function get_page_child($id_website,$slug_id_page,$id_user){
+        $this->db->where('slug_id',$slug_id_page);
+        $this->db->where('id_website',$id_website);
+        $this->db->where('id_user',$id_user);
         return $this->db->get($this->table);
     }
 

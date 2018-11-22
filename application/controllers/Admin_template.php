@@ -12,7 +12,7 @@ class Admin_template extends CI_Controller {
         $this->load->model('Model_template');
         $this->load->model('Model_template_page');
         $this->load->helper(array('Form', 'Cookie', 'String'));
-        date_default_timezone_set("Asia/Bangkok");
+        date_default_timezone_set("Asia/Jakarta");
         // cek session
         if ($this->session->userdata('adminLogged') != TRUE) {
             redirect(base_url('Admin_panel/login'));

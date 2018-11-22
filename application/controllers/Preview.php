@@ -10,6 +10,8 @@ class Preview extends CI_Controller {
         $this->load->model('Model_kategori_template');
         $this->load->model('Model_type_template');
         $this->load->model('Model_template');
+        $this->load->model('Model_website');
+        $this->load->model('Model_website_page');
         $this->load->model('Model_template_page');
         $this->load->helper(array('Form', 'Cookie', 'String'));
         date_default_timezone_set("Asia/Bangkok");
@@ -59,11 +61,6 @@ class Preview extends CI_Controller {
 
     function template()
     {
-        // $where = array(
-        //     'ID' => $id
-        // );
-        // $data['data_edit']  = $this->Model_editor_template->edit_data($where)->row();
-        // $this->load->view('va_preview_template',$data);
         if ($this->uri->segment('4')) {
             $slug_id_template = $this->uri->segment('3');
             $slug_id_page     = $this->uri->segment('4');
@@ -90,8 +87,6 @@ class Preview extends CI_Controller {
                 // redirect(base_url().$this->controller);
                 redirect(base_url().'Admin_template');
             }
-
-
         }elseif($this->uri->segment('3')){
             //==== Inisiasi Awal 
 
@@ -115,6 +110,70 @@ class Preview extends CI_Controller {
             }else{
                 // redirect($_SERVER['HTTP_REFERER']);
                 redirect(base_url().'Admin_template');
+            }
+        }else{
+            echo 'False';
+        }
+    }
+
+
+    function website()
+    {
+        // $where = array(
+        //     'ID' => $id
+        // );
+        // $data['data_edit']  = $this->Model_editor_template->edit_data($where)->row();
+        // $this->load->view('va_preview_template',$data);
+        if ($this->uri->segment('4')) {
+            $slug_id_template = $this->uri->segment('3');
+            $slug_id_page     = $this->uri->segment('4');
+
+            $id_user            = $this->session->userdata('userID');
+            $slug_id = $this->uri->segment('3');
+            $validasi_data      = $this->Model_website->data_website_validate($slug_id,$id_user)->num_rows();
+
+            if($validasi_data > 0){
+                $data['data_website']       = $this->Model_website->data_website_validate($slug_id,$id_user)->row();
+                $data['data_page']          = $this->Model_website_page->get_page_child($data['data_website']->ID,$slug_id_page,$id_user)->row();
+
+                $validasi_page = $this->Model_website_page->get_page_child($data['data_website']->ID,$slug_id_page,$id_user)->num_rows();
+                if ($validasi_page == 0) {
+                    echo 'Page Not Found';
+                }else{
+                    $this->load->view('va_preview_website',$data);
+                }
+
+            }else{
+                // redirect($_SERVER['HTTP_REFERER']);
+                // redirect(base_url().$this->controller);
+                // redirect(base_url().'Admin_template');
+                echo 'Website Not Found';
+                echo '<br>';
+                echo '<h2>Pastikan Link anda Benar !</h2>';
+
+
+            }
+
+
+        }elseif($this->uri->segment('3')){
+            //==== Inisiasi Awal 
+            $id_user            = $this->session->userdata('userID');
+            $data['controller'] = $this->controller;
+            $slug_id = $this->uri->segment('3');
+            
+
+            $validasi_data      = $this->Model_website->data_website_validate($slug_id,$id_user)->num_rows();
+
+            if($validasi_data > 0){
+                $data['data_website']      = $this->Model_website->data_website_validate($slug_id,$id_user)->row();
+
+                $data['data_page']          = $this->Model_website_page->get_index($data['data_website']->ID,$id_user)->row();
+
+                $this->load->view('va_preview_website',$data);
+            }else{
+                // redirect($_SERVER['HTTP_REFERER']);
+                // redirect(base_url().'Admin_template');
+                echo 'Notfound Website';
             }
         }else{
             echo 'False';

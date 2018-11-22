@@ -1,13 +1,13 @@
 <?php
 
-class Model_template extends CI_Model {
+class Model_website extends CI_Model {
     
     public function __construct() {
         parent::__construct();
     }
 
     
-    private $table = 'table_template';
+    private $table = 'table_website_user';
 
  
 	function edit_data($where){
@@ -37,6 +37,25 @@ class Model_template extends CI_Model {
     
 	function get_data(){
         $this->db->order_by('ID','desc');
+        return $this->db->get($this->table);
+    }
+
+    function get_website($id_user){
+        $this->db->where('id_user',$id_user);
+        $this->db->order_by('ID','desc');
+        return $this->db->get($this->table);
+    }
+
+    function data_website_validate($slug_id,$id_user)
+    {
+        $this->db->where('slug_id',$slug_id);
+        $this->db->where('id_user',$id_user);
+        return $this->db->get($this->table);
+    }
+
+    function get_data_website($slug_id,$id_user){
+        $this->db->where('slug_id',$slug_id);
+        $this->db->where('id_user',$id_user);
         return $this->db->get($this->table);
     }
 

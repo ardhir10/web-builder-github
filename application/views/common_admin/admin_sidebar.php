@@ -5,7 +5,7 @@
      <div class="brand-logo">
       <a href="index.html">
        <img src="<?php echo base_url() ?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-       <h5 class="logo-text">Rukada Admin</h5>
+       <h5 class="logo-text"> Admin</h5>
      </a>
    </div>
    <ul class="sidebar-menu do-nicescrol">

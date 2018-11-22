@@ -69,9 +69,12 @@
                         <!-- <iframe src="<?php echo base_url().$controller ?>/preview/<?php echo $row_template->ID ?>"></iframe> -->
                         <!-- <img src="<?php echo base_url() ?>assets/images/gallery/13.jpg" class="card-img-top" alt="Card image cap"> -->
                         </a>
+
                         <div class="card-body">
                           <h5 class="card-title text-dark"><?php echo $row_template->nama_template ?></h5>
                         </div>
+                        <img class="img-fluid" src="<?php echo base_url() ?>assets/images/templates/template-0.png">
+
                          <!-- <ul class="list-group list-group-flush list shadow-none">
                           <li class="list-group-item d-flex justify-content-between align-items-center">Cras justo odio <span class="badge badge-dark badge-pill">14</span></li>
                           <li class="list-group-item d-flex justify-content-between align-items-center">Dapibus ac facilisis in <span class="badge badge-success badge-pill">2</span></li>
@@ -82,7 +85,7 @@
                
 
 
-                          <button type="button" data-id="<?php echo $row_template->ID ?>" class="btn-gunakan btn btn-success delete">Gunakan</button>
+                          <button  class="btn-gunakan btn btn-success gunakan" type="button" data-id="<?php echo $row_template->ID ?>">Gunakan</button>
                           <!-- <a " data-id="<?php echo $row_template->ID ?>" class="card-link use">Gunakan</a> -->
                           <a href="<?php echo base_url() ?>preview/template/<?php echo $row_template->slug_id; ?>" target="_blank"  class="btn-gunakan btn btn-info ">Lihat</a>
                           <!-- <a href="#" class="card-link delete" data-id="<?php echo $row_template->ID ?>">Hapus</a> -->
@@ -131,7 +134,7 @@
       <!-- END JQUERY -->
 
       <!-- Addon JS -->
-      <script src="<?php echo base_url(); ?>assets/js/index.js"></script>
+      <!-- <script src="<?php echo base_url(); ?>assets/js/index.js"></script> -->
       <!-- END Addon JS -->
 
 
@@ -139,60 +142,46 @@
 
       <script type="text/javascript">
         $(document).ready(function(){
-          $.ajaxSetup({
+        
+
+          $(".gunakan").click(function(){
+            var id_template=$(this).data("id");
+            // alert(id_page);
+            // window.location = "<?php echo base_url().$controller ?>/"+id_page;
+
+            $.ajax({
             type:"post",
-            cache:false,
-            dataType: "json"
-          })
+            url:'<?php echo base_url().$controller ?>'+'/use_template',
+            data:{id_template:id_template},
+            dataType: 'json',
+            success: function(data) {
+              // console.log(data);
+              // alert(data.records.nama_website);
+              window.location = "<?php echo base_url().$controller ?>/website/"+data.records.slug_id+'?usrToken=<?php echo md5($this->session->userdata('adminID')) ?>';
 
-          $(".delete").click(function(){
-            alert('Test');
-              var id=$(this).attr("data-id");
-              swal({
-                title: "Yakin ingin dihapus  ?",
-                text: "Setelah dihapus data akan hilang",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-              })
-              .then((willDelete) => {
-                if (willDelete) {
-                  
-                  swal({   
-                          icon: "success",
-                          title: "Deleted !",   
-                          text: "Data berhasil dihapus",   
-                          type: "success",       
-                          confirmButtonText: "Ok",    
-                          closeOnConfirm: false,   
-                          closeOnCancel: false 
-                      });
-
-                  $.ajax({
-                  data:{id:id},
-                  url:'<?php echo base_url() ?>'+'Admin_template/delete_template',
-                  success: function(html) {
-                      // $("tr[data-id='"+id+"']").fadeOut(1500,function(){
-                      //     $(this).remove();
-                      // });
-                      // swal({   
-                      //     icon: "success",
-                      //     title: "Deleted !",   
-                      //     text: "Data berhasil dihapus",   
-                      //     type: "success",       
-                      //     confirmButtonText: "Ok",    
-                      //     closeOnConfirm: false,   
-                      //     closeOnCancel: false 
-                      // });
-                      location.reload();
-                  }
-                  });
-
-                }else{
-                  swal("Batal dihapus !");
-                }
-              });
-
+                // console.log(resp.records[0].nama_website);
+                // console.log("Success... "+data);
+            },error: function (jqXHR, exception) {
+              var msg = '';
+              if (jqXHR.status === 0) {
+                  msg = 'Not connect.\n Verify Network.';
+              } else if (jqXHR.status == 404) {
+                  msg = 'Requested page not found. [404]';
+              } else if (jqXHR.status == 500) {
+                  msg = 'Internal Server Error [500].';
+              } else if (exception === 'parsererror') {
+                  msg = 'Parse Error ';
+              } else if (exception === 'timeout') {
+                  msg = 'Time out error.';
+              } else if (exception === 'abort') {
+                  msg = 'Ajax request aborted.';
+              } else {
+                  msg = 'Uncaught Error.\n' + jqXHR.responseText;
+              }
+              alert(msg);
+          },
+            });
+            
           });
 
         });

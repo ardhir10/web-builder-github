@@ -43,25 +43,24 @@
               
               <div class="demo-heading">WEBSITE ANDA</div>
 
-              <!-- <div class="row">
-                <?php foreach ($website as $data_website): ?>
+              <div class="row">
+                <?php foreach ($data_website as $data_website): ?>
                  <div class="col-lg-4">
-                  <a href="<?php echo base_url() ?>User_editor/website/<?php echo $data_website->ID ?>">
                     <div class="card-deck">
                         <div class="card">
                            <img class="card-img-top" src="assets/images/gallery/page.png" alt="Card image cap">
                            <div class="card-body">
-                             <h5 class="card-title"><?php echo $data_website->ID ?></h5>
+                             <h5 class="card-title"><?php echo $data_website->nama_website ?></h5>
                            </div>
                            <div class="card-footer">
-                             <small class="text-muted">Last updated 3 mins ago</small>
+                             <a class="card-link" href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id ?>">Detail</a>
+                             <a class="card-link" href="<?php echo base_url()?>preview/website/<?php echo $data_website->slug_id ?>" target="_blank">Lihat</a>
                            </div>
                         </div>
                     </div>
-                  </a>
                   </div>
                 <?php endforeach ?>
-              </div> -->
+              </div>
 
               <!--End Row-->
             <!-- End container-fluid-->

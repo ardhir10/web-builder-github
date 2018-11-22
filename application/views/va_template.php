@@ -61,6 +61,8 @@
                           <li class="list-group-item d-flex justify-content-between align-items-center">Dapibus ac facilisis in <span class="badge badge-success badge-pill">2</span></li>
                           <li class="list-group-item d-flex justify-content-between align-items-center">Vestibulum at eros <span class="badge badge-danger badge-pill">1</span></li>
                         </ul> -->
+                        <img class="img-fluid" src="<?php echo base_url() ?>assets/images/templates/template-0.png">
+                        
                         <div class="card-body">
                           <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $row_template->slug_id; ?>" class="card-link">Detail</a>
                           <a href="<?php echo base_url() ?>preview/template/<?php echo $row_template->slug_id; ?>" target="_blank" class="card-link">Lihat</a>
