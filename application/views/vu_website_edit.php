@@ -75,8 +75,8 @@
                                 </tr>
                               </table> -->
                       
-                        <a href="<?php echo base_url()?>preview/template/<?php echo $data_website->slug_id; ?>" target="_blank" class="btn btn-sm btn-primary waves-effect waves-light">Lihat Template</a>
-                        <a href="<?php echo base_url()?>Admin_template/edit/<?php echo $data_website->slug_id; ?>" target="_blank" class="btn btn-sm btn-info waves-effect waves-light">Edit Detail</a>
+                        <a href="<?php echo base_url()?>preview/website/<?php echo $data_website->slug_id; ?>" target="_blank" class="btn btn-sm btn-primary waves-effect waves-light">Lihat Template</a>
+                        <a href="<?php echo base_url()?>User_website/edit/<?php echo $data_website->slug_id; ?>" target="_blank" class="btn btn-sm btn-info waves-effect waves-light">Edit Detail</a>
 
                         </div>
                       </div>

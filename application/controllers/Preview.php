@@ -16,9 +16,9 @@ class Preview extends CI_Controller {
         $this->load->helper(array('Form', 'Cookie', 'String'));
         date_default_timezone_set("Asia/Bangkok");
         // cek session
-        if ($this->session->userdata('adminLogged') != TRUE) {
+        /*if ($this->session->userdata('adminLogged') != TRUE) {
             redirect(base_url('Admin_panel/login'));
-        }
+        }*/
     }
 
     
