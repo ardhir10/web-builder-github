@@ -5,6 +5,8 @@ class Admin_panel extends CI_Controller {
 	function __construct(){
     parent::__construct();
         $this->load->model('admin_model/Model_admin');
+        $this->load->model('Model_template');
+        $this->load->model('Model_user');
         $this->load->model('admin_model/Model_admin_login');
         $this->load->helper(array('Form', 'Cookie', 'String'));
 
@@ -34,9 +36,16 @@ class Admin_panel extends CI_Controller {
             //==== Inisiasi Awal 
             $data['controller'] = $this->controller;
             $data['title_page'] = 'Web Builder | Goodeva';
-
+            $data['data_user'] =  $this->Model_user->get_data()->num_rows();
+            $data['user_trial'] = $this->Model_user->edit_data(array('id_status'=>1))->num_rows();
+            $data['user_aktif'] = $this->Model_user->edit_data(array('id_status'=>2))->num_rows();
+            $data['user_suspened'] = $this->Model_user->edit_data(array('id_status'=>3))->num_rows();
+            $data['jumlah_template'] =  $this->Model_template->get_data_template()->result();
+           
             $this->load->view('va_dashboard',$data);
 
+            
+            
         } else if($cookie <> '') {
             // cek cookie
             $row = $this->Model_admin_login->get_by_cookie($cookie)->row();

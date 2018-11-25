@@ -51,6 +51,13 @@ class Model_template extends CI_Model {
         $this->db->order_by('ID','desc');
         return $this->db->get($this->table);
     }
+    
+    
+    function get_data_template(){
+        $this->db->order_by('digunakan','desc');
+         $this->db->limit(5);   
+        return $this->db->get($this->table);
+    }
 
 
 	function insert_data($data){

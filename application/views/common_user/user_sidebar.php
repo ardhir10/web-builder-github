@@ -20,11 +20,11 @@
         </a>
       </li>
 
-      <li>
+      <!--<li>
         <a href="<?php echo base_url() ?>user-editor" >
           <i class="zmdi zmdi-delicious"></i> <span>Editor</span> 
         </a>
-      </li>
+      </li>-->
 
     <!--   <li>
         <a href="<?php echo base_url() ?>admin_user" >
@@ -36,10 +36,10 @@
 
      
     
-      <li class="sidebar-header">LABELS</li>
+      <!--<li class="sidebar-header">LABELS</li>
       <li><a href="javaScript:void();" class="waves-effect"><i class="zmdi zmdi-coffee text-danger"></i> <span>Important</span></a></li>
       <li><a href="javaScript:void();" class="waves-effect"><i class="zmdi zmdi-chart-donut text-success"></i> <span>Warning</span></a></li>
-      <li><a href="javaScript:void();" class="waves-effect"><i class="zmdi zmdi-share text-info"></i> <span>Information</span></a></li>
+      <li><a href="javaScript:void();" class="waves-effect"><i class="zmdi zmdi-share text-info"></i> <span>Information</span></a></li>-->
     </ul>
    
    </div>

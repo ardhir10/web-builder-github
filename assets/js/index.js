@@ -80,7 +80,7 @@ var ctx = document.getElementById("dashboard-chart-1").getContext('2d');
               '#fb6340',
               '#11cdef'
             ],
-            data: [25, 50, 25, 25, 15, 10],
+            data: [25, 50, 25, 25, 15, 100],
       borderWidth: [1, 1, 1, 1, 1, 1]
           }]
         },
