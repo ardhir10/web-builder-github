@@ -75,11 +75,11 @@
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right" data-in="fadeIn" data-out="fadeOut">
                             <li class="active"><a href="#header">Home</a></li>
-                            <li><a href="#about-area">About</a></li>
+                           <!--  <li><a href="#about-area">About</a></li>
                             <li><a href="#features-area">Features</a></li>
                             <li><a href="#product-area">Product</a></li>
                             <li><a href="#testimonial-area">Testimonial</a></li>
-                            <li><a href="#faq-area">FAQ</a></li>
+                            <li><a href="#faq-area">FAQ</a></li> -->
                             <li><a href="#contact-area">Contact</a></li>
                         </ul>
                     </div>
@@ -100,7 +100,8 @@
                     <!--Start Welcome Image-->
                     <div class="col-sm-6">
                         <div class="welcome-img">
-                            <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-1.png" class="img-responsive" alt="Image">
+                            <img src="https://goodeva.co.id/my-assets/images/about_us/about-2.png" class="img-responsive" alt="Image">
+                            <!-- <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-1.png" class="img-responsive" alt="Image"> -->
                         </div>
                     </div>
                     <!--End Welcome Image-->
@@ -108,7 +109,7 @@
                     <!--Start Welcome Content-->
                     <div class="col-sm-6">
                         <div class="wecome-content">
-                            <h1>Create theWebsite You Want</h1>
+                            <h1>Goodeva Web Builder</h1>
                             <!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit</p>-->
                             <a href="sites/login">Get Started</a>
                         </div>
@@ -123,86 +124,7 @@
 
      
         <!--Start Features Area-->
-        <section id="features-area" class="bg-gray">
-            <!--Start Container-->
-            <div class="container">
-                <!--Start Heading Row-->
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <div class="section-heading text-center">
-                            <h2>Product Features</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit blanditiis ea, saepe exercitationem veniam sapiente nam.</p>
-                        </div>
-                    </div>
-                </div>
-                <!--End Heading Row-->
-
-                <!--Start Features Row-->
-                <div class="row">
-                    <!--Start Feature Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="features-single text-center">
-                            <i class="icofont icofont-dart"></i>
-                            <h4>Interactive Design</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima animi blanditiis dolores quae hic ex asperiores maiores.</p>
-                        </div>
-                    </div>
-                    <!--End Feature Single-->
-
-                    <!--Start Feature Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="features-single text-center">
-                            <i class="icofont icofont-idea"></i>
-                            <h4>Latest Technology</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima animi blanditiis dolores quae hic ex asperiores maiores.</p>
-                        </div>
-                    </div>
-                    <!--End Feature Single-->
-
-                    <!--Start Feature Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="features-single text-center">
-                            <i class="icofont icofont-business-man"></i>
-                            <h4>User Friendly</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima animi blanditiis dolores quae hic ex asperiores maiores.</p>
-                        </div>
-                    </div>
-                    <!--End Feature Single-->
-
-                    <!--Start Feature Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="features-single text-center">
-                            <i class="icofont icofont-lock"></i>
-                            <h4>High Security</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima animi blanditiis dolores quae hic ex asperiores maiores.</p>
-                        </div>
-                    </div>
-                    <!--End Feature Single-->
-
-                    <!--Start Feature Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="features-single text-center">
-                            <i class="icofont icofont-brand-android-robot"></i>
-                            <h4>Install Apps</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima animi blanditiis dolores quae hic ex asperiores maiores.</p>
-                        </div>
-                    </div>
-                    <!--End Feature Single-->
-
-                    <!--Start Feature Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="features-single text-center">
-                            <i class="icofont icofont-chart-flow-alt-1"></i>
-                            <h4>GPS Tracking</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima animi blanditiis dolores quae hic ex asperiores maiores.</p>
-                        </div>
-                    </div>
-                    <!--End Feature Single-->
-                </div>
-                <!--End Features Row-->
-            </div>
-            <!--End Container-->
-        </section>
+     
         <!--End Features Area-->
 
         <!--Start Video Area-->
@@ -216,7 +138,7 @@
                     <div class="col-md-6 col-md-offset-3">
                         <div class="video-content text-center">
                             <h2>Watch Demo Video</h2>
-                            <a class="popup-video" href="https://www.youtube.com/watch?v=Bv9dRKUYlzo"><i class="icofont icofont-play"></i></a>
+                            <a class="popup-video" href="https://youtu.be/Wxcgoc7bGZ0"><i class="icofont icofont-play"></i></a>
                         </div>
                     </div>
                     <!--End Video Content-->
@@ -228,441 +150,17 @@
         <!--End Video Area-->
 
         <!--Start Core Features Section-->
-        <section id="core-features-area">
-            <!--Start Container-->
-            <div class="container">
-                <!--Start Heading Row-->
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <div class="section-heading text-center">
-                            <h2>Core Features</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut</p>
-                        </div>
-                    </div>
-                </div>
-                <!--End Heading Row-->
-
-                <!--Start Row-->
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <!--Start Core Features Single-->
-                        <div class="core-features-single">
-                            <!--Start Row-->
-                            <div class="row">
-                                <!--Start Core Feature Content-->
-                                <div class="col-sm-6">
-                                    <div class="core-feature-content arrow-right">
-                                        <i class="icofont icofont-phone"></i>
-                                        <h4>Instant Video Call</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat.</p>
-                                    </div>
-                                </div>
-                                <!--End Core Feature Content-->
-
-                                <!--Start Core Feature Image-->
-                                <div class="col-sm-6">
-                                    <div class="core-feature-img">
-                                        <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-3.png" class="img-responsive" alt="Image">
-                                    </div>
-                                </div>
-                                <!--End Core Feature Image-->
-                            </div>
-                            <!--End Row-->
-                        </div>
-                        <!--End Core Features Single-->
-
-                        <!--Start Core Features Single-->
-                        <div class="core-features-single">
-                            <!--Start Row-->
-                            <div class="row">
-                                <!--Start Core Feature Image-->
-                                <div class="col-sm-6">
-                                    <div class="core-feature-img">
-                                        <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-4.png" class="img-responsive" alt="Image">
-                                    </div>
-                                </div>
-                                <!--End Core Feature Image-->
-
-                                <!--Start Core Feature Content-->
-                                <div class="col-sm-6">
-                                    <div class="core-feature-content arrow-left">
-                                        <i class="icofont icofont-brand-android-robot"></i>
-                                        <h4>Android and iOS Apps Install</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat.</p>
-                                    </div>
-                                </div>
-                                <!--End Core Feature Content-->
-                            </div>
-                            <!--End Row-->
-                        </div>
-                        <!--End Core Features Single-->
-
-                        <!--Start Core Features Single-->
-                        <div class="core-features-single">
-                            <!--Start Row-->
-                            <div class="row">
-                                <!--Start Core Feature Content-->
-                                <div class="col-sm-6">
-                                    <div class="core-feature-content arrow-right">
-                                        <i class="icofont icofont-ui-text-chat"></i>
-                                        <h4>Live Chat With Friends</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat.</p>
-                                    </div>
-                                </div>
-                                <!--End Core Feature Content-->
-
-                                <!--Start Core Feature Image-->
-                                <div class="col-sm-6">
-                                    <div class="core-feature-img">
-                                        <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-5.png" class="img-responsive" alt="Image">
-                                    </div>
-                                </div>
-                                <!--End Core Feature Image-->
-                            </div>
-                            <!--End Row-->
-                        </div>
-                        <!--End Core Features Single-->
-                    </div>
-                </div>
-                <!--End Row-->
-            </div>
-            <!--End Container-->
-        </section>
         <!--End Core Features Section-->
 
         <!--Start Why Choose Area-->
-        <section id="why-choose-area" class="bg-gray">
-            <!--Start Container-->
-            <div class="container">
-                <!--Start Row-->
-                <div class="row">
-                    <!--Start Why Choose Image-->
-                    <div class="col-sm-6">
-                        <div class="why-choose-image">
-                            <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-6.png" class="img-responsive" alt="Image">
-                        </div>
-                    </div>
-                    <!--End Why Choose Image-->
-
-                    <!--Start Why Choose Content-->
-                    <div class="col-sm-6">
-                        <div class="why-choose-content">
-                            <h2>Why Choose The Product</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing.</p>
-                            <ul>
-                                <li><i class="icofont icofont-checked"></i> Attractive design with multicolor</li>
-                                <li><i class="icofont icofont-checked"></i> Android and iOS apps support</li>
-                                <li><i class="icofont icofont-checked"></i> Instant call and live chat facility</li>
-                                <li><i class="icofont icofont-checked"></i> User friendly device</li>
-                                <li><i class="icofont icofont-checked"></i> Dedicated support team</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!--End Why Choose Content-->
-                </div>
-                <!--End Row-->
-            </div>
-            <!--End Container-->
-        </section>
+      
         <!--End Why Choose Area-->
 
         <!--Start Product Area-->
-        <section id="product-area">
-            <!--Start Container-->
-            <div class="container">
-                <!--Start Heading Row-->
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <div class="section-heading text-center">
-                            <h2>Products</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut</p>
-                        </div>
-                    </div>
-                </div>
-                <!--End Heading Row-->
-
-                <!--Start Product Row-->
-                <div class="row">
-                    <!--Start Product Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-single text-center">
-                            <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-3.png" class="img-responsive" alt="Image">
-                            <h4>Digital Watch</h4>
-                            <h3><span>$</span> 59.99</h3>
-                            <a href="#"><i class="icofont icofont-cart"></i> Buy Now</a>
-                        </div>
-                    </div>
-                    <!--End Product Single-->
-
-                    <!--Start Product Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-single text-center">
-                            <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-4.png" class="img-responsive" alt="Image">
-                            <h4>Digital Watch</h4>
-                            <h3><span>$</span> 49.99</h3>
-                            <a href="#"><i class="icofont icofont-cart"></i> Buy Now</a>
-                        </div>
-                    </div>
-                    <!--End Product Single-->
-
-                    <!--Start Product Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-single text-center">
-                            <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-5.png" class="img-responsive" alt="Image">
-                            <h4>Digital Watch</h4>
-                            <h3><span>$</span> 35.99</h3>
-                            <a href="#"><i class="icofont icofont-cart"></i> Buy Now</a>
-                        </div>
-                    </div>
-                    <!--End Product Single-->
-
-                    <!--Start Product Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-single text-center">
-                            <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-8.png" class="img-responsive" alt="Image">
-                            <h4>Digital Watch</h4>
-                            <h3><span>$</span> 99.99</h3>
-                            <a href="#"><i class="icofont icofont-cart"></i> Buy Now</a>
-                        </div>
-                    </div>
-                    <!--End Product Single-->
-
-                    <!--Start Product Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-single text-center">
-                            <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-7.png" class="img-responsive" alt="Image">
-                            <h4>Digital Watch</h4>
-                            <h3><span>$</span> 42.99</h3>
-                            <a href="#"><i class="icofont icofont-cart"></i> Buy Now</a>
-                        </div>
-                    </div>
-                    <!--End Product Single-->
-
-                    <!--Start Product Single-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-single text-center">
-                            <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-3.png" class="img-responsive" alt="Image">
-                            <h4>Digital Watch</h4>
-                            <h3><span>$</span> 55.99</h3>
-                            <a href="#"><i class="icofont icofont-cart"></i> Buy Now</a>
-                        </div>
-                    </div>
-                    <!--End Product Single-->
-                </div>
-                <!--End Product Row-->
-            </div>
-            <!--End Container-->
-        </section>
+        
         <!--End Product Area-->
 
-        <!--Start Testimonial Area-->
-        <section id="testimonial-area" class="bg-gray">
-            <!--Start Container-->
-            <div class="container">
-                <!--Start Heading Row-->
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <div class="section-heading text-center">
-                            <h2>Client's Feedback</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut</p>
-                        </div>
-                    </div>
-                </div>
-                <!--End Heading Row-->
-
-                <!--Start Testimonial Carousel-->
-                <div class="testimonial-carousel owl-carousel">
-                    <!--Start Testimonial Single-->
-                    <div class="testimonial-single">
-                        <div class="client-comment">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.</p>
-                        </div>
-                        <div class="client-info row">
-                            <div class="col-md-4">
-                                <div class="client-img">
-                                    <img src="<?php echo base_url() ?>assets/landing/assets/images/client-img-1.jpg" class="img-responsive" alt="Image">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="client-details">
-                                    <h5>Adam Smith</h5>
-                                    <p>Marketer</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Testimonial Single-->
-
-                    <!--Start Testimonial Single-->
-                    <div class="testimonial-single">
-                        <div class="client-comment">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.</p>
-                        </div>
-                        <div class="client-info row">
-                            <div class="col-md-4">
-                                <div class="client-img">
-                                    <img src="<?php echo base_url() ?>assets/landing/assets/images/client-img-2.jpg" class="img-responsive" alt="Image">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="client-details">
-                                    <h5>Jack Morkel</h5>
-                                    <p>Designer</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Testimonial Single-->
-
-                    <!--Start Testimonial Single-->
-                    <div class="testimonial-single">
-                        <div class="client-comment">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.</p>
-                        </div>
-                        <div class="client-info row">
-                            <div class="col-md-4">
-                                <div class="client-img">
-                                    <img src="<?php echo base_url() ?>assets/landing/assets/images/client-img-3.jpg" class="img-responsive" alt="Image">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="client-details">
-                                    <h5>Shane Warne</h5>
-                                    <p>Developer</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Testimonial Single-->
-
-                    <!--Start Testimonial Single-->
-                    <div class="testimonial-single">
-                        <div class="client-comment">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.</p>
-                        </div>
-                        <div class="client-info row">
-                            <div class="col-md-4">
-                                <div class="client-img">
-                                    <img src="<?php echo base_url() ?>assets/landing/assets/images/client-img-4.jpg" class="img-responsive" alt="Image">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="client-details">
-                                    <h5>Shane Kylel</h5>
-                                    <p>Business Man</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Testimonial Single-->
-                </div>
-                <!--End Testimonial Carousel-->
-            </div>
-            <!--End Container-->
-        </section>
-        <!--End Testimonial Area-->
-
-        <!--Start Faq Area-->
-        <section id="faq-area">
-            <!--Start Container-->
-            <div class="container">
-                <!--Start Heading Row-->
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <div class="section-heading text-center">
-                            <h2>Frequently Asked Questions</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut</p>
-                        </div>
-                    </div>
-                </div>
-                <!--End Heading Row-->
-
-                <!--Start Faq Row-->
-                <div class="row">
-                    <!--Start Faq Accordian-->
-                    <div class="col-sm-6">
-                        <div class="panel-group" id="accordion">
-                            <!--Start Accordian Single-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">How can I install android app ? </a>
-                                    </h4>
-                                </div>
-                                <div id="collapse1" class="panel-collapse collapse in">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                                </div>
-                            </div>
-                            <!--End Accordian Single-->
-
-                            <!--Start Accordian Single-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">Where are the setting options ? </a>
-                                    </h4>
-                                </div>
-                                <div id="collapse2" class="panel-collapse collapse">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                                </div>
-                            </div>
-                            <!--End Accordian Single-->
-
-                            <!--Start Accordian Single-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">How can I start live chat ?</a>
-                                    </h4>
-                                </div>
-                                <div id="collapse3" class="panel-collapse collapse">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                                </div>
-                            </div>
-                            <!--End Accordian Single-->
-
-                            <!--Start Accordian Single-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4">How can I call anyone ?</a>
-                                    </h4>
-                                </div>
-                                <div id="collapse4" class="panel-collapse collapse">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                                </div>
-                            </div>
-                            <!--End Accordian Single-->
-
-                            <!--Start Accordian Single-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse5">How can I use it properlay ?</a>
-                                    </h4>
-                                </div>
-                                <div id="collapse5" class="panel-collapse collapse">
-                                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                                </div>
-                            </div>
-                            <!--End Accordian Single-->
-                        </div>
-                    </div>
-                    <!--End Faq Accordian-->
-
-                    <!--Start Faq Image-->
-                    <div class="col-sm-6">
-                        <div class="faq-img">
-                            <img src="<?php echo base_url() ?>assets/landing/assets/images/watch-5.png" class="img-responsive" alt="Image">
-                        </div>
-                    </div>
-                    <!--End Faq Image-->
-                </div>
-                <!--End Faq Row-->
-            </div>
-            <!--End Container-->
-        </section>
-        <!--End Faq Area-->
+        
 
         <!--Start Newsletter Area-->
         <section id="newsletter-area" class="bg-cover">

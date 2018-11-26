@@ -324,39 +324,67 @@ class User_website extends CI_Controller {
         $this->session->set_flashdata('message','delete');
         echo '{}';
     }
+
+    function delete_website()
+    {
+        $id         = $this->input->post('id');
+        $id_user    = $this->session->userdata('userID');
+        $delete     = $this->Model_website->delete_page($id,$id_user);
+        $this->session->set_flashdata('message','delete');
+        echo '{}';
+    }
     
     
     
      function update_detail_website()
     {
         $id_website   = $this->input->post('id');
+        $id_user    = $this->session->userdata('userID');
+        $slug_id_old    = $this->input->post('slug_id_old');
+
         $nama_website  = $this->input->post('nama_website');
       
 
         $data = array(
             'nama_website'         => $nama_website,
             'slug_id'               => $this->clean($nama_website),
-           
         );
 
-        $where = array(
-            'ID' => $id_website
-        );
-         
-         //ambil slug awal
-         $data_website = $this->Model_website->edit_data($where)->row();
-         $slug_awal=$data_website->slug_id;
-         $slug_baru=$this->clean($nama_website);
+        if ($slug_id_old == $this->clean($nama_website)) {
+            $cek_slug_id = 0;
+        }else{
+            $cek_slug_id = $this->Model_website->data_website_validate($this->clean($nama_website),$id_user)->num_rows();
+        }
 
-         //
-         $this->update_link_page($id_website,$slug_awal,$slug_baru);
-         
-         print_r($data);
-         
-         $update = $this->Model_website->update_data($where,$data);
+        if ($cek_slug_id > 0) {
+            // echo "sudah ada";
+            $this->session->set_flashdata('message','exist');
 
-         $this->session->set_flashdata('message','update');
-         redirect( base_url().$this->controller.'/website/'.$slug_baru);
+            redirect($_SERVER['HTTP_REFERER']);
+
+        }else{
+            $where = array(
+                'ID' => $id_website
+            );
+             
+             //ambil slug awal
+             $data_website = $this->Model_website->edit_data($where)->row();
+             $slug_awal=$data_website->slug_id;
+             $slug_baru=$this->clean($nama_website);
+
+             //
+             $this->update_link_page($id_website,$slug_awal,$slug_baru);
+             
+             print_r($data);
+             
+             $update = $this->Model_website->update_data($where,$data);
+
+             $this->session->set_flashdata('message','update');
+             redirect( base_url().$this->controller.'/website/'.$slug_baru);
+
+        }
+
+        
        
         
     }

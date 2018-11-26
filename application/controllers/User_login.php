@@ -29,7 +29,10 @@ class User_login extends CI_Controller {
             'email'=>$email,
             'password'=>$pass,
             'tanggal_daftar'=>$tanggal,
-            'expired'=>$exp
+            'expired'=>$exp,
+            'id_status'=> 1,
+            'id_package' => 0,
+
         
         );
         
@@ -52,31 +55,35 @@ class User_login extends CI_Controller {
     public function login(){
         
         $usernameoremail = $this->input->post('username');
-        $password = md5($this->input->post('password'));
+        $password        = md5($this->input->post('password'));
 
 
-        $cek_login = $this->Model_user->authentication_login($usernameoremail,$password)->num_rows();
-        $cek_email = $this->Model_user->authentication_email($usernameoremail,$password)->num_rows();
+       echo  $cek_login = $this->Model_user->authentication_login($usernameoremail,$password)->num_rows();
+        echo $cek_email = $this->Model_user->authentication_email($usernameoremail,$password)->num_rows();
         
         if($cek_login == TRUE){
            
             $data_user = $this->Model_user->authentication_login($usernameoremail,$password)->row();
             $this->create_session($data_user);
          
-
         }else{
             
             
             if($cek_email == TRUE){
-                
-            $data_user = $this->Model_user->authentication_login($usernameoremail,$password)->row();
-            $this->create_session($data_user);
+                $cek_data_user  = $this->Model_user->authentication_email($usernameoremail,$password)->num_rows();
+                if($cek_data_user > 0 ){
+                    $data_user      = $this->Model_user->authentication_email($usernameoremail,$password)->row();
+                    $this->create_session($data_user);
+                }else{
+                    $this->session->set_flashdata('pesan-login','Username atau Password Salah!');
+                    redirect('sites/login');
+                }
+
                 
             }
             else {
                 $this->session->set_flashdata('pesan-login','Username atau Password Salah!');
                 redirect('sites/login');
-       
             }
           
         }

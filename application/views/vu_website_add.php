@@ -73,7 +73,7 @@
                         <div class="card-body">
                           <h5 class="card-title text-dark"><?php echo $row_template->nama_template ?></h5>
                         </div>
-                        <img class="img-fluid" src="<?php echo base_url() ?>assets/images/templates/template-0.png">
+                        <img class="img-fluid thumbnails" src="<?php echo base_url() ?>assets/images/thumbnails/<?php echo $row_template->photo ?>">
 
                          <!-- <ul class="list-group list-group-flush list shadow-none">
                           <li class="list-group-item d-flex justify-content-between align-items-center">Cras justo odio <span class="badge badge-dark badge-pill">14</span></li>
@@ -184,8 +184,14 @@
             
           });
 
+
+
         });
         </script>
+
+        
+
+        
 
 
 

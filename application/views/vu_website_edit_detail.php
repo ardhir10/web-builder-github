@@ -52,6 +52,7 @@
                         <label>Nama Website :</label>
                         <input type="text" name="nama_website" value="<?php echo $data_website->nama_website ?>" class="form-control" id="title-template" required>
                         <input type="hidden" name="id" value="<?php echo $data_website->ID ?>" class="form-control" id="title-template" required>
+                        <input type="hidden" name="slug_id_old" value="<?php echo $data_website->slug_id ?>" class="form-control" id="title-template" required>
                     </div>
                     
                       <div class="form-group">
@@ -152,7 +153,51 @@
         // }
         // );
         }
+
+
       </script>
+
+      <?php if ( $this->session->flashdata('message')=='exist'): ?>
+        <script type="text/javascript">
+          $( document ).ready(function() {
+            sukses_add_page();
+          });
+          function sukses_add_page(){
+          Lobibox.notify('warning', {
+            pauseDelayOnHover: true,
+            continueDelayOnInactiveTab: false,
+            position: 'center top',
+            showClass: 'rollIn',
+                hideClass: 'rollOut',
+                icon: 'fa fa-exclamation',
+                width: 600,
+            msg: 'Website sudah ada , Silahkan gunakan judul lain.',
+            title: "Sudah ada !",   
+
+            });
+          }
+        </script>
+      <?php endif ?>
+
+      <?php if ( $this->session->flashdata('message')=='update'): ?>
+        <script type="text/javascript">
+          $( document ).ready(function() {
+            sukses_add_page();
+          });
+          function sukses_add_page(){
+          Lobibox.notify('success', {
+            pauseDelayOnHover: true,
+                continueDelayOnInactiveTab: false,
+            position: 'center top',
+            showClass: 'rollIn',
+                hideClass: 'rollOut',
+                icon: 'fa fa-check-circle',
+                width: 600,
+            msg: 'Data berhasil di Update.'
+            });
+          }
+        </script>
+      <?php endif ?>
 
 
 

@@ -169,7 +169,27 @@
         // );
         }
       </script>
+      <?php if ( $this->session->flashdata('message')=='exist'): ?>
+        <script type="text/javascript">
+          $( document ).ready(function() {
+            sukses_add_page();
+          });
+          function sukses_add_page(){
+          Lobibox.notify('warning', {
+            pauseDelayOnHover: true,
+            continueDelayOnInactiveTab: false,
+            position: 'center top',
+            showClass: 'rollIn',
+                hideClass: 'rollOut',
+                icon: 'fa fa-exclamation',
+                width: 600,
+            msg: 'Template sudah ada , Silahkan gunakan judul lain.',
+            title: "Sudah ada !",   
 
+            });
+          }
+        </script>
+      <?php endif ?>
 
 
 

@@ -82,11 +82,11 @@
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right" data-in="fadeIn" data-out="fadeOut">
                             <li class="active"><a href="#header">Home</a></li>
-                            <li><a href="#about-area">About</a></li>
+                           <!--  <li><a href="#about-area">About</a></li>
                             <li><a href="#features-area">Features</a></li>
                             <li><a href="#product-area">Product</a></li>
                             <li><a href="#testimonial-area">Testimonial</a></li>
-                            <li><a href="#faq-area">FAQ</a></li>
+                            <li><a href="#faq-area">FAQ</a></li> -->
                             <li><a href="#contact-area">Contact</a></li>
                         </ul>
                     </div>

@@ -86,7 +86,15 @@ class Model_website extends CI_Model {
 	function delete_data($where){
 		$this->db->where($where);
 		$this->db->delete($this->table);
-	}		
+	}
+
+    function delete_page($id,$id_user){
+        $this->db->where('ID',$id);
+        $this->db->where('id_user',$id_user);
+        $this->db->delete($this->table);
+    }
+
+    		
 }
 
 ?>

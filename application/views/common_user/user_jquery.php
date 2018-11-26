@@ -37,4 +37,15 @@
       <script src="<?php echo base_url(); ?>assets/plugins/alerts-boxes/js/sweetalert.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/alerts-boxes/js/sweet-alert-script.js"></script>
 
+      <!-- Gambar error Handle -->
+      <script type="text/javascript">
+          $(window).load(function() {
+              $('img').each(function() {
+                if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+                  // image was broken, replace with your new image
+                  this.src = 'https://goodeva.co.id/my-assets/images/logo.png';
+                }
+              });
+            });
+        </script>
 

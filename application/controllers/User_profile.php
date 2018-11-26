@@ -51,13 +51,12 @@ class User_profile extends CI_Controller {
         $username_lama         = $this->input->post('username_lama');
         $password         = md5($this->input->post('password'));
        
-        if (!password==''){
+        if ($password==''){
          $data = array(
             'nama'  => $nama,
             'no_telp' => $telp,
             'email' => $email,
             'username'    => $username,
-            
         );
         }else{
             $data = array(

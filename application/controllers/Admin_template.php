@@ -314,11 +314,20 @@ class Admin_template extends CI_Controller {
             'tanggal_dibuat'        => date('Y-m-d H:i:s')
         );
 
-        $insert         = $this->Model_template->insert_data($data);
-        $id_template    = $this->Model_template->get_data()->row();
-        $this->create_page($id_template->ID,$this->clean($nama_template));
+        $cek_slug_template = $this->Model_template->edit_data(array('slug_id'=>$this->clean($nama_template)))->num_rows();
 
-        redirect(base_url().$this->controller.'/template_page/'.$this->clean($nama_template));
+        if ($cek_slug_template > 0 || $nama_template == '') {
+            $this->session->set_flashdata('message','exist');
+            redirect($_SERVER['HTTP_REFERER']);
+        }else{
+            $insert         = $this->Model_template->insert_data($data);
+            $id_template    = $this->Model_template->get_data()->row();
+            $this->create_page($id_template->ID,$this->clean($nama_template));
+
+            redirect(base_url().$this->controller.'/template_page/'.$this->clean($nama_template));
+        }
+
+        
 
     }
 
@@ -438,6 +447,7 @@ class Admin_template extends CI_Controller {
         $nama_template  = $this->input->post('nama_template');
         $id_kategori    = $this->input->post('id_kategori');
         $id_type        = $this->input->post('id_type');
+        $slug_id_old        = $this->input->post('slug_id_old');
 
         $data = array(
             'nama_template'         => $nama_template,
@@ -449,8 +459,24 @@ class Admin_template extends CI_Controller {
         $where = array(
             'ID' => $id_template
         );
-        $update = $this->Model_template->update_data($where,$data);
-        redirect($_SERVER['HTTP_REFERER']);
+
+        if($slug_id_old == $this->clean($nama_template)){
+            $cek_slug_template = 0;
+        }else{
+            $cek_slug_template = $this->Model_template->edit_data(array('slug_id'=>$this->clean($nama_template)))->num_rows();
+        }
+
+
+
+        if ($cek_slug_template > 0 || $nama_template == '') {
+            $this->session->set_flashdata('message','exist');
+            redirect($_SERVER['HTTP_REFERER']);
+        }else{
+            $update = $this->Model_template->update_data($where,$data);
+            $this->session->set_flashdata('message','update');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+        
         
     }
 

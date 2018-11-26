@@ -94,66 +94,66 @@
       <?php $this->load->view('common_admin/admin_jquery.php'); ?>
       <!-- END JQUERY -->
 
-           <!-- Sweet Alert -->
-  <script type="text/javascript">
-  $(document).ready(function(){
-    $.ajaxSetup({
-      type:"post",
-      cache:false,
-      dataType: "json"
-    })
+          <!-- Sweet Alert -->
+          <script type="text/javascript">
+          $(document).ready(function(){
+            $.ajaxSetup({
+              type:"post",
+              cache:false,
+              dataType: "json"
+            })
 
-    $(".delete").click(function(){
-        var id=$(this).attr("data-id");
-        swal({
-          title: "Yakin ingin dihapus  ?",
-          text: "Setelah dihapus data akan hilang",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            
-            swal({   
-                    icon: "success",
-                    title: "Deleted !",   
-                    text: "Data berhasil dihapus",   
-                    type: "success",       
-                    confirmButtonText: "Ok",    
-                    closeOnConfirm: false,   
-                    closeOnCancel: false 
+            $(".delete").click(function(){
+                var id=$(this).attr("data-id");
+                swal({
+                  title: "Yakin ingin dihapus  ?",
+                  text: "Setelah dihapus data akan hilang",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                    
+                    swal({   
+                            icon: "success",
+                            title: "Deleted !",   
+                            text: "Data berhasil dihapus",   
+                            type: "success",       
+                            confirmButtonText: "Ok",    
+                            closeOnConfirm: false,   
+                            closeOnCancel: false 
+                        });
+
+                    $.ajax({
+                    data:{id:id},
+                    url:'<?php echo base_url() ?>'+'Admin_template/delete_template',
+                    success: function(html) {
+                        // $("tr[data-id='"+id+"']").fadeOut(1500,function(){
+                        //     $(this).remove();
+                        // });
+                        // swal({   
+                        //     icon: "success",
+                        //     title: "Deleted !",   
+                        //     text: "Data berhasil dihapus",   
+                        //     type: "success",       
+                        //     confirmButtonText: "Ok",    
+                        //     closeOnConfirm: false,   
+                        //     closeOnCancel: false 
+                        // });
+                        location.reload();
+                    }
+                    });
+
+                  }else{
+                    swal("Batal dihapus !");
+                  }
                 });
 
-            $.ajax({
-            data:{id:id},
-            url:'<?php echo base_url() ?>'+'Admin_template/delete_template',
-            success: function(html) {
-                // $("tr[data-id='"+id+"']").fadeOut(1500,function(){
-                //     $(this).remove();
-                // });
-                // swal({   
-                //     icon: "success",
-                //     title: "Deleted !",   
-                //     text: "Data berhasil dihapus",   
-                //     type: "success",       
-                //     confirmButtonText: "Ok",    
-                //     closeOnConfirm: false,   
-                //     closeOnCancel: false 
-                // });
-                location.reload();
-            }
             });
 
-          }else{
-            swal("Batal dihapus !");
-          }
-        });
-
-    });
-
-  });
-  </script>
+          });
+          </script>
 
      
 
