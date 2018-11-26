@@ -84,11 +84,11 @@
                         <div class="card-body">
                            <div class="media align-items-center">
                               <div class="media-body">
-                                 <p class="text-white">Bounce Rate</p>
-                                 <h4 class="text-white line-height-5">12.80%</h4>
+                                 <p class="text-white">Total Template</p>
+                                 <h4 class="text-white line-height-5"><?php echo $data_template; ?></h4>
                               </div>
                               <div class="w-circle-icon rounded-circle border border-white">
-                                 <i class="fa fa-pie-chart text-white"></i>
+                                 <i class="fa fa-file-code-o text-white"></i>
                               </div>
                            </div>
                         </div>
@@ -148,7 +148,7 @@
                   </div>
                </div>
                <!--End Row-->
-               <div class="row">
+              <!-- <div class="row">
                   <div class="col-12 col-lg-12 col-xl-12">
                      <div class="card">
                         <div class="card-header">
@@ -174,9 +174,9 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div>-->
                <!--End Row-->
-               <div class="row">
+              <!-- <div class="row">
                   <div class="col-12 col-lg-6 col-xl-8">
                      <div class="card">
                         <div class="card-header border-0">
@@ -308,9 +308,9 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div>-->
                <!--End Row-->
-               <div class="card">
+             <!--  <div class="card">
                   <div class="card-content">
                      <div class="row row-group m-0 text-center">
                         <div class="col-12 col-lg-3 col-xl-3">
@@ -342,10 +342,10 @@
                            </div>
                         </div>
                      </div>
-                     <!--End Row-->
+                     End Row
                   </div>
-               </div>
-               <div class="row">
+               </div>-->
+             <!--  <div class="row">
                   <div class="col-lg-12">
                      <div class="card">
                         <div class="card-header border-0">
@@ -490,7 +490,7 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div>-->
                <!--End Row-->
                <!--End Dashboard Content-->
             </div>
