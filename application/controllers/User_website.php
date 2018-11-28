@@ -9,13 +9,14 @@ class User_website extends CI_Controller {
         $this->load->model('Model_website');
         $this->load->model('Model_template_page');
         $this->load->model('Model_website_page');
+        $this->load->model('ApiModelImage');
         $this->load->helper(array('Form', 'Cookie', 'String'));
         date_default_timezone_set("Asia/Jakarta");
 
         // cek session
-        // if ($this->session->userdata('adminLogged') != TRUE) {
-        //     redirect(base_url('Admin_panel/login'));
-        // }
+        if ($this->session->userdata('userLogged') != TRUE) {
+            redirect(base_url('user-panel'));
+        }
     }
 
     
@@ -228,6 +229,10 @@ class User_website extends CI_Controller {
                 $cek_data_page              = $this->Model_website_page->get_page_child($data['data_website']->ID,$slug_id_page,$id_user)->num_rows();
                 $data['data_page']          = $this->Model_website_page->get_page_child($data['data_website']->ID,$slug_id_page,$id_user)->row();
                 $data['data_page_result']   = $this->Model_website_page->get_page($data['data_website']->ID,$id_user)->result();
+                $data['data_image']         = $this->ApiModelImage->get_my_image($id_user)->result();
+
+                // print_r($data['data_image']);
+
                 
                 if ($cek_data_page>0) {
                     // print_r($data['data_page']);
