@@ -154,8 +154,9 @@
                                   <li class="list-group-item d-flex justify-content-between align-items-center">Vestibulum at eros <span class="badge badge-danger badge-pill">1</span></li>
                                 </ul> -->
                                 <div class="card-body">
-                                  <a href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id; ?>/<?php echo $row_page->slug_id ?>" class="card-link"><button class="btn btn-sm btn-info">Edit</button></a>
-                                  <button class="btn btn-sm btn-danger delete" data-id="<?php echo $row_page->ID ?>">Hapus</button>
+                                  <a href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id; ?>/<?php echo $row_page->slug_id ?>" class="card-link"><button class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Edit Page"><i class="fa fa-edit" ></i></button></a>
+                                  <button class="btn btn-sm btn-danger delete" data-id="<?php echo $row_page->ID ?>" data-toggle="tooltip" data-placement="top" title="Hapus Page"><i class="fa fa-trash" ></i></button>
+                                  <button class="btn btn-sm btn-dark" data-id="<?php echo $row_page->ID ?>"  data-toggle="tooltip" data-placement="top" title="Duplikat Page"><i class="fa fa-copy"></i></button>
 
 
                                   <!-- <a href="<?php echo base_url().$controller ?>/preview/<?php echo $row_page->ID; ?>" target="_blank" class="card-link">Lihat</a> -->
