@@ -93,6 +93,12 @@ class Model_website extends CI_Model {
         $this->db->where('id_user',$id_user);
         $this->db->delete($this->table);
     }
+    
+    function validasi_website($id,$id_user){
+       $this->db->where('ID',$id);
+        $this->db->where('id_user',$id_user);
+        return $this->db->get($this->table); 
+    }
 
     		
 }

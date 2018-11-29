@@ -40,7 +40,7 @@
                            <div class="media align-items-center">
                               <div class="media-body">
                                  <p class="text-white">Total Orders</p>
-                                 <h4 class="text-white line-height-5">8450</h4>
+                                 <h4 class="text-white line-height-5"><?php echo $jumlah_order; ?></h4>
                               </div>
                               <div class="w-circle-icon rounded-circle border border-white">
                                  <i class="fa fa-cart-plus text-white"></i>

@@ -7,6 +7,8 @@ class User_website extends CI_Controller {
         $this->load->model('Model_editor');
         $this->load->model('Model_template');
         $this->load->model('Model_website');
+        $this->load->model('Model_package');
+        $this->load->model('Model_order');
         $this->load->model('Model_template_page');
         $this->load->model('Model_website_page');
         $this->load->model('ApiModelImage');
@@ -250,7 +252,8 @@ class User_website extends CI_Controller {
 
 
 
-        }else{
+        }
+        else{
             $id_user = $this->session->userdata('userID');
             $cek_data_website           = $this->Model_website->get_data_website($slug_id,$id_user)->num_rows();
             $data['data_website']       = $this->Model_website->get_data_website($slug_id,$id_user)->row();
@@ -258,7 +261,7 @@ class User_website extends CI_Controller {
                 //==== Inisiasi Awal 
                 $data['controller'] = $this->controller;
                 $data['title_page'] = 'Website : '.$data['data_website']->nama_website.' | Goodeva';
-
+                $data['data_package']=$this->Model_package->edit_data(array('status'=>'publish'))->result();
                 $data['data_page']  = $this->Model_website_page->get_page($data['data_website']->ID,$id_user)->result();
 
                 // print_r($data['data_page']);
@@ -417,6 +420,40 @@ class User_website extends CI_Controller {
         
     }
     
+    function order_publish($id_website='')
+    {
+        $id_user=$this->session->userdata('userID');
+        
+        $validasi_website=$this->Model_website->validasi_website($id_website,$id_user)->num_rows();
+        $data_website=$this->Model_website->validasi_website($id_website,$id_user)->row();
+        $id_package=$this->input->post('id_package');
+        
+        if($validasi_website==true){
+            
+            $data_package=$this->Model_package->edit_data(array('ID'=>$id_package))->row();
+            //data
+            $data = array(
+            "id_website" => $id_website,
+            "nama_website" => $data_website->nama_website,
+            "id_user" => $id_user,
+            "status" => 0,
+            "nama_package" => $data_package->nama_package,
+            "type_order" => $data_package->status,
+            "harga" => $data_package->harga,
+            "tanggal_order" => date('Y-m-d H:i:s'),
+                  
+            );
+            
+           $this->Model_order->insert_data($data);
+           $this->session->set_flashdata('message','publish');
+           redirect($_SERVER['HTTP_REFERER']);
+            
+        }else{
+          redirect($_SERVER['HTTP_REFERER']);
+        }
+        
+    }
+/*--------------------------------------------------------*/    
     //fungsi clean
       function clean($string) {
        $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
@@ -424,6 +461,9 @@ class User_website extends CI_Controller {
        return preg_replace('/[^A-Za-z0-9\-]/', '', strtolower($string)); // Removes special chars.
     }
 
+    
+    
+    
 
    // Hanya Untuk Testing
     function json()
@@ -460,6 +500,9 @@ class User_website extends CI_Controller {
         echo json_encode($myObj);
 
     }
+    
+    
+    
 
 	
 }//end

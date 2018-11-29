@@ -59,11 +59,11 @@
                           </h5>
                         </div>
                          <ul class="list-group list-group-flush list shadow-none">
-                          <!-- <li class="list-group-item d-flex justify-content-between align-items-center">Kategori <span class="badge badge-dark badge-pill"><?php echo $kategori->nama_kategori ?> </span></li> -->
-                          <!-- <li class="list-group-item d-flex justify-content-between align-items-center">Type  <span class="badge badge-<?php echo $type->label ?> badge-pill"><?php echo $type->nama_type ?></span></li> -->
-                          <!-- <li class="list-group-item d-flex justify-content-between align-items-center">Vestibulum at eros <span class="badge badge-danger badge-pill">1</span></li> -->
+                          <!-- <li class="list-group-item d-flex justify-content-between align-items-center">Kategori <span class="badge badge-dark badge-pill"><?php echo "ini detail"; ?> </span></li> 
+                           <li class="list-group-item d-flex justify-content-between align-items-center">Type  <span class="badge badge-<?php echo "danger";?> badge-pill"><?php echo "ini detail"; ?></span></li>--> 
+                           <li class="list-group-item d-flex justify-content-between align-items-center">Harga Publish<span>Rp.100,000</span></li> 
                         </ul>
-                        <div class="card-body">
+                        <div class="card-body text-center">
                           <!--   <table class="table">
                                 <tr>
                                   <td>Kategori </td>
@@ -77,7 +77,8 @@
                       
                         <a href="<?php echo base_url()?>preview/website/<?php echo $data_website->slug_id; ?>" target="_blank" class="btn btn-sm btn-primary waves-effect waves-light">Lihat Template</a>
                         <a href="<?php echo base_url()?>User_website/edit/<?php echo $data_website->slug_id; ?>"  class="btn btn-sm btn-info waves-effect waves-light">Edit Detail</a>
-
+                        <hr>
+                        <a href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id ?>" class="btn btn-secondary"  data-toggle="modal" data-target="#modal-publish" data-id="<?php echo $data_website->ID ?>">Publish</a>
                         </div>
                       </div>
                   </div>
@@ -97,28 +98,63 @@
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
-                              <div class="modal-body">
+                              
                                 <form method="post" action="<?php echo base_url().$controller ?>/create_new_page">
-                                 <div class="form-group">
+                                <div class="modal-body">
+                                   <div class="form-group">
                                    <label for="input-1">Judul Page</label>
                                    <input type="text" class="form-control" name="judul_page" placeholder="Judul Page" required="">
                                    <input type="hidden" class="form-control" name="id_website"  value="<?php echo $data_website->ID ?>">
                                  </div>
-                              <!--    <div class="form-group">
-                                   <div class="icheck-material-info">
-                                   <input type="checkbox" id="user-checkbox1" checked="">
-                                   <label for="user-checkbox1">Remember me</label>
-                                  </div>
-                                 </div> -->
-                                 <!-- <div class="form-group">
-                                  <button type="submit" class="btn btn-info shadow-info px-5"><i class="icon-lock"></i> Login</button>
-                                </div> -->
-                              </div>
+                           
+                                    </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                                 <button type="submit" class="btn btn-info shadow-info px-5"><i class="fa fa-save"></i> Simpan</button>
+                            
+                              </div>  
                               </form>
+                            </div>
+                          </div>
+                        </div>
+                        <!--Modal publish-->
+                         <div class="modal fade" id="modal-publish">
+                          <div class="modal-dialog">
+                            <div class="modal-content animated zoomInUp">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Konfirmasi Publish Website</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
                               </div>
+                              
+                                   <form action="<?php echo base_url().$controller; ?>/order_publish/<?php echo $data_website->ID;?>" method="post">
+                            <div class="modal-body">
+                                
+                                   <ul class="list-group list-group-flush list shadow-none">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">Nama Website <span class="badge badge-dark badge-pill">
+                                            <?php echo $data_website->nama_website ?> </span></li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">Jumlah Page <span class="badge badge-<?php echo " danger";?> badge-pill">
+                                            <?php echo "3"; ?></span></li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">Harga Publish<span>Rp.100,000</span></li>
+                                </ul>
+                                   <div class="form-group">
+                                       <label>Pilih Package</label>
+                                       <select name="id_package" id="" class="form-control">
+                                        <?php foreach ($data_package as $row): ?>    
+                                           <option value="<?php echo $row->ID; ?>"><?php echo $row->nama_package; ?></option>
+                                       <?php endforeach ?>
+                                       </select>
+                                   </div>
+                                    </div>
+                                 
+                                   
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
+                                <button type="submit" class="btn btn-info shadow-info px-5"><i class="fa fa-rocket"> </i> Order Publish</button>
+                            
+                              </div>  
+                             </form>
                             </div>
                           </div>
                         </div>

@@ -7,6 +7,7 @@ class Admin_panel extends CI_Controller {
         $this->load->model('admin_model/Model_admin');
         $this->load->model('Model_template');
         $this->load->model('Model_user');
+        $this->load->model('Model_order');
         $this->load->model('admin_model/Model_admin_login');
         $this->load->helper(array('Form', 'Cookie', 'String'));
 
@@ -42,6 +43,7 @@ class Admin_panel extends CI_Controller {
             $data['user_suspened'] = $this->Model_user->edit_data(array('id_status'=>3))->num_rows();
             $data['jumlah_template'] =  $this->Model_template->get_data_template()->result();
             $data['data_template'] =  $this->Model_template->get_data()->num_rows();
+            $data['jumlah_order'] =  $this->Model_order->get_data()->num_rows();
            
             $this->load->view('va_dashboard',$data);
 

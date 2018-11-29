@@ -47,15 +47,17 @@
                 <?php foreach ($data_website as $data_website): ?>
                  <div class="col-lg-4">
                     <div class="card-deck">
-                        <div class="card">
+                        <div class="card text-center" >
                            <img class="card-img-top" src="<?php echo base_url() ?>assets/images/thumbnails/<?php echo $data_website->photo ?>" alt="Card image cap">
-                           <div class="card-body">
-                             <h5 class="card-title"><?php echo $data_website->nama_website ?></h5>
+                           <div class="card-body" style="padding-bottom: 5px;">
+                             <h5 class="card-title" ><?php echo $data_website->nama_website ?></h5>
                            </div>
-                           <div class="card-footer">
+                           <div class="card-footer text-center">
                              <a class="card-link" href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id ?>">Detail</a>
                              <a class="card-link" href="<?php echo base_url()?>preview/website/<?php echo $data_website->slug_id ?>" target="_blank">Lihat</a>
-                            <a href="#" class="card-link delete" data-id="<?php echo $data_website->ID ?>">Hapus</a>
+                            <a href="#" class="card-link delete" data-id="<?php echo $data_website->ID ?>">Hapus</a> 
+                             <hr>
+                             <a href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id ?>" class="btn btn-secondary" data-id="<?php echo $data_website->ID ?>">Publish</a>
 
                            </div>
                         </div>
