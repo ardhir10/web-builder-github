@@ -424,7 +424,6 @@
             
           am.add([
           <?php foreach ($data_image as $row): ?>
-
             {
                 id:'<?php echo $row->ID; ?>',
                 type: 'image',
