@@ -9,16 +9,23 @@
       <li class="sidebar-header">MAIN NAVIGATION</li>
       
       <li>
-        <a href="<?php echo base_url() ?>user-panel" >
+        <a href="<?php echo base_url() ?>user_panel" >
           <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span> 
         </a>
       </li>
 
       <li>
-        <a href="<?php echo base_url() ?>user-website" >
+        <a href="<?php echo base_url() ?>user_subcription" >
+          <i class="fa fa-usd"></i><span>Subciption</span> 
+        </a>
+      </li>
+
+      <li>
+        <a href="<?php echo base_url() ?>user_website" >
           <i class="zmdi zmdi-view-web"></i> <span>Website</span> 
         </a>
       </li>
+      
 
       <!--<li>
         <a href="<?php echo base_url() ?>user-editor" >

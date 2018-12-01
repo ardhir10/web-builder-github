@@ -32,64 +32,40 @@
       <!-- Breadcrumb-->
        <div class="row pt-2 pb-2">
           <div class="col-sm-9">
-  		    <h4 class="page-title">Data Package</h4>
+  		    <h4 class="page-title">Data Kategori</h4>
   		    <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="javaScript:void();">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Data Package</li>
+              <li class="breadcrumb-item active" aria-current="page">Data Kategori</li>
            </ol>
   	   </div>
   	   <div class="col-sm-3">
          <div class="btn-group float-sm-right">
-          <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#modal-animation-14"><i aria-hidden="true" class="fa fa-plus"></i> &nbsp;PACKAGE</button>
+          <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#modal-animation-14"><i aria-hidden="true" class="fa fa-plus"></i> &nbsp;Kategori</button>
           <!-- Modal Add New -->
             <div class="modal fade" id="modal-animation-14">
               <div class="modal-dialog">
                 <div class="modal-content animated zoomInUp">
                   <div class="modal-header">
-                    <h5 class="modal-title">Tambah Package</h5>
+                    <h5 class="modal-title">Tambah Kategori</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
-                    <form method="post" action="<?php echo base_url().$controller ?>/create">
-                     <div class="form-group">
-                       <label for="input-1">Nama Package</label>
-                       <input type="text" class="form-control" name="nama_package" placeholder="Nama Package" required="">
-                     </div>
-                     <div class="form-group">
-                       <label for="input-1">Harga</label>
-                       <input type="number" class="form-control" name="harga" placeholder="Harga Package" required="">
-                     </div>
-                     <div class="form-group">
-                       <label for="input-1">Status</label>
-                       <select class="form-control" name="status" required="">
-                        <option>--Pilih Status</option>
-                         <option value="publish">Publish</option>
-                         <option value="package">Package</option>
-                       </select>
-                     </div>
-                     <div class="form-group">
-                       <label for="input-1">Keterangan</label>
-                       <textarea  class="form-control" name="keterangan" placeholder="Keterangan"></textarea>
-                     </div>
+                  <form method="post" action="<?php echo base_url().$controller ?>/create">
 
-                    
-                  <!--    <div class="form-group">
-                       <div class="icheck-material-info">
-                       <input type="checkbox" id="user-checkbox1" checked="">
-                       <label for="user-checkbox1">Remember me</label>
-                      </div>
-                     </div> -->
-                     <!-- <div class="form-group">
-                      <button type="submit" class="btn btn-info shadow-info px-5"><i class="icon-lock"></i> Login</button>
-                    </div> -->
+                  <div class="modal-body">
+                     <div class="form-group">
+                       <label for="input-1">Nama Kategori</label>
+                       <input type="text" class="form-control" name="nama_kategori" placeholder="Nama Kategori" required="">
+                     </div>
                   </div>
+
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                     <button type="submit" class="btn btn-info shadow-info px-5"><i class="fa fa-save"></i> Simpan</button>
-                  </form>
                   </div>
+                  </form>
+
                 </div>
               </div>
             </div>
@@ -101,7 +77,7 @@
          <div class="row">
           <div class="col-lg-12">
             <div class="card">
-              <div class="card-header"><i class="fa fa-table"></i> Data Package Table
+              <div class="card-header"><i class="fa fa-table"></i> Data Kategori Table
                 <br>
 
               <?php if ($this->session->flashdata('status_tambah')): ?>''
@@ -136,25 +112,19 @@
                   <thead>
                       <tr>
                           <th>No</th>
-                          <th>Nama Package</th>
-                          <th>Harga</th>
-                          <th>Status</th>
-                          <th>Keterangan</th>
+                          <th>Nama Kategori</th>
                           <th>Action</th>
                       </tr>
                   </thead>
                   <tbody>
-                    <?php $no =1; foreach ($data_package as $row_package): ?>
-                      <tr data-id="<?php echo $row_package->ID; ?>">
+                    <?php $no =1; foreach ($data_kategori as $row): ?>
+                      <tr data-id="<?php echo $row->ID; ?>">
                         <td><?php echo $no++; ?></td>
-                        <td><?php echo $row_package->nama_package; ?></td>
-                        <td><?php echo number_format($row_package->harga,0,',','.')  ?></td>
-                        <td><?php echo $row_package->status; ?></td>
+                        <td><?php echo $row->nama_kategori; ?></td>
 
-                        <td><?php echo $row_package->keterangan ?></td>
-                        <td><a href="<?php echo base_url().$controller ?>/edit/<?php echo $row_package->ID ?>"><button type="button" class="btn btn-info btn-sm waves-effect waves-light m-1"><i class="zmdi zmdi-edit"></i> Edit</button></a>
+                        <td><a href="<?php echo base_url().$controller ?>/edit/<?php echo $row->ID ?>"><button type="button" class="btn btn-info btn-sm waves-effect waves-light m-1"><i class="zmdi zmdi-edit"></i> Edit</button></a>
 
-                          <button type="button" onclick="" data-id="<?php echo $row_package->ID; ?>" class="btn btn-danger btn-sm waves-effect waves-light m-1 delete"><i class="zmdi zmdi-delete "></i> Hapus</button></td>
+                          <button type="button" onclick="" data-id="<?php echo $row->ID; ?>" class="btn btn-danger btn-sm waves-effect waves-light m-1 delete"><i class="zmdi zmdi-delete "></i> Hapus</button></td>
                       </tr>
                     <?php endforeach ?>
                     
@@ -266,7 +236,7 @@
 
             $.ajax({
             data:{id:id},
-            url:'<?php echo base_url() ?>'+'admin_package/delete',
+            url:'<?php echo base_url() ?>'+'admin_kategori/delete',
             success: function(html) {
                 // $("tr[data-id='"+id+"']").fadeOut(1500,function(){
                 //     $(this).remove();

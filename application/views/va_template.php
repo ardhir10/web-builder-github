@@ -54,19 +54,19 @@
                         <!-- <img src="<?php echo base_url() ?>assets/images/gallery/13.jpg" class="card-img-top" alt="Card image cap"> -->
                         </a>
                         <div class="card-body">
-                          <h5 class="card-title text-dark"><?php echo $row_template->nama_template ?></h5>
+                          <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $row_template->slug_id; ?>" title="<?php echo $row_template->nama_template; ?>"><h5 class="card-title text-dark"><?php echo word_limit($row_template->nama_template); ?></h5></a>
                         </div>
                          <!-- <ul class="list-group list-group-flush list shadow-none">
                           <li class="list-group-item d-flex justify-content-between align-items-center">Cras justo odio <span class="badge badge-dark badge-pill">14</span></li>
                           <li class="list-group-item d-flex justify-content-between align-items-center">Dapibus ac facilisis in <span class="badge badge-success badge-pill">2</span></li>
                           <li class="list-group-item d-flex justify-content-between align-items-center">Vestibulum at eros <span class="badge badge-danger badge-pill">1</span></li>
                         </ul> -->
-                        <img class="img-fluid" src="<?php echo base_url() ?>assets/images/templates/template-0.png">
+                        <img class="img-fluid" style="height: 206px;" src="<?php echo base_url() ?>assets/images/templates/<?php echo $row_template->photo ?>">
                         
                         <div class="card-body">
                           <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $row_template->slug_id; ?>" class="card-link">Detail</a>
                           <a href="<?php echo base_url() ?>preview/template/<?php echo $row_template->slug_id; ?>" target="_blank" class="card-link">Lihat</a>
-                          <a href="#" class="card-link delete" data-id="<?php echo $row_template->ID ?>">Hapus</a>
+                          <a href="#" class="card-link delete" data-id="<?php echo $row_template->ID ?>" data-gambar="<?php echo $row_template->photo ?>">Hapus</a>
                         </div>
                       </div>
                   </div><!--End Row-->
@@ -88,6 +88,24 @@
          <!--End footer-->
       </div>
       <!--End wrapper-->
+
+
+      <!-- Fungsi PHP -->
+      <?php 
+      function word_limit($text)
+      {
+        $string_count = strlen($text);
+        if ($string_count > 30 ) {
+          return substr($text, 0, 30) . '...';
+        }else{
+          return $text;
+        }
+
+      }
+
+
+       ?>
+      <!-- End Fungsi -->
       
 
       <!-- JQUERY -->
@@ -104,7 +122,8 @@
             })
 
             $(".delete").click(function(){
-                var id=$(this).attr("data-id");
+                var id=$(this).data("id");
+                var gambar=$(this).data("gambar");
                 swal({
                   title: "Yakin ingin dihapus  ?",
                   text: "Setelah dihapus data akan hilang",
@@ -126,7 +145,7 @@
                         });
 
                     $.ajax({
-                    data:{id:id},
+                    data:{id:id,gambar:gambar},
                     url:'<?php echo base_url() ?>'+'Admin_template/delete_template',
                     success: function(html) {
                         // $("tr[data-id='"+id+"']").fadeOut(1500,function(){

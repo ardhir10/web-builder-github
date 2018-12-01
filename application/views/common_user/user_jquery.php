@@ -49,3 +49,34 @@
             });
         </script>
 
+
+          <script type="text/javascript">
+          // $(".sidebar-menu li a").each(function() {   
+          //     if (this.href == window.location.href) {
+          //         $(this).('li').addClass("active");
+          //     }
+          // });
+
+          
+
+          jQuery(function($) {
+               var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+               $('ul li a').each(function() {
+                if (this.href === path || this.href+'<?php echo $this->uri->segment('2') ?>' === path || this.href+'/edit/<?php echo $this->uri->segment('3') ?>' === path ) {
+                 $(this).parent('li').addClass('active');
+                }
+               });
+
+              var $btns = $('.btn-fillter').click(function() {
+                if (this.id == 'all') {
+                  $('#parent > div').fadeIn(450);
+                } else {
+                  var $el = $('.' + this.id).fadeIn(450);
+                  $('#parent > div').not($el).hide();
+                }
+                $btns.removeClass('current-demo');
+                $(this).addClass('current-demo');
+              })
+              });
+          </script>
+

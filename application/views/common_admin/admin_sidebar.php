@@ -17,9 +17,20 @@
         </a>
       </li>
 
+       <li>
+        <a href="<?php echo base_url() ?>admin_order" >
+          <i class="fa fa-reorder"></i> Menu Order</span> 
+        </a>
+      </li>
+
       <li>
         <a href="<?php echo base_url() ?>admin_user" >
           <i class="fa fa-users"></i> Data User</span> 
+        </a>
+      </li>
+      <li>
+        <a href="<?php echo base_url() ?>admin_kategori" >
+          <i class="fa fa-th-large"></i> Data Kategori </span> 
         </a>
       </li>
 
@@ -28,6 +39,8 @@
           <i class="zmdi zmdi-money-box"></i> Menu Package</span> 
         </a>
       </li>
+
+     
 
       <li>
         <a href="<?php echo base_url() ?>admin_template" >

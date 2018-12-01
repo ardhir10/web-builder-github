@@ -45,7 +45,7 @@
               
                 <div class="demo-heading"><?php echo $title_card; ?> | LIVE TEMPLATE EDITOR</div>
                 <!-- <button class="btn btn-success" onclick="anim5_noti()">SHOW ME</button> -->
-                <form method="post" action="<?php echo base_url().$controller; ?>/update_detail_website">
+                <form method="post" action="<?php echo base_url().$controller; ?>/update_detail_website" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -53,6 +53,14 @@
                         <input type="text" name="nama_website" value="<?php echo $data_website->nama_website ?>" class="form-control" id="title-template" required>
                         <input type="hidden" name="id" value="<?php echo $data_website->ID ?>" class="form-control" id="title-template" required>
                         <input type="hidden" name="slug_id_old" value="<?php echo $data_website->slug_id ?>" class="form-control" id="title-template" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gambar Thumbnail :</label>
+                        <br>
+                        <img id="blah" alt="your image" src="<?php echo base_url() ?>assets/images/websites/<?php echo $data_website->photo ?>" style="max-width: 200px;height: auto;" />
+                        <input type="file" class="form-control" name="gambar" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                        <input type="hidden" name="gambar_old" value="<?php echo $data_website->photo ?>"> 
+                        <small class="text-danger">*Max Ukuran file 2MB</small>
                     </div>
                     
                       <div class="form-group">

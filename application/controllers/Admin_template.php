@@ -58,6 +58,8 @@ class Admin_template extends CI_Controller {
     }
 
 
+
+
     function add()
     {
         // ambil cookie
@@ -314,18 +316,40 @@ class Admin_template extends CI_Controller {
             'tanggal_dibuat'        => date('Y-m-d H:i:s')
         );
 
+        // ==========================
+
+
+        // ======================
+
         $cek_slug_template = $this->Model_template->edit_data(array('slug_id'=>$this->clean($nama_template)))->num_rows();
 
         if ($cek_slug_template > 0 || $nama_template == '') {
             $this->session->set_flashdata('message','exist');
             redirect($_SERVER['HTTP_REFERER']);
         }else{
-            $insert         = $this->Model_template->insert_data($data);
-            $id_template    = $this->Model_template->get_data()->row();
-            $this->create_page($id_template->ID,$this->clean($nama_template));
+            $config['upload_path'] = './assets/images/templates/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['file_name'] = 'thumbnails'.time();
+            $config['max_size'] = '2048';
 
-            redirect(base_url().$this->controller.'/template_page/'.$this->clean($nama_template));
+            $this->load->library('upload',$config);
+
+            if ($this->upload->do_upload('gambar')) {
+                $image = $this->upload->data();
+                $data['photo'] = $image['file_name'];
+                $insert         = $this->Model_template->insert_data($data);
+                $id_template    = $this->Model_template->get_data()->row();
+                $this->create_page($id_template->ID,$this->clean($nama_template));
+                redirect(base_url().$this->controller.'/template_page/'.$this->clean($nama_template));
+            }else{
+                $this->session->set_flashdata('message','image');
+                redirect(base_url().$this->controller.'/add');
+            }
+
+            
         }
+
+        
 
         
 
@@ -447,7 +471,8 @@ class Admin_template extends CI_Controller {
         $nama_template  = $this->input->post('nama_template');
         $id_kategori    = $this->input->post('id_kategori');
         $id_type        = $this->input->post('id_type');
-        $slug_id_old        = $this->input->post('slug_id_old');
+        $slug_id_old    = $this->input->post('slug_id_old');
+        $gambar_old    = $this->input->post('gambar_old');
 
         $data = array(
             'nama_template'         => $nama_template,
@@ -459,6 +484,7 @@ class Admin_template extends CI_Controller {
         $where = array(
             'ID' => $id_template
         );
+
 
         if($slug_id_old == $this->clean($nama_template)){
             $cek_slug_template = 0;
@@ -472,9 +498,42 @@ class Admin_template extends CI_Controller {
             $this->session->set_flashdata('message','exist');
             redirect($_SERVER['HTTP_REFERER']);
         }else{
-            $update = $this->Model_template->update_data($where,$data);
-            $this->session->set_flashdata('message','update');
-            redirect($_SERVER['HTTP_REFERER']);
+
+            $config['upload_path'] = './assets/images/templates/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['file_name'] = 'thumbnails'.time();
+            $config['max_size'] = '2048';
+
+            $this->load->library('upload',$config);
+
+            if ($_FILES['gambar']['name']) {
+                if ($this->upload->do_upload('gambar')) {
+                    $image = $this->upload->data();
+                    $data['photo'] = $image['file_name'];
+
+                    if ($gambar_old != '') {
+                        unlink('./assets/images/templates/'.$gambar_old);
+                    }
+
+
+                    $update = $this->Model_template->update_data($where,$data);
+
+                    $this->session->set_flashdata('message','update');
+                    redirect(base_url().$this->controller.'/edit/'.$this->clean($nama_template));
+
+                }else{
+                    $this->session->set_flashdata('message','image');
+                    redirect(base_url().$this->controller.'/edit/'.$slug_id_old);
+                }
+            }else{
+                $update = $this->Model_template->update_data($where,$data);
+
+                $this->session->set_flashdata('message','update');
+                redirect(base_url().$this->controller.'/edit/'.$this->clean($nama_template));
+            }
+            
+
+            
         }
         
         
@@ -483,7 +542,12 @@ class Admin_template extends CI_Controller {
 
     function delete_template()
     {
-        $id = $this->input->post('id');
+        $id     = $this->input->post('id');
+        $gambar = $this->input->post('gambar');
+
+        if ($gambar != '') {
+            unlink('./assets/images/templates/'.$gambar);
+        }
         $where = array(
             'ID' => $id
         );

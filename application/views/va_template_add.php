@@ -45,7 +45,7 @@
               
                 <div class="demo-heading"><?php echo $title_card; ?> | LIVE TEMPLATE EDITOR</div>
                 <!-- <button class="btn btn-success" onclick="anim5_noti()">SHOW ME</button> -->
-                <form method="post" action="<?php echo base_url().$controller; ?>/create">
+                <form method="post" action="<?php echo base_url().$controller; ?>/create" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -69,6 +69,13 @@
                           <option value="<?php echo $row_type->ID ?>"><?php echo $row_type->nama_type ?></option>
                           <?php endforeach ?>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Gambar Thumbnail :</label>
+                        <br>
+                        <img id="blah" alt="your image" style="max-width: 200px;height: auto;" />
+                        <input type="file" class="form-control" name="gambar" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                        <small class="text-danger">*Max Ukuran file 2MB</small>
                     </div>
                       <div class="form-group">
                         <a href="<?php echo base_url().$controller; ?>">
@@ -185,6 +192,28 @@
                 width: 600,
             msg: 'Template sudah ada , Silahkan gunakan judul lain.',
             title: "Sudah ada !",   
+
+            });
+          }
+        </script>
+      <?php endif ?>
+
+      <?php if ( $this->session->flashdata('message')=='image'): ?>
+        <script type="text/javascript">
+          $( document ).ready(function() {
+            sukses_add_page();
+          });
+          function sukses_add_page(){
+          Lobibox.notify('warning', {
+            pauseDelayOnHover: true,
+            continueDelayOnInactiveTab: false,
+            position: 'center top',
+            showClass: 'rollIn',
+                hideClass: 'rollOut',
+                icon: 'fa fa-exclamation',
+                width: 600,
+            msg: 'Upload gambar gagal.',
+            title: "Cek file gambar anda",   
 
             });
           }

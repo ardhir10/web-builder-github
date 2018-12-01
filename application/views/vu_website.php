@@ -48,14 +48,16 @@
                  <div class="col-lg-4">
                     <div class="card-deck">
                         <div class="card text-center" >
-                           <img class="card-img-top" src="<?php echo base_url() ?>assets/images/thumbnails/<?php echo $data_website->photo ?>" alt="Card image cap">
-                           <div class="card-body" style="padding-bottom: 5px;">
+                            <div style="height: 200px;">
+                              <img class="card-img-top" src="<?php echo base_url() ?>assets/images/websites/<?php echo $data_website->photo ?>" alt="Card image cap">
+                            </div>
+                           <div class="card-body" style="padding-bottom: 5px;background: #fff;">
                              <h5 class="card-title" ><?php echo $data_website->nama_website ?></h5>
                            </div>
                            <div class="card-footer text-center">
                              <a class="card-link" href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id ?>">Detail</a>
                              <a class="card-link" href="<?php echo base_url()?>preview/website/<?php echo $data_website->slug_id ?>" target="_blank">Lihat</a>
-                            <a href="#" class="card-link delete" data-id="<?php echo $data_website->ID ?>">Hapus</a> 
+                            <a href="#" class="card-link delete" data-id="<?php echo $data_website->ID ?>" data-gambar="<?php echo $data_website->photo ?>">Hapus</a> 
                              <hr>
                              <a href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id ?>" class="btn btn-secondary" data-id="<?php echo $data_website->ID ?>">Publish</a>
 
@@ -97,6 +99,7 @@
 
             $(".delete").click(function(){
                 var id=$(this).data("id");
+                var gambar=$(this).data("gambar");
                 swal({
                   title: "Yakin ingin dihapus  ?",
                   text: "Setelah dihapus data akan hilang",
@@ -118,7 +121,7 @@
                         });
 
                     $.ajax({
-                    data:{id:id},
+                    data:{id:id,gambar:gambar},
                     url:'<?php echo base_url() ?>'+'User_website/delete_website',
                     success: function(html) {
                         // $("tr[data-id='"+id+"']").fadeOut(1500,function(){

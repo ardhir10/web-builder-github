@@ -98,7 +98,13 @@ class User_website extends CI_Controller {
         $id_website         = $this->Model_website->get_data()->row();
 
         $slug_awal          = $data_template->slug_id;
+        $id_user = $this->session->userdata('userID');
 
+        $nama_file_foto = $id_user.time().$data_template->photo;
+
+
+
+        // Membuat Prefix Awal untukk Link Website
         if ($cek_data > 0) {
             $website_id         = $id_website->ID+1;
             $slug_id_website    = $website_id."-".$data_template->slug_id;
@@ -114,7 +120,8 @@ class User_website extends CI_Controller {
             'id_user'       => $this->session->userdata('userID'),
             'template_id'   => $id_template,
             'tanggal_dibuat'=> date('Y-m-d H:i:s'),
-            'type_template' => $data_template->id_type
+            'type_template' => $data_template->id_type,
+            'photo'         => $nama_file_foto
         );
 
         $insert = $this->Model_website->insert_data($data['template_data']);
@@ -128,7 +135,8 @@ class User_website extends CI_Controller {
             'id_user'       => $this->session->userdata('userID'),
             'template_id'   => $id_template,
             'tanggal_dibuat'=> date('Y-m-d H:i:s'),
-            'type_template' => $data_template->id_type
+            'type_template' => $data_template->id_type,
+            'photo'         => $nama_file_foto
         );
 
 
@@ -138,9 +146,16 @@ class User_website extends CI_Controller {
             'digunakan' => $data_template->digunakan+1
         );
 
+
         $update = $this->Model_template->update_data($where['data_template'],$data['in_use']);
 
         $this->use_page($id_template,$slug_awal);
+
+        // Memindahkan Thumbnails themplate to Website User
+        $file_awal = './assets/images/templates/'.$data_template->photo;
+        $file_baru = './assets/images/websites/'.$nama_file_foto;
+
+        copy($file_awal,$file_baru);
 
         $myObj = (object) array();
         $myObj->records  = $data['return_json'];
@@ -263,6 +278,7 @@ class User_website extends CI_Controller {
                 $data['title_page'] = 'Website : '.$data['data_website']->nama_website.' | Goodeva';
                 $data['data_package']=$this->Model_package->edit_data(array('status'=>'publish'))->result();
                 $data['data_page']  = $this->Model_website_page->get_page($data['data_website']->ID,$id_user)->result();
+                $data['jumlah_page']  = $this->Model_website_page->get_page($data['data_website']->ID,$id_user)->num_rows();
 
                 // print_r($data['data_page']);
 
@@ -339,7 +355,12 @@ class User_website extends CI_Controller {
     function delete_website()
     {
         $id         = $this->input->post('id');
+        $gambar         = $this->input->post('gambar');
         $id_user    = $this->session->userdata('userID');
+
+        if ($gambar != '') {
+            unlink('./assets/images/websites/'.$gambar);
+        }
         $delete     = $this->Model_website->delete_page($id,$id_user);
         $this->session->set_flashdata('message','delete');
         echo '{}';
@@ -352,6 +373,7 @@ class User_website extends CI_Controller {
         $id_website   = $this->input->post('id');
         $id_user    = $this->session->userdata('userID');
         $slug_id_old    = $this->input->post('slug_id_old');
+        $gambar_old    = $this->input->post('gambar_old');
 
         $nama_website  = $this->input->post('nama_website');
       
@@ -367,6 +389,15 @@ class User_website extends CI_Controller {
             $cek_slug_id = $this->Model_website->data_website_validate($this->clean($nama_website),$id_user)->num_rows();
         }
 
+        $where = array(
+            'ID' => $id_website
+        );
+
+        //ambil slug awal
+         $data_website = $this->Model_website->edit_data($where)->row();
+         $slug_awal=$data_website->slug_id;
+         $slug_baru=$this->clean($nama_website);
+
         if ($cek_slug_id > 0) {
             // echo "sudah ada";
             $this->session->set_flashdata('message','exist');
@@ -374,24 +405,50 @@ class User_website extends CI_Controller {
             redirect($_SERVER['HTTP_REFERER']);
 
         }else{
-            $where = array(
-                'ID' => $id_website
-            );
-             
-             //ambil slug awal
-             $data_website = $this->Model_website->edit_data($where)->row();
-             $slug_awal=$data_website->slug_id;
-             $slug_baru=$this->clean($nama_website);
 
-             //
-             $this->update_link_page($id_website,$slug_awal,$slug_baru);
-             
-             print_r($data);
-             
-             $update = $this->Model_website->update_data($where,$data);
+            $config['upload_path'] = './assets/images/websites/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['file_name'] = 'thumbnails'.$id_user.time();
+            $config['max_size'] = '2048';
 
-             $this->session->set_flashdata('message','update');
-             redirect( base_url().$this->controller.'/website/'.$slug_baru);
+            $this->load->library('upload',$config);
+
+            if ($_FILES['gambar']['name']) {
+                if ($this->upload->do_upload('gambar')) {
+                    $image = $this->upload->data();
+                    $data['photo'] = $image['file_name'];
+
+                    if ($gambar_old != '') {
+                        unlink('./assets/images/websites/'.$gambar_old);
+                    }
+
+                    
+                     
+                     
+
+                     //
+                     $this->update_link_page($id_website,$slug_awal,$slug_baru);
+                     
+                     print_r($data);
+                     
+                     $update = $this->Model_website->update_data($where,$data);
+
+                     $this->session->set_flashdata('message','update');
+                     redirect( base_url().$this->controller.'/website/'.$slug_baru);
+                }else{
+                    $this->session->set_flashdata('message','image');
+                    redirect(base_url().$this->controller.'/edit/'.$slug_id_old);
+                }
+            }else{
+                $update = $this->Model_website->update_data($where,$data);
+                $this->session->set_flashdata('message','update');
+                redirect( base_url().$this->controller.'/website/'.$slug_baru);
+
+                // redirect(base_url().$this->controller.'/edit/'.$this->clean($nama_website));
+            }
+
+
+            
 
         }
 

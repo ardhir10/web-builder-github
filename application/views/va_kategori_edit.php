@@ -32,69 +32,44 @@
       <!-- Breadcrumb-->
        <div class="row pt-2 pb-2">
           <div class="col-sm-9">
-  		    <h4 class="page-title">Edit Data Package</h4>
+  		    <h4 class="page-title">Edit Data Kategori</h4>
   		    <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="javaScript:void();">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Edit  Data Package</li>
+              <li class="breadcrumb-item active" aria-current="page">Edit  Data Kategori</li>
            </ol>
   	   </div>
   	   <div class="col-sm-3">
          <div class="btn-group float-sm-right">
-          <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#modal-animation-14"><i aria-hidden="true" class="fa fa-plus"></i> &nbsp;PACKAGE</button>
+          <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#modal-animation-14"><i aria-hidden="true" class="fa fa-plus"></i> &nbsp;Kategori</button>
           <!-- Modal Add New -->
             <div class="modal fade" id="modal-animation-14">
               <div class="modal-dialog">
                 <div class="modal-content animated zoomInUp">
                   <div class="modal-header">
-                    <h5 class="modal-title">Tambah Package</h5>
+                    <h5 class="modal-title">Tambah Kategori</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
+                  <form method="post" action="<?php echo base_url().$controller ?>/create">
+
                   <div class="modal-body">
-                    <form method="post" action="<?php echo base_url().$controller ?>/create">
                      <div class="form-group">
-                       <label for="input-1">Nama Package</label>
-                       <input type="text" class="form-control" name="nama_package" placeholder="Nama Package" required="">
+                       <label for="input-1">Nama Kategori</label>
+                       <input type="text" class="form-control" name="nama_kategori" placeholder="Nama Kategori" required="">
                      </div>
-                     <div class="form-group">
-                       <label for="input-1">Harga</label>
-                       <input type="number" class="form-control" name="harga" placeholder="Harga Package" required="">
-                     </div>
-                     <div class="form-group">
-                       <label for="input-1">Status</label>
-                       <select class="form-control" name="status" required="">
-                        <option>--Pilih Status</option>
-                         <option value="publish">Publish</option>
-                         <option value="package">Package</option>
-                       </select>
-                     </div>
-
-                     <div class="form-group">
-                       <label for="input-1">Keterangan</label>
-                       <textarea  class="form-control" name="keterangan" placeholder="Keterangan"></textarea>
-                     </div>
-
-                    
-                  <!--    <div class="form-group">
-                       <div class="icheck-material-info">
-                       <input type="checkbox" id="user-checkbox1" checked="">
-                       <label for="user-checkbox1">Remember me</label>
-                      </div>
-                     </div> -->
-                     <!-- <div class="form-group">
-                      <button type="submit" class="btn btn-info shadow-info px-5"><i class="icon-lock"></i> Login</button>
-                    </div> -->
                   </div>
+
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                     <button type="submit" class="btn btn-info shadow-info px-5"><i class="fa fa-save"></i> Simpan</button>
-                  </form>
                   </div>
+                  </form>
+
                 </div>
               </div>
             </div>
-         
+          
         </div>
        </div>
        </div>
@@ -102,7 +77,7 @@
          <div class="row">
           <div class="col-lg-12">
             <div class="card">
-              <div class="card-header"><i class="fa fa-table"></i> Edit Data Package Form
+              <div class="card-header"><i class="fa fa-table"></i> Edit Data Kategori Form
                 <br>
               <?php if ($this->session->flashdata('status_tambah')): ?>''
 
@@ -125,27 +100,10 @@
 
                     <div class="form-group">
                       <label>Nama Package</label>
-                      <input type="text" name="nama_package" class="form-control" value="<?php echo $data_package_edit->nama_package ?>" >
-                      <input type="hidden" name="id" class="form-control" value="<?php echo $data_package_edit->ID; ?>" >
+                      <input type="text" name="nama_kategori" class="form-control" value="<?php echo $data_kategori_edit->nama_kategori ?>" >
+                      <input type="hidden" name="id" class="form-control" value="<?php echo $data_kategori_edit->ID; ?>" >
                     </div>
-
-                    <div class="form-group">
-                      <label>Harga</label>
-                      <input type="number" name="harga" value="<?php echo $data_package_edit->harga ?>" class="form-control">
-                    </div>
-                    <div class="form-group">
-                       <label for="input-1">Status</label>
-                       <select class="form-control" name="status" required="">
-                        <option>--Pilih Status</option>
-                         <option <?php echo ($data_package_edit->status == 'publish' ? 'selected=selected':''); ?> value="publish">Publish</option>
-                         <option  <?php echo ($data_package_edit->status == 'package' ? 'selected=selected':''); ?> value="package">Package</option>
-                       </select>
-                     </div>
-
-                    <div class="form-group">
-                      <label>Keterangan</label>
-                      <textarea class="form-control" name="keterangan"><?php echo $data_package_edit->keterangan ?></textarea>
-                    </div>
+                  
                     
 
                     <div class="form-group">

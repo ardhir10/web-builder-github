@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Admin_package extends CI_Controller {
+class Admin_kategori extends CI_Controller {
 
 	function __construct(){
     parent::__construct();
@@ -8,6 +8,7 @@ class Admin_package extends CI_Controller {
         $this->load->model('admin_model/Model_admin_login');
         $this->load->model('Model_user');
         $this->load->model('Model_package');
+        $this->load->model('Model_kategori');
         $this->load->helper(array('Form', 'Cookie', 'String'));
 
         // cek session
@@ -22,7 +23,7 @@ class Admin_package extends CI_Controller {
 
 
 
-    private $controller = 'admin_package';
+    private $controller = 'Admin_kategori';
    
 
     public function index()
@@ -35,10 +36,10 @@ class Admin_package extends CI_Controller {
         if ($this->session->userdata('adminLogged')) {
             //==== Inisiasi Awal 
             $data['controller']         = $this->controller;
-            $data['title_page']         = 'Data Package | Goodeva';
-            $data['data_package']       = $this->Model_package->get_data()->result();
+            $data['title_page']         = 'Data Kategori | Goodeva';
+            $data['data_kategori']       = $this->Model_kategori->get_data()->result();
 
-            $this->load->view('va_package',$data);
+            $this->load->view('va_kategori',$data);
 
         } else if($cookie <> '') {
             // cek cookie
@@ -57,19 +58,13 @@ class Admin_package extends CI_Controller {
 
     function create()
     {
-        $nama_package = $this->input->post('nama_package');
-        $harga        = $this->input->post('harga');
-        $keterangan   = $this->input->post('keterangan');
-        $status   = $this->input->post('status');
+        $nama_kategori = $this->input->post('nama_kategori');
 
         $data = array(
-            'nama_package' => $nama_package,
-            'harga'        => $harga,
-            'keterangan'   => $keterangan,
-            'status'       => $status
+            'nama_kategori' => $nama_kategori,
         );
 
-        $insert = $this->Model_package->insert_data($data);
+        $insert = $this->Model_kategori->insert_data($data);
 
         $this->session->set_flashdata('status_tambah','Data Berhasil ditambahkan');
         redirect(base_url().$this->controller);
@@ -83,7 +78,7 @@ class Admin_package extends CI_Controller {
             'ID' => $id
         );
 
-        $this->Model_package->delete_data($where);
+        $this->Model_kategori->delete_data($where);
 
         echo '{}';
     }
@@ -91,39 +86,32 @@ class Admin_package extends CI_Controller {
     function edit($id)
     {
         $data['controller']         = $this->controller;
-        $data['title_page']         = 'Edit Data Package | Goodeva';
+        $data['title_page']         = 'Edit Data Kategori | Goodeva';
 
         $where = array(
             'ID' => $id
         );
-        $data['data_package_edit']  = $this->Model_package->edit_data($where)->row();
+        $data['data_kategori_edit']  = $this->Model_kategori->edit_data($where)->row();
 
         // print_r($data['data_package_edit']);
 
-        $this->load->view('va_package_edit',$data);
+        $this->load->view('va_kategori_edit',$data);
     }
 
     function update()
     {
         $id           = $this->input->post('id');
-        $nama_package = $this->input->post('nama_package');
-        $harga        = $this->input->post('harga');
-        $keterangan   = $this->input->post('keterangan');
-        $status   = $this->input->post('status');
+        $nama_kategori = $this->input->post('nama_kategori');
 
 
 
         $data = array(
-            'nama_package' => $nama_package,
-            'harga'        => $harga,
-            'keterangan'   => $keterangan,
-            'status'       => $status
-            
+            'nama_kategori' => $nama_kategori,
         );
         $where = array(
             'ID' => $id
         );
-        $update = $this->Model_package->update_data($where,$data);
+        $update = $this->Model_kategori->update_data($where,$data);
         $this->session->set_flashdata('status_update','Data Berhasil diupdate');
         redirect(base_url().$this->controller);
     }

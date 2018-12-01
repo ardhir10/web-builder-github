@@ -4,7 +4,7 @@ $(function() {
      
 	 
 //sidebar menu js
-$.sidebarMenu($('.sidebar-menu'));
+// $.sidebarMenu($('.sidebar-menu'));
 
 // === toggle-menu js
 $(".toggle-menu").on("click", function(e) {
@@ -12,16 +12,16 @@ $(".toggle-menu").on("click", function(e) {
         $("#wrapper").toggleClass("toggled");
     });	 
 	   
-// === sidebar menu activation js
+// // === sidebar menu activation js
 
-$(function() {
-        for (var i = window.location, o = $(".sidebar-menu a").filter(function() {
-            return this.href == i;
-        }).addClass("active").parent().addClass("active"); ;) {
-            if (!o.is("li")) break;
-            o = o.parent().addClass("in").parent().addClass("active");
-        }
-    }), 	   
+// $(function() {
+//         for (var i = window.location, o = $(".sidebar-menu a").filter(function() {
+//             return this.href == i;
+//         }).addClass("active").parent().addClass("active"); ;) {
+//             if (!o.is("li")) break;
+//             o = o.parent().addClass("in").parent().addClass("active");
+//         }
+//     }), 	   
 	   
 /* Back To Top */
 

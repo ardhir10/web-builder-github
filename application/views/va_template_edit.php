@@ -25,7 +25,7 @@
 
    <body>
       <!-- Start wrapper-->
-      <div id="wrapper" >
+      <div id="wrapper">
          <!--Start sidebar-wrapper-->
          <?php $this->load->view('common_admin/admin_sidebar.php'); ?>
          <!--End sidebar-wrapper-->
@@ -45,7 +45,7 @@
               
                 <div class="demo-heading"><?php echo $title_card; ?> | LIVE TEMPLATE EDITOR</div>
                 <!-- <button class="btn btn-success" onclick="anim5_noti()">SHOW ME</button> -->
-                <form method="post" action="<?php echo base_url().$controller; ?>/update_detail_template">
+                <form method="post" action="<?php echo base_url().$controller; ?>/update_detail_template" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -81,6 +81,15 @@
                           <?php endforeach ?>
                         </select>
                     </div>
+
+                      <div class="form-group">
+                          <label>Gambar Thumbnail :</label>
+                          <br>
+                          <img id="blah" alt="your image" src="<?php echo base_url() ?>assets/images/templates/<?php echo $data_template->photo ?>" style="max-width: 200px;height: auto;" />
+                          <input type="file" class="form-control" name="gambar" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                          <input type="hidden" name="gambar_old" value="<?php echo $data_template->photo ?>"> 
+                          <small class="text-danger">*Max Ukuran file 2MB</small>
+                      </div>
                       <div class="form-group">
                         <a href="<?php echo base_url().$controller; ?>">
                         <button  class="btn btn-danger">Batal</button>
@@ -218,6 +227,28 @@
                 icon: 'fa fa-check-circle',
                 width: 600,
             msg: 'Data berhasil di Update.'
+            });
+          }
+        </script>
+      <?php endif ?>
+
+      <?php if ( $this->session->flashdata('message')=='image'): ?>
+        <script type="text/javascript">
+          $( document ).ready(function() {
+            sukses_add_page();
+          });
+          function sukses_add_page(){
+          Lobibox.notify('warning', {
+            pauseDelayOnHover: true,
+            continueDelayOnInactiveTab: false,
+            position: 'center top',
+            showClass: 'rollIn',
+                hideClass: 'rollOut',
+                icon: 'fa fa-exclamation',
+                width: 600,
+            msg: 'Upload gambar gagal.',
+            title: "Cek file gambar anda",   
+
             });
           }
         </script>

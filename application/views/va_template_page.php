@@ -58,6 +58,7 @@
                           Detail Template
                           </h5>
                         </div>
+                        <img src="<?php echo base_url() ?>assets/images/templates/<?php echo $data_template->photo ?>" class="img-fluid">
                          <ul class="list-group list-group-flush list shadow-none">
                           <li class="list-group-item d-flex justify-content-between align-items-center">Kategori <span class="badge badge-dark badge-pill"><?php echo $kategori->nama_kategori ?> </span></li>
                           <li class="list-group-item d-flex justify-content-between align-items-center">Type  <span class="badge badge-<?php echo $type->label ?> badge-pill"><?php echo $type->nama_type ?></span></li>
@@ -76,7 +77,7 @@
                               </table> -->
                       
                         <a href="<?php echo base_url()?>preview/template/<?php echo $data_template->slug_id; ?>" target="_blank" class="btn btn-sm btn-primary waves-effect waves-light">Lihat Template</a>
-                        <a href="<?php echo base_url()?>Admin_template/edit/<?php echo $data_template->slug_id; ?>" target="_blank" class="btn btn-sm btn-info waves-effect waves-light">Edit Detail</a>
+                        <a href="<?php echo base_url()?>Admin_template/edit/<?php echo $data_template->slug_id; ?>"  class="btn btn-sm btn-info waves-effect waves-light">Edit Detail</a>
 
                         </div>
                       </div>

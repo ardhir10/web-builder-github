@@ -58,10 +58,13 @@
                           Detail Website
                           </h5>
                         </div>
+                          <img src="<?php echo base_url() ?>assets/images/websites/<?php echo $data_website->photo ?>" class="img-fluid">
                          <ul class="list-group list-group-flush list shadow-none">
                           <!-- <li class="list-group-item d-flex justify-content-between align-items-center">Kategori <span class="badge badge-dark badge-pill"><?php echo "ini detail"; ?> </span></li> 
                            <li class="list-group-item d-flex justify-content-between align-items-center">Type  <span class="badge badge-<?php echo "danger";?> badge-pill"><?php echo "ini detail"; ?></span></li>--> 
                            <li class="list-group-item d-flex justify-content-between align-items-center">Harga Publish<span>Rp.100,000</span></li> 
+                           <li class="list-group-item d-flex justify-content-between align-items-center">Jumlah Page <span><?php echo $jumlah_page; ?></span></li>
+                           <li class="list-group-item d-flex justify-content-between align-items-center">Status Website  <span class="badge badge-success"><?php echo "Publish"; ?></span></li>
                         </ul>
                         <div class="card-body text-center">
                           <!--   <table class="table">
@@ -91,7 +94,7 @@
                       <!-- Modal Add New -->
                         <div class="modal fade" id="modal-animation-14">
                           <div class="modal-dialog">
-                            <div class="modal-content animated zoomInUp">
+                            <div class="modal-content animated show">
                               <div class="modal-header">
                                 <h5 class="modal-title">Tambah Page</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -134,8 +137,7 @@
                                    <ul class="list-group list-group-flush list shadow-none">
                                     <li class="list-group-item d-flex justify-content-between align-items-center">Nama Website <span class="badge badge-dark badge-pill">
                                             <?php echo $data_website->nama_website ?> </span></li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">Jumlah Page <span class="badge badge-<?php echo " danger";?> badge-pill">
-                                            <?php echo "3"; ?></span></li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">Jumlah Page <span><?php echo $jumlah_page; ?></span></li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">Harga Publish<span>Rp.100,000</span></li>
                                 </ul>
                                    <div class="form-group">
