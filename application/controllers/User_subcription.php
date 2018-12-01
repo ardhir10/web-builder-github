@@ -44,6 +44,20 @@ class User_subcription extends CI_Controller {
 
     	
     }
+    
+    public function add_subcription(){
+        $id_user = $this->session->userdata('userID');
+        
+        $data['data_website'] = $this->Model_website->get_website($id_user)->result();
+
+      
+        //==== Inisiasi Awal 
+        $data['controller'] = $this->controller;
+        $data['title_page'] = 'ADD Subcription | Goodeva';
+
+       
+        $this->load->view('vu_add_subcription',$data);
+    }
 
 	
 }

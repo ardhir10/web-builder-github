@@ -32,108 +32,53 @@
       <!-- Breadcrumb-->
        <div class="row pt-2 pb-2">
           <div class="col-sm-9">
-  		    <h4 class="page-title">Data Subcription </h4>
+  		    <h4 class="page-title">Add Subcription </h4>
   		    <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="javaScript:void();">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Subcription </li>
+              <li class="breadcrumb-item active" aria-current="page">Add Subcription </li>
            </ol>
   	   </div>
-  	   <div class="col-sm-3">
-         <div class="btn-group float-sm-right">
-          <a href="<?php echo base_url().$controller ?>/add-subcription"  class="btn btn-success waves-effect waves-light"><i aria-hidden="true" class="fa fa-plus"></i> &nbsp;Add Subcription</a>
-          <!-- Modal Add New -->
-           <!--  <div class="modal fade" id="modal-animation-14">
-              <div class="modal-dialog">
-                <div class="modal-content animated zoomInUp">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Tambah Kategori</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <form method="post" action="<?php echo base_url().$controller ?>/create">
-
-                  <div class="modal-body">
-                     <div class="form-group">
-                       <label for="input-1">Nama Kategori</label>
-                       <input type="text" class="form-control" name="nama_kategori" placeholder="Nama Order" required="">
-                     </div>
-                  </div>
-
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                    <button type="submit" class="btn btn-info shadow-info px-5"><i class="fa fa-save"></i> Simpan</button>
-                  </div>
-                  </form>
-
-                </div>
-              </div>
-            </div>
-          -->
-        </div>
-       </div>
+  	
        </div>
       <!-- End Breadcrumb-->
         <div class="row">
           <div class="col-lg-12">
-            <div class="card">
-              <div class="card-header"><i class="fa fa-table"></i> Data Subcription  Table
-                <br>
-
-              <?php if ($this->session->flashdata('status_tambah')): ?>''
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert">×</button>
-                  <div class="alert-icon">
-                      <i class="fa fa-check"></i>
-                  </div>
-                  <div class="alert-message">
-                      <span><?php echo $this->session->flashdata('status_tambah') ?></span>
-                  </div>
-                </div>
-              <?php endif ?>
-
-              <?php if ($this->session->flashdata('status_update')): ?>''
-                <div class="alert alert-info alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert">×</button>
-                  <div class="alert-icon">
-                      <i class="fa fa-check"></i>
-                  </div>
-                  <div class="alert-message">
-                      <span><?php echo $this->session->flashdata('status_update') ?></span>
-                  </div>
-                </div>
-              <?php endif ?>
-
-              </div>
-
-              <div class="card-body">
-                <div class="table-responsive">
-                <table id="default-datatable" class="table table-bordered">
-                  <thead>
-                      <tr>
-                          <th>No</th>
-                          <th>Type Order</th>
-                          <th>Nama Package</th>
-                          <th>Nama Website</th>
-                          <th>Nama User</th>
-                          <th>Status Order</th>
-                          <th>Tanggal Order</th>
-                          <th>Action</th>
-                      </tr>
-                  </thead>
-                  <tbody>
+        <div class="card">
           
-                    
-
-
-                  
-                 
-                  </tbody>
-                 
-              </table>
-              </div>
-              </div>
+           <div class="card-body">
+           <div class="card-title text-primary">Add Subcription</div>
+           <hr>
+            <form action=" :v " method="post">
+           <div class="form-group">
+            <label for="input-1">Package</label>
+           <select class="form-control" id="basic-select">
+                <option value="a">Premium</option>
+                <option value="b">Sultan</option>
+                <option value="c">Basic</option>
+            </select>
+            
+           </div>
+           <div class="form-group">
+            <label for="input-2">Harga</label>
+            <input type="text" class="form-control" id="input-2" value="Rp.200.000" readonly>
+           </div>
+           <div class="form-group">
+            <label for="input-3">Type Package</label>
+            <input type="text" class="form-control" id="input-3" >
+           </div>
+          
+           <div class="form-group py-2">
+             <div class="icheck-material-primary">
+            <input type="checkbox" id="user-checkbox1" checked="">
+            <label for="user-checkbox1">I Agree Terms &amp; Conditions</label>
             </div>
+           </div>
+           <div class="form-group">
+            <button type="submit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Register</button>
+          </div>
+          </form>
+         </div>
+         </div>
           </div>
         </div>
         <!-- End Row-->
