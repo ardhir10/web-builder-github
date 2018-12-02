@@ -36,5 +36,16 @@
                   z-index: 99 !important;
                   background: #172b4d !important;
            }
+
+          .alert_overlay {
+              position: fixed;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+              z-index: 1000;
+              background: rgba(0, 0, 0, 0.39) !important;
+              -webkit-backdrop-filter: blur(3px);
+          }
           
       </style>

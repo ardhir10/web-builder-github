@@ -32,10 +32,10 @@
       <!-- Breadcrumb-->
        <div class="row pt-2 pb-2">
           <div class="col-sm-9">
-  		    <h4 class="page-title">Add Subcription </h4>
+  		    <h4 class="page-title">Add Subscription </h4>
   		    <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="javaScript:void();">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Add Subcription </li>
+              <li class="breadcrumb-item active" aria-current="page">Add Subscription </li>
            </ol>
   	   </div>
   	
@@ -46,35 +46,44 @@
         <div class="card">
           
            <div class="card-body">
-           <div class="card-title text-primary">Add Subcription</div>
+           <div class="card-title text-primary">Add Subscription</div>
            <hr>
             <form action=" :v " method="post">
            <div class="form-group">
             <label for="input-1">Package</label>
-           <select class="form-control" id="basic-select">
-                <option value="a">Premium</option>
-                <option value="b">Sultan</option>
-                <option value="c">Basic</option>
-            </select>
+               <select class="form-control" id="basic-select" name="package" required>
+                <option data-harga="0" data-id='0' data-keterangan="-">--Pilih Package</option>
+                <!-- <option value="0" data-id="0" data-harga="0">Default</option> -->
+                <?php foreach ($data_package as $row): ?>
+                    <option value="<?php echo $row->ID ?>" data-harga="<?php echo number_format($row->harga,0,'.',',') ?>" data-id="<?php echo $row->ID ?>" data-status="<?php echo $row->status ?>" data-keterangan="<?php echo $row->keterangan ?>"><?php echo $row->nama_package ?></option>
+                <?php endforeach ?>
+
+                </select>
             
            </div>
+
            <div class="form-group">
             <label for="input-2">Harga</label>
-            <input type="text" class="form-control" id="input-2" value="Rp.200.000" readonly>
+            <input type="text" class="form-control" id="harga" value="" disabled>
+           </div>
+
+           <div class="form-group">
+            <label for="input-2">Keterangan</label>
+            <input type="text" class="form-control" id="keterangan" value="" disabled>
            </div>
            <div class="form-group">
-            <label for="input-3">Type Package</label>
-            <input type="text" class="form-control" id="input-3" >
+            <label for="input-2">USer</label>
+            <input type="text" class="form-control"  value="<?php echo $this->session->userdata('userNama'); ?>" disabled>
            </div>
+          <!--  <div class="form-group">
+            <label for="input-3">Status Package</label>
+            <input type="text" class="form-control" id="status-package" id="input-3" >
+           </div> -->
+
           
-           <div class="form-group py-2">
-             <div class="icheck-material-primary">
-            <input type="checkbox" id="user-checkbox1" checked="">
-            <label for="user-checkbox1">I Agree Terms &amp; Conditions</label>
-            </div>
-           </div>
+          
            <div class="form-group">
-            <button type="submit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Register</button>
+            <button type="button" id="simpan" class="btn btn-primary shadow-primary px-5"> Simpan</button>
           </div>
           </form>
          </div>
@@ -82,6 +91,9 @@
           </div>
         </div>
         <!-- End Row-->
+
+        <script type="text/javascript">
+        </script>
 
     </div>
     <!-- End container-fluid-->
@@ -143,8 +155,60 @@
   </script>
 
   <!-- Sweet Alert -->
+
   <script type="text/javascript">
   $(document).ready(function(){
+
+
+     $("#simpan").click(function(){
+            var id_package = '';
+            $( "select option:selected" ).each(function() {
+                id_package += $( this ).data('id') + " ";
+              });
+
+            var base_url = '<?php echo base_url() ?>';
+            if(id_package == 0){
+              $.alert('Pilih Package Terlebih dahulu !');
+            }else{
+              $('#simpan').attr('disabled',true);
+              $.ajax({
+                  url: base_url+'user_subscription/add_subscription',
+                  type: 'POST',
+                  data: {id_package:id_package},
+                  dataType: "json",
+                 error: function() {
+                    $.alert('Something is wrong');
+                    $('#simpan').removeAttr('disabled');
+                 },
+                 success: function(data) {
+                      // console.log(data);
+                      window.location = "<?php echo base_url().$controller ?>";
+                 }
+              });
+            }
+            
+             
+    });
+
+
+    $( "select" )
+      .change(function() {
+        var harga = "";
+        var keterangan = "";
+        // var status = "";
+        $( "select option:selected" ).each(function() {
+          harga += $( this ).data('harga') + " ";
+          keterangan += $( this ).data('keterangan') + " ";
+          // status += $( this ).data('status') + " ";
+        });
+        $( "#harga" ).val( harga );
+        $( "#keterangan" ).val( keterangan );
+        // $( "#status-package" ).val( status );
+      })
+      .trigger( "change" );
+
+
+      // =========
     $.ajaxSetup({
       type:"post",
       cache:false,

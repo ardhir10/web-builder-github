@@ -15,8 +15,8 @@
       </li>
 
       <li>
-        <a href="<?php echo base_url() ?>user_subcription" >
-          <i class="fa fa-usd"></i><span>Subciption</span> 
+        <a href="<?php echo base_url() ?>user_subscription" >
+          <i class="fa fa-usd"></i><span>Subscription</span> 
         </a>
       </li>
 

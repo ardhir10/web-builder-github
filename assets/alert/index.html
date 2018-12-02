@@ -1,0 +1,88 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="alert.js"></script>
+  <style>
+p {
+  font-size: 14px;
+  line-height: 16px;
+  color: #777
+}
+
+body {
+  background-color: #F7F7F7;
+  font-family: 'Roboto';
+}
+
+.hide {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+code { overflow: auto !important; }
+
+pre {
+  padding: 1px !important;
+  width: 100%;
+}
+
+.btn {
+  border: 1px solid #ccc;
+  color: #666;
+  display: inline-block;
+  padding: 3px 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover {
+  border-color: #aaa;
+  color: #333;
+}
+
+.new:before {
+  content: 'New';
+  color: red;
+  text-shadow: 0 0 5px yellow;
+  font-weight: bold;
+  padding: 0 5px;
+}
+.container { margin-top:70px;}
+</style>
+  <title>jQuery alert.js Demos</title>
+</head>
+  <body>
+    <div class="container">
+<h1>jQuery alert.js Demos</h1>
+<div class="jquery-script-ads" style="margin:30px auto;"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div class="btn" onclick="$.alert('This is an alert message',function(a){$.alert('You clicked confirm')})">Alert Dialog</div>
+<div class="btn" onclick="">Confirm Dialog</div>
+<div class="btn new" onclick="$.confirm('The dialog CANNOT be closed.',function(e){ if(!e) return ;this.find('.alert_content').html('The dialog CANNOT be closed untile you click CANCEL button.');return false;})">Close When Click On Cancel Button.</div>
+<div class="btn new" onclick="var showdef = Math.random()>0.5;$.tips(showdef?'Auto close after 2 seconds if no duration is specified.':'This is a toast message that auto hides after 5 seconds',showdef?50000:50000)">Toast Message</div>
+</div>
+</body><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46156385-1', 'cssscript.com');
+  ga('send', 'pageview');
+
+</script>
+</html>

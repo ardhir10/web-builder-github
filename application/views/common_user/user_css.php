@@ -37,4 +37,18 @@
       .card {
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.83) !important;
       }
+
+      .alert_overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.39) !important;
+            -webkit-backdrop-filter: blur(3px);
+        }
+
+
       </style>
+  

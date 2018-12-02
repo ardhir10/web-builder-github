@@ -48,7 +48,22 @@
                 <div class="demo-heading">Website <h2><?php echo $data_website->nama_website ?></h2> 
                 </div>
                 <!-- <button class="btn btn-success" onclick="anim5_noti()">SHOW ME</button> -->
+                <?php if ($this->session->flashdata('message')): ?>
+                  <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <div class="alert-icon">
+                     <i class="fa fa-check"></i>
+                    </div>
+                    <div class="alert-message">
+                      <span><strong>Berhasil !</strong> <?php echo $this->session->flashdata('message') ?></span>
+                    </div>
+                  </div>
+                  
+                <?php endif ?>
                 <div class="row">
+                  
+
+
                   <div class="col-lg-4">
                       <div class="card">
 
@@ -62,12 +77,28 @@
                          <ul class="list-group list-group-flush list shadow-none">
                           <!-- <li class="list-group-item d-flex justify-content-between align-items-center">Kategori <span class="badge badge-dark badge-pill"><?php echo "ini detail"; ?> </span></li> 
                            <li class="list-group-item d-flex justify-content-between align-items-center">Type  <span class="badge badge-<?php echo "danger";?> badge-pill"><?php echo "ini detail"; ?></span></li>--> 
-                           <li class="list-group-item d-flex justify-content-between align-items-center">Harga Publish<span>Rp.100,000</span></li> 
+                           <li class="list-group-item d-flex justify-content-between align-items-center">Type Template
+                            <?php foreach ($type_template as $row_tt): ?>
+                                <?php if ($row_tt->ID == $data_website->type_template): ?>
+                                  <span class="badge badge-<?php echo $row_tt->label ?>"><?php echo $row_tt->nama_type ?></span>
+                                <?php endif ?>
+                            <?php endforeach ?>
                            <li class="list-group-item d-flex justify-content-between align-items-center">Jumlah Page <span><?php echo $jumlah_page; ?></span></li>
-                           <li class="list-group-item d-flex justify-content-between align-items-center">Status Website  <span class="badge badge-success"><?php echo "Publish"; ?></span></li>
+                           <li class="list-group-item d-flex justify-content-between align-items-center">Status Website  
+                            <?php  
+
+                           if($data_website->status_website == 'Published') {
+                              echo '<span class="badge badge-success">Published</span>'; 
+                           }elseif ($data_website->status_website == 'Not Published'){ 
+                             echo '<span class="badge badge-danger">Not Published</span>';
+                           }else{
+                             echo '<span class="badge badge-dark">On Process</span>';
+                           }
+                             ?></li>
                         </ul>
                         <div class="card-body text-center">
-                          <!--   <table class="table">
+                          <!--   
+                          <table class="table">
                                 <tr>
                                   <td>Kategori </td>
                                   <td>| <?php echo $kategori->nama_kategori ?> </td>
@@ -78,10 +109,17 @@
                                 </tr>
                               </table> -->
                       
-                        <a href="<?php echo base_url()?>preview/website/<?php echo $data_website->slug_id; ?>" target="_blank" class="btn btn-sm btn-primary waves-effect waves-light">Lihat Template</a>
-                        <a href="<?php echo base_url()?>User_website/edit/<?php echo $data_website->slug_id; ?>"  class="btn btn-sm btn-info waves-effect waves-light">Edit Detail</a>
+                        <a href="<?php echo base_url()?>preview/website/<?php echo $data_website->slug_id; ?>" target="_blank" class="btn btn-sm btn-primary waves-effect waves-light"><i class="fa fa-eye"></i> Pratinjau</a>
+                        <a href="<?php echo base_url()?>User_website/edit/<?php echo $data_website->slug_id; ?>"  class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-edit"></i> Edit Detail</a>
                         <hr>
-                        <a href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id ?>" class="btn btn-secondary"  data-toggle="modal" data-target="#modal-publish" data-id="<?php echo $data_website->ID ?>">Publish</a>
+                       
+                        <?php if ($data_website->status_website == 'Not Published'){ ?>
+                            <a href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id ?>" class="btn btn-secondary"  data-toggle="modal" data-target="#modal-publish" data-id="<?php echo $data_website->ID ?>"><i class="fa fa-rocket"></i> Publish</a>
+                        <?php }elseif($data_website->status_website == 'On Process'){ ?>
+                            <button class="btn btn-secondary" type="button" disabled=""><i class="fa fa-rocket"></i> Publish</button>
+                        <?php }else{?>
+                            <button class="btn btn-success" type="button"><i class="fa fa-rocket"></i> Update</button>
+                        <?php } ?>
                         </div>
                       </div>
                   </div>
@@ -135,16 +173,17 @@
                             <div class="modal-body">
                                 
                                    <ul class="list-group list-group-flush list shadow-none">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">Nama Website <span class="badge badge-dark badge-pill">
-                                            <?php echo $data_website->nama_website ?> </span></li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">Nama Website 
+                                           <b> <?php echo $data_website->nama_website ?></b></li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">Jumlah Page <span><?php echo $jumlah_page; ?></span></li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">Harga Publish<span>Rp.100,000</span></li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">Harga Publish<span id="harga"></span></li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">Keterangan<span id="keterangan"></span></li>
                                 </ul>
                                    <div class="form-group">
                                        <label>Pilih Package</label>
                                        <select name="id_package" id="" class="form-control">
                                         <?php foreach ($data_package as $row): ?>    
-                                           <option value="<?php echo $row->ID; ?>"><?php echo $row->nama_package; ?></option>
+                                           <option value="<?php echo $row->ID; ?>" data-harga="<?php echo number_format($row->harga,0,',','.'); ?>" data-keterangan="<?php echo $row->keterangan; ?>"><?php echo $row->nama_package; ?></option>
                                        <?php endforeach ?>
                                        </select>
                                    </div>
@@ -194,7 +233,7 @@
                                 <div class="card-body">
                                   <a href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id; ?>/<?php echo $row_page->slug_id ?>" class="card-link"><button class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Edit Page"><i class="fa fa-edit" ></i></button></a>
                                   <button class="btn btn-sm btn-danger delete" data-id="<?php echo $row_page->ID ?>" data-toggle="tooltip" data-placement="top" title="Hapus Page"><i class="fa fa-trash" ></i></button>
-                                  <button class="btn btn-sm btn-dark" data-id="<?php echo $row_page->ID ?>"  data-toggle="tooltip" data-placement="top" title="Duplikat Page"><i class="fa fa-copy"></i></button>
+                                  <button class="btn btn-sm btn-default" data-id="<?php echo $row_page->ID ?>"  data-toggle="tooltip" data-placement="top" title="Duplikat Page"><i class="fa fa-copy"></i></button>
 
 
                                   <!-- <a href="<?php echo base_url().$controller ?>/preview/<?php echo $row_page->ID; ?>" target="_blank" class="card-link">Lihat</a> -->
@@ -394,6 +433,24 @@
        <!-- Sweet Alert -->
   <script type="text/javascript">
   $(document).ready(function(){
+
+    $( "select" )
+      .change(function() {
+        var harga = "";
+        var keterangan = "";
+        // var status = "";
+        $( "select option:selected" ).each(function() {
+          harga += $( this ).data('harga') + " ";
+          keterangan += $( this ).data('keterangan') + " ";
+          // status += $( this ).data('status') + " ";
+        });
+        $( "#harga" ).text('Rp'+ harga );
+        $( "#keterangan" ).text( keterangan );
+        // $( "#status-package" ).val( status );
+      })
+      .trigger( "change" );
+
+      // =========================
     $.ajaxSetup({
       type:"post",
       cache:false,

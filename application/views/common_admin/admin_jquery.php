@@ -43,6 +43,8 @@
       <script src="<?php echo base_url(); ?>assets/plugins/material-datepicker/js/moment.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/material-datepicker/js/bootstrap-material-datetimepicker.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/material-datepicker/js/ja.js"></script>
+      <!-- Alert JS -->
+      <script src="<?php echo base_url()?>assets/alert/alert.js"></script>
 
 
       <!-- Preloader -->

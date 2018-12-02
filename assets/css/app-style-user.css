@@ -630,7 +630,7 @@ hr {
 	border-bottom:3px solid #ff2fa0 !important;
 }
 .card.card-dark{
-	border-bottom:3px solid #2196f3 !important;
+	border-bottom:3px solid #172b4d !important;
 }
 
 .overlay-primary{
@@ -659,7 +659,7 @@ hr {
 }
 
 .overlay-dark{
-	background: #2196f3;
+	background: #172b4d;
     background: rgba(34, 48, 53, 0.81);
 }
 
@@ -1207,8 +1207,8 @@ hr {
 
 .btn-dark {
 	color: #fff;
-	background-color: #2196f3;
-	border-color: #2196f3
+	background-color: #172b4d;
+	border-color: #172b4d
 }
 .btn-dark:hover {
 	color: #fff;
@@ -3253,7 +3253,7 @@ table.grid td {
 }
 .badge-dark {
     color: #fff;
-    background-color: #2196f3;
+    background-color: #172b4d;
 }
 
 
@@ -3464,15 +3464,15 @@ table.grid td {
 }
 
 .pagination-outline-dark .page-item .page-link{
-	color: #2196f3;
-	border: 1px solid #2196f3;
+	color: #172b4d;
+	border: 1px solid #172b4d;
 }
 .pagination-outline-dark .page-item .page-link:hover{
 	z-index: 2;
 	color: #fff;
 	text-decoration: none;
-	background-color: #2196f3;
-	border-color: #2196f3
+	background-color: #172b4d;
+	border-color: #172b4d
 }
 .pagination-outline-dark .page-item .page-link:focus{
 	z-index: 2;
@@ -3482,8 +3482,8 @@ table.grid td {
 .pagination-outline-dark .page-item.active .page-link{
 	z-index: 1;
     color: #fff;
-    background-color: #2196f3;
-    border-color: #2196f3;
+    background-color: #172b4d;
+    border-color: #172b4d;
 }
 
 .pagination-outline-secondary .page-item .page-link{
@@ -4581,7 +4581,7 @@ table.grid td {
     color: #f5365c!important;
 }
 .text-dark {
-    color: #2196f3!important;
+    color: #000 !important;
 }
 .text-warning {
     color: #fb6340!important;

@@ -116,6 +116,7 @@
                           <th>Nama Package</th>
                           <th>Nama Website</th>
                           <th>Nama User</th>
+                          <th>Email</th>
                           <th>Status Order</th>
                           <th>Tanggal Order</th>
                           <th>Action</th>
@@ -125,13 +126,22 @@
                     <?php $no =1; foreach ($data_order as $row): ?>
                       <tr data-id="<?php echo $row->ID; ?>">
                         <td><?php echo $no++; ?></td>
-                        <td><?php echo ($row->type_order == 'publish' ? '<span class="badge badge-pill badge-success shadow-success m-1">Publish</span>' : 'Package'); ?></td>
+                        <td><?php echo ($row->type_order == 'publish' ? '<span class="badge badge-pill badge-success shadow-success m-1">Publish</span>' : '<span class="badge badge-pill badge-dark shadow-dark m-1">Package</span>'); ?></td>
                         <td><?php echo $row->nama_package; ?></td>
                         <td><?php echo $row->nama_website; ?></td>
                         <td><?php 
                         foreach ($data_user as $row_user) {
                           if ($row_user->ID == $row->id_user) {
                             echo $row_user->nama;
+                          }
+                        }
+
+                        ?></td>
+
+                        <td><?php 
+                        foreach ($data_user as $row_user) {
+                          if ($row_user->ID == $row->id_user) {
+                            echo $row_user->email;
                           }
                         }
 

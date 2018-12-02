@@ -36,6 +36,8 @@
       <!--Sweet Alerts -->
       <script src="<?php echo base_url(); ?>assets/plugins/alerts-boxes/js/sweetalert.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/alerts-boxes/js/sweet-alert-script.js"></script>
+      <!-- Alert JS -->
+      <script src="<?php echo base_url()?>assets/alert/alert.js"></script>
 
       <!-- Gambar error Handle -->
       <script type="text/javascript">

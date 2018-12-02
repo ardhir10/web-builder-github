@@ -10,6 +10,7 @@ class User_website extends CI_Controller {
         $this->load->model('Model_package');
         $this->load->model('Model_order');
         $this->load->model('Model_template_page');
+        $this->load->model('Model_type_template');
         $this->load->model('Model_website_page');
         $this->load->model('ApiModelImage');
         $this->load->helper(array('Form', 'Cookie', 'String'));
@@ -121,7 +122,8 @@ class User_website extends CI_Controller {
             'template_id'   => $id_template,
             'tanggal_dibuat'=> date('Y-m-d H:i:s'),
             'type_template' => $data_template->id_type,
-            'photo'         => $nama_file_foto
+            'photo'         => $nama_file_foto,
+            'status_website'=> 'Not Published',
         );
 
         $insert = $this->Model_website->insert_data($data['template_data']);
@@ -279,6 +281,7 @@ class User_website extends CI_Controller {
                 $data['data_package']=$this->Model_package->edit_data(array('status'=>'publish'))->result();
                 $data['data_page']  = $this->Model_website_page->get_page($data['data_website']->ID,$id_user)->result();
                 $data['jumlah_page']  = $this->Model_website_page->get_page($data['data_website']->ID,$id_user)->num_rows();
+                $data['type_template']  = $this->Model_type_template->get_data()->result();
 
                 // print_r($data['data_page']);
 
@@ -483,6 +486,7 @@ class User_website extends CI_Controller {
         
         $validasi_website=$this->Model_website->validasi_website($id_website,$id_user)->num_rows();
         $data_website=$this->Model_website->validasi_website($id_website,$id_user)->row();
+        $no_order = $this->Model_order->generate_publish_code();
         $id_package=$this->input->post('id_package');
         
         if($validasi_website==true){
@@ -490,19 +494,24 @@ class User_website extends CI_Controller {
             $data_package=$this->Model_package->edit_data(array('ID'=>$id_package))->row();
             //data
             $data = array(
-            "id_website" => $id_website,
-            "nama_website" => $data_website->nama_website,
-            "id_user" => $id_user,
-            "status" => 0,
-            "nama_package" => $data_package->nama_package,
-            "type_order" => $data_package->status,
-            "harga" => $data_package->harga,
-            "tanggal_order" => date('Y-m-d H:i:s'),
-                  
+                'no_order' => $no_order,
+                "id_website" => $id_website,
+                "nama_website" => $data_website->nama_website,
+                "id_user" => $id_user,
+                "status" => 1,
+                "id_package" => $data_package->ID,
+                "nama_package" => $data_package->nama_package,
+                "type_order" => $data_package->status,
+                "harga" => $data_package->harga,
+                "tanggal_order" => date('Y-m-d H:i:s'),
             );
+            // Update Status Website
+
+            $update = $this->Model_website->update_data(array('ID'=>$id_website),array('status_website' => 'On Process'));
+
             
            $this->Model_order->insert_data($data);
-           $this->session->set_flashdata('message','publish');
+           $this->session->set_flashdata('message','Silahkan cek status Order publish anda <a href="'.base_url().'user-subscription?order='.$no_order.'">disini</a> ');
            redirect($_SERVER['HTTP_REFERER']);
             
         }else{

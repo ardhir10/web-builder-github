@@ -5,7 +5,7 @@
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-  <meta name="description" content=""/>
+  <meta name="desscription" content=""/>
   <meta name="author" content=""/>
   <title><?php echo $title_page; ?></title>
   <!-- CSS -->
@@ -32,15 +32,15 @@
       <!-- Breadcrumb-->
        <div class="row pt-2 pb-2">
           <div class="col-sm-9">
-  		    <h4 class="page-title">Data Subcription </h4>
+  		    <h4 class="page-title">Data Subscription </h4>
   		    <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="javaScript:void();">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Subcription </li>
+              <li class="breadcrumb-item active" aria-current="page">Subscription </li>
            </ol>
   	   </div>
   	   <div class="col-sm-3">
          <div class="btn-group float-sm-right">
-          <a href="<?php echo base_url().$controller ?>/add-subcription"  class="btn btn-success waves-effect waves-light"><i aria-hidden="true" class="fa fa-plus"></i> &nbsp;Add Subcription</a>
+          <a href="<?php echo base_url().$controller ?>/add"  class="btn btn-success waves-effect waves-light"><i aria-hidden="true" class="fa fa-plus"></i> &nbsp;Add Subscription</a>
           <!-- Modal Add New -->
            <!--  <div class="modal fade" id="modal-animation-14">
               <div class="modal-dialog">
@@ -77,7 +77,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
-              <div class="card-header"><i class="fa fa-table"></i> Data Subcription  Table
+              <div class="card-header"><i class="fa fa-table"></i> Data Subscription  Table
                 <br>
 
               <?php if ($this->session->flashdata('status_tambah')): ?>''
@@ -92,46 +92,129 @@
                 </div>
               <?php endif ?>
 
-              <?php if ($this->session->flashdata('status_update')): ?>''
-                <div class="alert alert-info alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert">×</button>
-                  <div class="alert-icon">
-                      <i class="fa fa-check"></i>
-                  </div>
-                  <div class="alert-message">
-                      <span><?php echo $this->session->flashdata('status_update') ?></span>
-                  </div>
-                </div>
-              <?php endif ?>
+              
 
               </div>
 
               <div class="card-body">
+
+                <?php if ($this->session->flashdata('message')=='add'): ?>
+                  <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <div class="alert-icon">
+                     <i class="fa fa-check"></i>
+                    </div>
+                    <div class="alert-message">
+                      <span><strong>Success!</strong> Berhasil Add Subcription</span>
+                    </div>
+                  </div>
+                <?php endif ?>
+
+                <?php if ($this->session->flashdata('status_update')!= ''): ?>
+                  <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <div class="alert-icon">
+                     <i class="fa fa-check"></i>
+                    </div>
+                    <div class="alert-message">
+                      <span><strong>Success!</strong> Data berhasil di Update </span>
+                    </div>
+                  </div>
+               
+                <?php endif ?>
+
+                <?php if ($this->session->flashdata('message')=='exist'): ?>
+                  <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <div class="alert-icon">
+                     <i class="fa fa-close"></i>
+                    </div>
+                    <div class="alert-message">
+                      <span><strong>Warning !</strong> Anda telah melakukan subsrciption , silahkan hapus atau edit Package sebelumnya</span>
+                    </div>
+                  </div>
+                <?php endif ?>
+                <?php if ($this->session->flashdata('message')=='delete'): ?>
+                  <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <div class="alert-icon">
+                     <i class="fa fa-trash"></i>
+                    </div>
+                    <div class="alert-message">
+                      <span><strong>Delete !</strong> Subscription anda telah berhasil dihapus </span>
+                    </div>
+                  </div>
+                <?php endif ?>
+                
+
                 <div class="table-responsive">
-                <table id="default-datatable" class="table table-bordered">
-                  <thead>
-                      <tr>
-                          <th>No</th>
-                          <th>Type Order</th>
-                          <th>Nama Package</th>
-                          <th>Nama Website</th>
-                          <th>Nama User</th>
-                          <th>Status Order</th>
-                          <th>Tanggal Order</th>
-                          <th>Action</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-          
+                  <table id="default-datatable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No </th>
+                            <th style="text-align:center; vertical-align: middle;">Action</th>
+                            <th>No Order</th>
+                            <th>Type Order</th>
+                            <th>Tanggal Order</th>
+
+                            <th>Nama Package</th>
+
+                            <th>Status Order</th>
+                            <th>Harga</th>
+
+                            <th>Nama Website</th>
+                            <th>Nama User</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <?php $no=1; foreach ($data_subscription as $row): ?>
+                          <tr>
+                            <td><?php echo $no++ ?></td>
+                            <td style="text-align:center; vertical-align: middle;" >
+                                <a href="<?php echo $controller ?>/edit/<?php echo $row->type_order ?>/<?php echo $row->ID ?>"><button type="button" class="btn btn-primary btn-sm"> <i class="fa fa-edit"></i> Edit</button></a>
+                                <a href="confirmsubcription/16"><button type="button" class="btn btn-warning btn-sm"> <i class="fa fa-check"></i> Confirm</button></a>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="$.confirm('Apa anda yakin ingin membatalkan Subscription ',function(a){
+                                  if(a==true){
+                                    window.location = '<?php echo base_url().$controller ?>/delete/<?php echo $row->ID ?>';
+                                  }else{
+                                    $.alert('Batal dihapus !');
+                                  }
+                                });"><i class="fa fa-close"></i> Cancel</button>
+                            </td>
+                            <td><?php echo $row->no_order; ?></td>
+
+                            <td><?php echo ($row->type_order == 'publish' ? '<span class="badge badge-pill badge-success shadow-success m-1"><i class="fa fa-rocket"></i> Publish</span>' : '<span class="badge badge-pill badge-info shadow-info m-1"><i class="fa fa-inbox"></i> Package</span>'); ?></td>
+                            <td><?php echo $row->tanggal_order; ?></td>
+
+                            <td><?php echo $row->nama_package; ?></td>
+
+                            <td><?php 
+                            foreach ($status_order as $row_so) {
+                              if ($row_so->ID == $row->status) {
+                                echo '<span class="badge badge-pill badge-'.$row_so->atribut.' shadow-'.$row_so->atribut.' m-1">'.$row_so->nama_status.'</span>';
+                              }
+                            }
+                            ?>
+                              
+                            </td>
+                            <td>Rp<?php echo number_format($row->harga,0,'.','.'); ?></td>
+                            <td><?php echo $row->nama_website; ?></td>
+                            
+                            <td><?php echo $this->session->userdata('userNama'); ?></td>
+                            
+                            
+                          </tr>
+                      <?php endforeach ?>
+            
+                      
+
+
                     
-
-
-                  
-                 
-                  </tbody>
-                 
-              </table>
-              </div>
+                   
+                    </tbody>
+                     
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -206,6 +289,8 @@
       dataType: "json"
     })
 
+
+
     $(".delete").click(function(){
         var id=$(this).attr("data-id");
         swal({
@@ -256,6 +341,8 @@
         });
 
     });
+
+    
 
   });
   </script>
