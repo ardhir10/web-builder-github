@@ -5,13 +5,17 @@ class User_login extends CI_Controller {
      public function __construct() {
         parent::__construct();
            $this->load->model('Model_user');
+           $this->load->model('Email');
     }
     
 
 	
     private $controller = 'User_login';
 	
-  
+   
+  public function faiz(){
+      $this->Email->email_aktiv();
+  }
     public function register()
 	{
         $nama=$this->input->post('nama');
@@ -46,8 +50,12 @@ class User_login extends CI_Controller {
         }
         else {
             
-                  $this->Model_user->insert_data($data_user);
+              $this->Model_user->insert_data($data_user);
               $this->session->set_flashdata('pesan','Berhasil ! silahkan Login');
+              $konten="$nama berhasil Registrasi di goodeva web-builder<hr>
+              <img src='https://goodeva.co.id/my-assets/images/logo.png'>";
+              $this->Email->send_email_google($email,$konten);
+            
             redirect('sites/login');
         }        
 	}
@@ -140,6 +148,8 @@ class User_login extends CI_Controller {
          
     }
 
+    
+  
     
 
 }//end

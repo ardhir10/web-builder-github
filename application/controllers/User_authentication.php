@@ -11,6 +11,7 @@ class User_Authentication extends CI_Controller {
         
         // Load user model
         $this->load->model('user');
+        $this->load->model('Email');
         $this->load->model('Model_user');
     }
     
@@ -103,7 +104,8 @@ class User_Authentication extends CI_Controller {
                 redirect(base_url().'user-panel');
                 }
                 else {
-                $this->Model_user->insert_data($data_user);
+                    
+                 $this->Model_user->insert_data($data_user);
                 $id = $this->db->insert_id();
                 $data_user = $this->Model_user->cek_by_email($userData['email'])->row();
 
@@ -119,8 +121,15 @@ class User_Authentication extends CI_Controller {
                     'userStatus'       => $data_user->id_status,
                     'userPackage'      => $data_user->id_package,
                 );
-                
+                // send email        
+             
+              $this->session->set_flashdata('pesan','Berhasil ! silahkan Login');
+              $konten="$nama berhasil Registrasi di goodeva web-builder<hr>
+              <img src='https://goodeva.co.id/my-assets/images/logo.png'>";
+              $this->Email->send_email_google($email,$konten);
                 $this->session->set_userdata($sess);
+             
+                    
                 redirect(base_url().'user-panel');
                 }        
                 
