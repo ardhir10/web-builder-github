@@ -145,6 +145,18 @@
                     </div>
                   </div>
                 <?php endif ?>
+
+                <?php if ($this->session->flashdata('message') == 'confirm'): ?>
+                  <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <div class="alert-icon">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="alert-message">
+                        <span>Konfirmasi berhasil pembayaran telah di kirim ! </span>
+                    </div>
+                  </div>
+                <?php endif ?>
                 
 
                 <div class="table-responsive">
@@ -155,15 +167,17 @@
                             <th style="text-align:center; vertical-align: middle;">Action</th>
                             <th>No Order</th>
                             <th>Type Order</th>
+                            <th>Status Order</th>
                             <th>Tanggal Order</th>
 
                             <th>Nama Package</th>
 
-                            <th>Status Order</th>
                             <th>Harga</th>
+                            <th>Jumlah Bayar</th>
 
                             <th>Nama Website</th>
                             <th>Nama User</th>
+                            <th>Expired</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -171,24 +185,56 @@
                           <tr>
                             <td><?php echo $no++ ?></td>
                             <td style="text-align:center; vertical-align: middle;" >
-                                <a href="<?php echo $controller ?>/edit/<?php echo $row->type_order ?>/<?php echo $row->ID ?>"><button type="button" class="btn btn-primary btn-sm"> <i class="fa fa-edit"></i> Edit</button></a>
-                                <a href="confirmsubcription/16"><button type="button" class="btn btn-warning btn-sm"> <i class="fa fa-check"></i> Confirm</button></a>
-                                <button type="button" class="btn btn-danger btn-sm" onclick="$.confirm('Apa anda yakin ingin membatalkan Subscription ',function(a){
-                                  if(a==true){
-                                    window.location = '<?php echo base_url().$controller ?>/delete/<?php echo $row->ID ?>';
-                                  }else{
-                                    $.alert('Batal dihapus !');
-                                  }
-                                });"><i class="fa fa-close"></i> Cancel</button>
+
+                              <!-- Jika Status Expired -->
+                                  <?php if ($row->status==6) {?>
+                                    <span class="badge badge-danger shadow-danger">Subcription has been Expired</span>
+
+
+                                  <?php }elseif($row->status==4){ ?>
+                                  
+                                    <span class="badge badge-success shadow-success">Subcription has been Verified</span>
+                                    <br>
+                                    <br>
+                                    <?php if ($row->type_order == 'package'): ?>
+                                      <form action="<?php echo base_url().$controller ?>/perpanjang_package/<?php echo $row->type_order ?>/<?php echo $row->ID ?>" method="post" >
+                                        <button  type="submit" class="btn btn-sm btn-success">Perpanjang</button>
+                                      </form>
+                                    <?php endif ?>
+
+                                  <?php }elseif($row->status == 5 ){ ?>
+                                    <span class="badge badge-danger shadow-danger">Subcription has been Cancelled</span>
+                                  <?php }else{ ?>
+                                    <?php if ($row->status == 1 ): ?>
+                                      <a href="<?php echo $controller ?>/edit/<?php echo $row->type_order ?>/<?php echo $row->ID ?>"><button type="button" class="btn btn-primary btn-sm"> <i class="fa fa-edit"></i> Edit</button></a>
+                                    <?php endif ?>
+                                    <a href="<?php echo $controller ?>/confirm_subscription/<?php echo $row->type_order ?>/<?php echo $row->ID ?>"><button type="button" class="btn btn-warning btn-sm"> <i class="fa fa-check"></i> Confirm</button></a>
+                                      <button type="button" class="btn btn-danger btn-sm" onclick="$.confirm('Apa anda yakin ingin membatalkan Subscription ',function(a){
+                                        if(a==true){
+                                          window.location = '<?php echo base_url().$controller ?>/delete/<?php echo $row->ID ?>';
+                                        }else{
+                                          $.alert('Batal dihapus !');
+                                        }
+                                      });"><i class="fa fa-close"></i> Cancel</button>
+                                  <?php } ?>
+
+
+                                
+                                
                             </td>
                             <td><?php echo $row->no_order; ?></td>
 
-                            <td><?php echo ($row->type_order == 'publish' ? '<span class="badge badge-pill badge-success shadow-success m-1"><i class="fa fa-rocket"></i> Publish</span>' : '<span class="badge badge-pill badge-info shadow-info m-1"><i class="fa fa-inbox"></i> Package</span>'); ?></td>
-                            <td><?php echo $row->tanggal_order; ?></td>
-
-                            <td><?php echo $row->nama_package; ?></td>
-
                             <td><?php 
+                            if ($row->type_order == 'publish') {
+                               echo '<span class="badge badge-pill badge-success shadow-success m-1"><i class="fa fa-rocket"></i> Publish</span>';
+                            }elseif ($row->type_order == 'package') {
+                              echo '<span class="badge badge-pill badge-info shadow-info m-1"><i class="fa fa-inbox"></i> Package</span>';
+                            }elseif ($row->type_order == 'update') {
+                              echo '<span class="badge badge-pill badge-primary shadow-primary m-1"><i class="fa fa-refresh"></i> Update</span>';
+                            }
+
+                           ?></td>
+                           <td><?php 
                             foreach ($status_order as $row_so) {
                               if ($row_so->ID == $row->status) {
                                 echo '<span class="badge badge-pill badge-'.$row_so->atribut.' shadow-'.$row_so->atribut.' m-1">'.$row_so->nama_status.'</span>';
@@ -197,10 +243,18 @@
                             ?>
                               
                             </td>
+                            <td><?php echo $row->tanggal_order; ?></td>
+
+                            <td><?php echo $row->nama_package; ?></td>
+
+                            
                             <td>Rp<?php echo number_format($row->harga,0,'.','.'); ?></td>
+                            <td>Rp<?php echo number_format($row->jumlah_bayar,0,'.','.'); ?></td>
                             <td><?php echo $row->nama_website; ?></td>
                             
                             <td><?php echo $this->session->userdata('userNama'); ?></td>
+                            <td><?php echo $row->expired; ?></td>
+
                             
                             
                           </tr>

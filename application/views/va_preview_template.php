@@ -2,19 +2,16 @@
 <html>
 <head>
   <title><?php echo $data_template->nama_template ?> : <?php echo $data_page->judul_page;?></title>
-  <style type="text/css">
-    <?php echo $data_page->css;?>
-    
-
-
-  </style>
+  
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <style>
+    <?php echo $data_page->css;?>
+
     .preview__header {
         font-size: 12px;
     height: 54px;
@@ -22,8 +19,8 @@
     z-index: 100;
     line-height: 54px;
     /* margin-bottom: 1px; */
-    position: sticky;
-    top: 0;
+    /*position: sticky;
+    top: 0;*/
     }
     
     .preview__envato-logo {
@@ -46,7 +43,7 @@
 </head>
 
 <body>
-<div id="preview_header" class="preview__header" data-view="ctaHeader">
+<!-- <div id="preview_header" class="preview__header" data-view="ctaHeader">
 
   <div class="preview__envato-logo">
     <img src="https://goodeva.co.id/my-assets/images/logo.png" style="padding-bottom: 10px; width:90px;">
@@ -61,8 +58,8 @@
     <a href="#" id="remove-frame" >
       <i class="fa fa-edit"></i><span style="color:white;">Remove Frame</span>
       </a>  </div>
-</div>
-</div>
+  </div>
+</div> -->
    
     <?php echo $data_page->html;?>
 

@@ -49,7 +49,7 @@
                 }
               });
             });
-        </script>
+      </script>
 
 
           <script type="text/javascript">
@@ -64,7 +64,7 @@
           jQuery(function($) {
                var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
                $('ul li a').each(function() {
-                if (this.href === path || this.href+'<?php echo $this->uri->segment('2') ?>' === path || this.href+'/edit/<?php echo $this->uri->segment('3') ?>' === path ) {
+                if (this.href === path || this.href+'/<?php echo $this->uri->segment('2') ?>' === path || this.href+'/<?php echo $this->uri->segment('2') ?>/<?php echo $this->uri->segment('3') ?>' === path || this.href+'/<?php echo $this->uri->segment('2') ?>/<?php echo $this->uri->segment('3') ?>/<?php echo $this->uri->segment('4') ?>' === path) {
                  $(this).parent('li').addClass('active');
                 }
                });

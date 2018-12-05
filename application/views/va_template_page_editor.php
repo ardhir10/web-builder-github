@@ -25,7 +25,7 @@
 
    <body>
       <!-- Start wrapper-->
-      <div id="wrapper" >
+      <div id="wrapper" class="toggled">
          <!--Start sidebar-wrapper-->
          <?php $this->load->view('common_admin/admin_sidebar.php'); ?>
          <!--End sidebar-wrapper-->

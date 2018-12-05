@@ -57,11 +57,24 @@
       </script>
 
       <script type="text/javascript">
+          $(window).load(function() {
+              $('img').each(function() {
+                if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+                  // image was broken, replace with your new image
+                  this.src = 'https://goodeva.co.id/my-assets/images/logo.png';
+                }
+              });
+            });
+      </script>
+
+      <script type="text/javascript">
       // $(".sidebar-menu li a").each(function() {   
       //     if (this.href == window.location.href) {
       //         $(this).('li').addClass("active");
       //     }
       // });
+
+
 
       
 

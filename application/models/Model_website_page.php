@@ -61,6 +61,12 @@ class Model_website_page extends CI_Model {
         return $this->db->get($this->table);
     }
 
+    function get_indexbyAdmin($id_website){
+        $this->db->where('id_website',$id_website);
+        $this->db->where('type_page','index');
+        return $this->db->get($this->table);
+    }
+
     function get_data_free(){
         $this->db->where('id_type',1);
         $this->db->order_by('ID','desc');
@@ -71,6 +77,12 @@ class Model_website_page extends CI_Model {
         $this->db->where('slug_id',$slug_id_page);
         $this->db->where('id_website',$id_website);
         $this->db->where('id_user',$id_user);
+        return $this->db->get($this->table);
+    }
+
+    function get_page_childbyAdmin($id_website,$slug_id_page){
+        $this->db->where('slug_id',$slug_id_page);
+        $this->db->where('id_website',$id_website);
         return $this->db->get($this->table);
     }
 

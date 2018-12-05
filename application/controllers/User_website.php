@@ -432,7 +432,7 @@ class User_website extends CI_Controller {
                      //
                      $this->update_link_page($id_website,$slug_awal,$slug_baru);
                      
-                     print_r($data);
+                     // print_r($data);
                      
                      $update = $this->Model_website->update_data($where,$data);
 
@@ -443,6 +443,8 @@ class User_website extends CI_Controller {
                     redirect(base_url().$this->controller.'/edit/'.$slug_id_old);
                 }
             }else{
+                $this->update_link_page($id_website,$slug_awal,$slug_baru);
+
                 $update = $this->Model_website->update_data($where,$data);
                 $this->session->set_flashdata('message','update');
                 redirect( base_url().$this->controller.'/website/'.$slug_baru);
@@ -504,6 +506,7 @@ class User_website extends CI_Controller {
                 "type_order" => $data_package->status,
                 "harga" => $data_package->harga,
                 "tanggal_order" => date('Y-m-d H:i:s'),
+                "expired" => date('Y-m-d H:i:s', time() + (60 * 60 * 24)),
             );
             // Update Status Website
 

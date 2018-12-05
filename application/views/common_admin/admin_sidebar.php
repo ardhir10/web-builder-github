@@ -17,11 +17,20 @@
         </a>
       </li>
 
-       <li>
+      <li>
         <a href="<?php echo base_url() ?>admin_order" >
-          <i class="fa fa-reorder"></i> Menu Order</span> 
+          <i class="fa fa-reorder"></i> Menu All Order</span> 
         </a>
       </li>
+      <li class="sidebar-header">PUBLISH</li>
+
+      <li>
+        <a href="<?php echo base_url() ?>admin_order_publish" >
+          <i class="fa fa-rocket"></i> Order Publish</span> 
+        </a>
+      </li>
+
+      <li class="sidebar-header">MASTER DATA</li>
 
       <li>
         <a href="<?php echo base_url() ?>admin_user" >

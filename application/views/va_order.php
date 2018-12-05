@@ -104,30 +104,72 @@
                 </div>
               <?php endif ?>
 
+
+
               </div>
 
               <div class="card-body">
+                <?php if ($this->session->flashdata('message') == 'confirm'): ?>
+                  <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <div class="alert-icon">
+                        <i class="fa fa-refresh"></i>
+                    </div>
+                    <div class="alert-message">
+                        <span>Data berhasil di update !</span>
+                    </div>
+                  </div>
+                <?php endif ?>
                 <div class="table-responsive">
                 <table id="default-datatable" class="table table-bordered">
                   <thead>
                       <tr>
                           <th>No</th>
+                          <th>Action</th>
                           <th>Type Order</th>
                           <th>Nama Package</th>
+                          <th>Status Order</th>
                           <th>Nama Website</th>
                           <th>Nama User</th>
                           <th>Email</th>
-                          <th>Status Order</th>
                           <th>Tanggal Order</th>
-                          <th>Action</th>
+                          <th>Tanggal Expired</th>
                       </tr>
                   </thead>
                   <tbody>
                     <?php $no =1; foreach ($data_order as $row): ?>
                       <tr data-id="<?php echo $row->ID; ?>">
                         <td><?php echo $no++; ?></td>
-                        <td><?php echo ($row->type_order == 'publish' ? '<span class="badge badge-pill badge-success shadow-success m-1">Publish</span>' : '<span class="badge badge-pill badge-dark shadow-dark m-1">Package</span>'); ?></td>
+                        <td>
+                         <!--  <a href="<?php echo $controller ?>/edit/<?php echo $row->type_order ?>/<?php echo $row->ID ?>"><button type="button" class="btn btn-primary btn-sm"> <i class="fa fa-edit"></i> Edit</button></a> -->
+
+                          <a href="<?php echo $controller ?>/confirm_subscription/<?php echo $row->type_order ?>/<?php echo $row->ID ?>"><button type="button" class="btn btn-warning btn-sm"> <i class="fa fa-check"></i> Confirm</button></a>
+                          <button type="button" class="btn btn-danger btn-sm" onclick="$.confirm('Apa anda yakin ingin membatalkan Subscription ',function(a){
+                            if(a==true){
+                              window.location = '<?php echo base_url().$controller ?>/delete/<?php echo $row->ID ?>';
+                            }else{
+                              $.alert('Batal dihapus !');
+                            }
+                          });"><i class="fa fa-close"></i> Cancel</button>
+                        </td>
+                        <td><?php 
+                        if ($row->type_order == 'publish') {
+                           echo '<span class="badge badge-pill badge-success shadow-success m-1"><i class="fa fa-rocket"></i> Publish</span>';
+                        }elseif ($row->type_order == 'package') {
+                          echo '<span class="badge badge-pill badge-info shadow-info m-1"><i class="fa fa-inbox"></i> Package</span>';
+                        }elseif ($row->type_order == 'update') {
+                          echo '<span class="badge badge-pill badge-primary shadow-primary m-1"><i class="fa fa-refresh"></i> Update</span>';
+                        }
+
+                         ?></td>
                         <td><?php echo $row->nama_package; ?></td>
+                        <td><?php  
+                        foreach ($status_order as $row_so) {
+                          if ($row_so->ID == $row->status) {
+                              echo '<span class="badge badge-pill badge-'.$row_so->atribut.' shadow-'.$row_so->atribut.' m-1">'.$row_so->nama_status.'</span>';
+                            }
+                          }?>
+                        </td>
                         <td><?php echo $row->nama_website; ?></td>
                         <td><?php 
                         foreach ($data_user as $row_user) {
@@ -146,14 +188,13 @@
                         }
 
                         ?></td>
-                        <td><?php $row->status; ?><span class="badge badge-pill badge-dark shadow-success m-1">Waiting Payment</span></td>
+
                         <td><?php echo $row->tanggal_order; ?></td>
+                        <td><?php echo $row->expired; ?></td>
 
 
 
-                        <td><a href="<?php echo base_url().$controller ?>/edit/<?php echo $row->ID ?>"><button type="button" class="btn btn-info btn-sm waves-effect waves-light m-1"><i class="zmdi zmdi-edit"></i> Edit</button></a>
-
-                          <button type="button" onclick="" data-id="<?php echo $row->ID; ?>" class="btn btn-danger btn-sm waves-effect waves-light m-1 delete"><i class="zmdi zmdi-delete "></i> Hapus</button></td>
+                        
                       </tr>
                     <?php endforeach ?>
                     

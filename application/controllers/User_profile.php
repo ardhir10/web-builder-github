@@ -52,22 +52,20 @@ class User_profile extends CI_Controller {
         $password         = md5($this->input->post('password'));
        
         if ($password==''){
-         $data = array(
-            'nama'  => $nama,
-            'no_telp' => $telp,
-            'email' => $email,
-            'username'    => $username,
-        );
+             $data = array(
+                'nama'  => $nama,
+                'no_telp' => $telp,
+                'email' => $email,
+                'username'    => $username,
+            );
         }else{
             $data = array(
-            'nama'  => $nama,
-            'no_telp' => $telp,
-            'email' => $email,
-            'username'    => $username,
-            'password'    => $password,
-        );
-            
-            
+                'nama'  => $nama,
+                'no_telp' => $telp,
+                'email' => $email,
+                'username'    => $username,
+                'password'    => $password,
+            );
         }
          
           $where = array(
@@ -79,65 +77,60 @@ class User_profile extends CI_Controller {
          $cek = $this->Model_user->cek_email($email);         
          $cek_username = $this->Model_user->cek_username($username);  
          
-         if ($email==$email_lama){
+            if ($email==$email_lama){
              
-             if( $username==$username_lama ){
-            
-            $update = $this->Model_user->update_data($where,$data);
-            $this->session->set_flashdata('pesan','ok');
-            redirect('user_profile');
-        
-          } 
-             else{
-           
-                if( $cek_username==1 ){
-            
-                $this->session->set_flashdata('pesan','sudah ada2');
-                redirect('user_profile');
-        
-                } else{
-                $update = $this->Model_user->update_data($where,$data);
-                $this->session->set_flashdata('pesan','ok');
-                redirect('user_profile');
+                if( $username==$username_lama ){
                 
-            }
-            }
+                    $update = $this->Model_user->update_data($where,$data);
+                    $this->session->set_flashdata('pesan','ok');
+                    redirect('user_profile');
+            
+                }else{
+               
+                        if( $cek_username==1 ){
+                    
+                        $this->session->set_flashdata('pesan','sudah ada2');
+                        redirect('user_profile');
+                
+                        } else{
+                        $update = $this->Model_user->update_data($where,$data);
+                        $this->session->set_flashdata('pesan','ok');
+                        redirect('user_profile');
+                        
+                    }
+                }
              
              
-             
-         }//endif 
-         
-         else {
+         }else {
              
         if( $cek==1 ){
          $this->session->set_flashdata('pesan','sudah ada');
          redirect('user_profile');
-        }
-        else {
+        }else {
             
-                if( $username==$username_lama ){
+            if( $username==$username_lama ){
 
-                $update = $this->Model_user->update_data($where,$data);
-                $this->session->set_flashdata('pesan','ok');
-                redirect('user_profile');
+            $update = $this->Model_user->update_data($where,$data);
+            $this->session->set_flashdata('pesan','ok');
+            redirect('user_profile');
 
-                 } 
-                else
-                {
+             } 
+            else
+            {
 
-                if( $cek_username==1 )
-                {
-                $this->session->set_flashdata('pesan','sudah ada2');
-                redirect('user_profile');
-                } 
-                else
-                {
-                $update = $this->Model_user->update_data($where,$data);
-                $this->session->set_flashdata('pesan','ok');
-                redirect('user_profile');
-                }
-             
-             }
+            if( $cek_username==1 )
+            {
+            $this->session->set_flashdata('pesan','sudah ada2');
+            redirect('user_profile');
+            } 
+            else
+            {
+            $update = $this->Model_user->update_data($where,$data);
+            $this->session->set_flashdata('pesan','ok');
+            redirect('user_profile');
+            }
+         
+         }
          }
        
         }//end else

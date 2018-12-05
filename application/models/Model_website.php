@@ -83,6 +83,11 @@ class Model_website extends CI_Model {
 		$this->db->update($this->table,$data);
 	}
 
+    function update_website($where,$data){
+        $this->db->where($where);
+        $this->db->update($this->table,$data);
+    }
+
 	function delete_data($where){
 		$this->db->where($where);
 		$this->db->delete($this->table);

@@ -65,8 +65,10 @@
                        <label for="input-1">Status</label>
                        <select class="form-control" name="status" required="">
                         <option>--Pilih Status</option>
-                         <option value="publish">Publish</option>
                          <option value="package">Package</option>
+                         <option value="publish">Publish</option>
+                         <option value="update">Update</option>
+
                        </select>
                      </div>
                      <div class="form-group">

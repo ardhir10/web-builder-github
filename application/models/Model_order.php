@@ -25,6 +25,7 @@ class Model_order extends CI_Model {
     {
         $this->db->where('id_user',$id_user);
         $this->db->where('type_order','package');
+        $this->db->where('status !=',6);
         return $this->db->get($this->table);
     }
 
@@ -59,7 +60,7 @@ class Model_order extends CI_Model {
     }
     
     
-	function get_data(){
+	 function get_data(){
         $this->db->order_by('ID','desc');
         return $this->db->get($this->table);
     }
@@ -102,6 +103,23 @@ class Model_order extends CI_Model {
           return $kodejadi;  
     }	
 
+
+    function cek_status_perpanjangan_package($id_user,$id_package)
+    {
+      // di cek dalam Table order apakan satu user memiliki lebih dari 2 data di id_package yang sama
+      $this->db->where('id_user',$id_user);
+      $this->db->where('id_package',$id_package);
+      $this->db->where('status !=',6);
+      return $this->db->get($this->table);
+    }
+
+    function package_terakhir($id_package){
+        $this->db->where('id_package',$id_package);
+        $this->db->where('status',4); //Package yang telah verified
+        $this->db->order_by('ID','desc');
+        return $this->db->get($this->table);
+    }
+
     public function generate_package_code() {
           $this->db->select('RIGHT(table_order.no_order,4) as kode', FALSE);
           $this->db->order_by('ID','DESC');    
@@ -123,6 +141,20 @@ class Model_order extends CI_Model {
           $kodemax = str_pad($kode, 1, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
           $kodejadi = "PKG".$tanggal.$unik.'-'.$kodemax;    // hasilnya ODJ-9921-0001 dst.
           return $kodejadi;  
+    }
+
+    function get_data_orderPublish(){
+        $this->db->where('type_order !=','package');
+        // $this->db->where('status',4);
+        $this->db->order_by('ID','desc');
+        return $this->db->get($this->table);
+    }
+
+    function cek_order_publish($id,$type)
+    {
+        $this->db->where('ID',$id);
+        $this->db->where('type_order',$type);
+        return $this->db->get($this->table);
     }   
 }
 

@@ -1195,17 +1195,24 @@ $('.collapsible').collapsible();
             }
         ],
     },
+    // storageManager: {
+    //     id: 'gjs-',
+    //     type: 'local',
+    //     autosave: 1,
+    //     autoload: 0,
+    //     stepsBeforeSave: 1,
+    //     storeComponents: 1,
+    //     storeStyles: 1,
+    //     storeHtml: 1,
+    //     storeCss: 1,
+    // },
     storageManager: {
-        id: 'gjs-',
-        type: 'local',
-        autosave: 0,
-        autoload: 0,
-        stepsBeforeSave: 1,
-        storeComponents: 1,
-        storeStyles: 1,
-        storeHtml: 1,
-        storeCss: 1,
-    },
+        id: 'gjs-',             // Prefix identifier that will be used on parameters
+        type: 'local',          // Type of the storage
+        autosave: false,         // Store data automatically
+        autoload: false,         // Autoload stored data on init
+        stepsBeforeSave: 1,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
+      },
 
 
     customStyleManager: [{
@@ -1847,7 +1854,7 @@ var defaultView = defaultType.view;
 //  })
  editor.on('storage:store', function (e) {
      console.log('STORE ', e);
-     // alert(e);
+     alert(e.html);
      // saveContent();
  })
 

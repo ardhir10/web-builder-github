@@ -180,6 +180,68 @@ class Preview extends CI_Controller {
         }
     }
 
+    function website_user()
+    {
+        // $where = array(
+        //     'ID' => $id
+        // );
+        // $data['data_edit']  = $this->Model_editor_template->edit_data($where)->row();
+        // $this->load->view('va_preview_template',$data);
+        if ($this->uri->segment('4')) {
+            $slug_id_template = $this->uri->segment('3');
+            $slug_id_page     = $this->uri->segment('4');
+
+            $slug_id = $this->uri->segment('3');
+            $validasi_data      = $this->Model_website->edit_data(array('slug_id'=>$slug_id))->num_rows();
+
+            if($validasi_data > 0){
+                $data['data_website']       = $this->Model_website->edit_data(array('slug_id'=>$slug_id))->row();
+                $data['data_page']          = $this->Model_website_page->get_page_childbyAdmin($data['data_website']->ID,$slug_id_page)->row();
+
+                $validasi_page = $this->Model_website_page->get_page_childbyAdmin($data['data_website']->ID,$slug_id_page)->num_rows();
+                if ($validasi_page == 0) {
+                    echo 'Page Not Found';
+                }else{
+                    $this->load->view('va_preview_website',$data);
+                }
+
+            }else{
+                // redirect($_SERVER['HTTP_REFERER']);
+                // redirect(base_url().$this->controller);
+                // redirect(base_url().'Admin_template');
+                echo 'Website Not Found';
+                echo '<br>';
+                echo '<h2>Pastikan Link anda Benar !</h2>';
+
+
+            }
+
+
+        }elseif($this->uri->segment('3')){
+            //==== Inisiasi Awal 
+            $id_user            = $this->session->userdata('userID');
+            $data['controller'] = $this->controller;
+            $slug_id = $this->uri->segment('3');
+            
+
+            $validasi_data      = $this->Model_website->edit_data(array('slug_id'=>$slug_id))->num_rows();
+
+            if($validasi_data > 0){
+                $data['data_website']      = $this->Model_website->edit_data(array('slug_id'=>$slug_id))->row();
+
+                $data['data_page']          = $this->Model_website_page->get_indexbyAdmin($data['data_website']->ID)->row();
+
+                $this->load->view('va_preview_website',$data);
+            }else{
+                // redirect($_SERVER['HTTP_REFERER']);
+                // redirect(base_url().'Admin_template');
+                echo 'Notfound Website';
+            }
+        }else{
+            echo 'False';
+        }
+    }
+
 
     function add()
     {

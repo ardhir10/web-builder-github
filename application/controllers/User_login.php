@@ -58,30 +58,25 @@ class User_login extends CI_Controller {
         $password        = md5($this->input->post('password'));
 
 
-       echo  $cek_login = $this->Model_user->authentication_login($usernameoremail,$password)->num_rows();
+        echo  $cek_login = $this->Model_user->authentication_login($usernameoremail,$password)->num_rows();
         echo $cek_email = $this->Model_user->authentication_email($usernameoremail,$password)->num_rows();
         
-        if($cek_login == TRUE){
+        if($cek_login > 0){
            
             $data_user = $this->Model_user->authentication_login($usernameoremail,$password)->row();
             $this->create_session($data_user);
          
         }else{
-            
-            
-            if($cek_email == TRUE){
+            if($cek_email > 0){
                 $cek_data_user  = $this->Model_user->authentication_email($usernameoremail,$password)->num_rows();
                 if($cek_data_user > 0 ){
                     $data_user      = $this->Model_user->authentication_email($usernameoremail,$password)->row();
                     $this->create_session($data_user);
                 }else{
-                    $this->session->set_flashdata('pesan-login','Username atau Password Salah!');
+                    $this->session->set_flashdata('pesan-login','Username atau Password Salah!!');
                     redirect('sites/login');
                 }
-
-                
-            }
-            else {
+            }else{
                 $this->session->set_flashdata('pesan-login','Username atau Password Salah!');
                 redirect('sites/login');
             }

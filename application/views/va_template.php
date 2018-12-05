@@ -66,7 +66,7 @@
                         <div class="card-body">
                           <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $row_template->slug_id; ?>" class="card-link">Detail</a>
                           <a href="<?php echo base_url() ?>preview/template/<?php echo $row_template->slug_id; ?>" target="_blank" class="card-link">Lihat</a>
-                          <a href="#" class="card-link delete" data-id="<?php echo $row_template->ID ?>" data-gambar="<?php echo $row_template->photo ?>">Hapus</a>
+                          <a href="" class="card-link delete" data-id="<?php echo $row_template->ID ?>" data-gambar="<?php echo $row_template->photo ?>">Hapus</a>
                         </div>
                       </div>
                   </div><!--End Row-->
