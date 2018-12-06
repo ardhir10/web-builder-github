@@ -47,6 +47,10 @@ class ApiModelImage extends CI_Model {
         $this->db->order_by('ID','desc');
         return $this->db->get($this->table);
     }
+    function get_template_image(){
+        $this->db->order_by('ID','desc');
+        return $this->db->get('table_gambar_template');
+    }
 
     function get_my_image($id_user){
         $this->db->where('id_user',$id_user);
@@ -93,6 +97,10 @@ class ApiModelImage extends CI_Model {
      $this->db->insert($this->table,$data);
     }
 
+    function insert_data_template($data){
+     $this->db->insert('table_gambar_template',$data);
+    }
+
     function insert_page($data){
      $this->db->insert_batch($this->table,$data);
     }
@@ -111,8 +119,13 @@ class ApiModelImage extends CI_Model {
 
     function delete_image($gambar,$id_user){
         $this->db->where('gambar',$gambar);
-		$this->db->where('id_user',$id_user);
-		$this->db->delete($this->table);
+        $this->db->where('id_user',$id_user);
+        $this->db->delete($this->table);
+    }
+
+    function delete_image_template($gambar){
+        $this->db->where('gambar',$gambar);
+		$this->db->delete('table_gambar_template');
 	}
 
     function update_index($id_page,$id_website,$data,$id_user)

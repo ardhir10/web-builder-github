@@ -10,6 +10,7 @@ class Admin_template extends CI_Controller {
         $this->load->model('Model_kategori_template');
         $this->load->model('Model_type_template');
         $this->load->model('Model_template');
+        $this->load->model('ApiModelImage');
         $this->load->model('Model_template_page');
         $this->load->helper(array('Form', 'Cookie', 'String'));
         date_default_timezone_set("Asia/Jakarta");
@@ -232,6 +233,7 @@ class Admin_template extends CI_Controller {
 
                 $data['data_template']        = $this->Model_template->edit_data($where)->row();
                 $data['data_page_result']     = $this->Model_template_page->get_page($data['data_template']->ID)->result();
+                $data['data_image']         = $this->ApiModelImage->get_template_image()->result();
 
                 $this->load->view('va_template_page_editor',$data);
             }else{

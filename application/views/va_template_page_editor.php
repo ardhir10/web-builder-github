@@ -246,7 +246,157 @@
          });
         });
         
+
+
       </script>
+
+      <script type="text/javascript">
+          // var am = editor.AssetManager;
+          const am = editor.AssetManager;
+          var base_url = '<?php echo base_url(); ?>';
+          var assets = am.getAll(); // <- Backbone collection
+
+          // Extend the original `image`
+          // assets.addType('image',  {
+          //   view: {
+          //     onRemove(e) {
+          //       e.stopPropagation();
+          //       const model = this.model;
+
+          //       if (confirm('Are you sure you want to delete this?')) {
+          //         delete_action();
+          //         model.collection.remove();
+          //       }
+
+                  
+
+          //       // confirm('Are you sure?') && model.collection.remove(model);
+          //       // confirm('Are you sure?') && delete_action();
+          //     }
+          //   },
+          // });
+
+          am.addType('image', {
+              // As you adding on top of an already defined type you can avoid indicating
+              // `am.getType('image').view.extend({...` the editor will do it by default
+              // but you can eventually extend some other type
+              view: {
+                // If you want to see more methods to extend check out
+                // https://github.com/artf/grapesjs/blob/dev/src/asset_manager/view/AssetImageView.js
+                // onRemove(e) {
+                //   e.stopPropagation();
+                //   const model = this.model;
+
+                //   if (confirm('Are you sure?')) {
+                //     model.collection.remove(model);
+                //   }
+                // }
+
+                onRemove(e) {
+                  e.stopImmediatePropagation();
+                  if (confirm('Are you sure?')) {
+                      delete_action();
+                      this.model.collection.remove(this.model);
+                  }
+
+                }
+              },
+            })
+
+          function delete_action(){
+                assets.on('remove', function(asset) {
+                  var src_file = asset.get('src');
+                  var nama_file = asset.get('name');
+                  var id_file = asset.get('id');
+                    $.ajax({
+                      url: base_url+'Apigambar/delete_template',
+                      type: 'POST',
+                      data: {id_file:id_file,nama_file:nama_file},
+                      dataType: 'json',
+                      success: function(result){
+                          alert(nama_file+' '+'Berhasil dihapus');
+                          console.log(result);
+                          // alert('success');
+                      }
+                  });
+                })
+            
+          }
+
+          // ==================
+
+          // editor.on('asset:remove', () => {
+          //   if (!window.confirm("Are you sure s?")) {
+          //     // HERE I WOULD LIKE TO BREAK THE REMOVE ACTION.
+              
+          //   }else{
+          //     assets.on('remove', function(asset) {
+          //       var src_file = asset.get('src');
+          //       var nama_file = asset.get('name');
+          //       var id_file = asset.get('id');
+
+          //         $.ajax({
+          //           url: base_url+'Apigambar/delete',
+          //           type: 'POST',
+          //           data: {id_file:id_file,nama_file:nama_file},
+          //           dataType: 'json',
+          //           success: function(result){
+          //               console.log(result);
+          //               // alert('success');
+          //           }
+          //       });
+          //     })
+          //   }
+          // });
+      
+
+
+          // assets.on('remove', function(asset) {
+          //   var src_file = asset.get('src');
+          //   var nama_file = asset.get('name');
+          //   var id_file = asset.get('id');
+
+          //     $.ajax({
+          //       url: base_url+'Apigambar/delete',
+          //       type: 'POST',
+          //       data: {id_file:id_file,nama_file:nama_file},
+          //       dataType: 'json',
+          //       success: function(result){
+          //           console.log(result);
+          //           // alert('success');
+          //       }
+          //   });
+          // })
+
+          
+
+          
+
+
+            
+          am.add([
+          <?php foreach ($data_image as $row): ?>
+            {
+                id:'<?php echo $row->ID; ?>',
+                type: 'image',
+                name: '<?php echo $row->gambar; ?>',
+                src: base_url+'image-server/templates/'+'<?php echo $row->gambar; ?>',
+                date: '<?php echo $row->tanggal_dibuat; ?>',
+                height: 800,
+                width: 1600
+            },
+          <?php endforeach ?>
+           
+            // ...
+          ]);
+
+          editor.on('asset:upload:start', () => {
+            alert('Upload');
+          });
+
+
+
+        </script>
 
 
 

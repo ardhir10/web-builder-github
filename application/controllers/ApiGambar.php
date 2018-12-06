@@ -137,6 +137,93 @@ class ApiGambar extends CI_Controller {
         }
     }
 
+    function upload_template()
+    {
+        if($_FILES)
+        {
+        $uploaddir = './image-server/templates/';
+        $id_user = $this->session->userdata('userID');
+        $resultArray = array();
+            foreach ( $_FILES as $file){
+                        $fileName   = $file['name'];
+                        $tmpName    = $file['tmp_name'];
+                        $fileSize   = $file['size'];
+                        $fileType   = $file['type'];
+                        // move_uploaded_file(filename, destination);
+                        if ($file['error'] != UPLOAD_ERR_OK)
+                        {
+                                error_log($file['error']);
+                                echo JSON_encode(null);
+                        }
+
+                        $fp = fopen($tmpName, 'r');
+                        $content = fread($fp, filesize($tmpName));
+
+
+                        $extractFile = pathinfo($file['name']);
+
+                        $sameName = 0; // Menyimpan banyaknya file dengan nama yang sama dengan file yg diupload
+                        $handle = opendir($uploaddir);
+                        while(false !== ($filee = readdir($handle))){ // Looping isi file pada directory tujuan
+                            // Apabila ada file dengan awalan yg sama dengan nama file di uplaod
+                            if(strpos($filee,$extractFile['filename']) !== false)
+                            $sameName++; // Tambah data file yang sama
+                        }
+
+                        /* Apabila tidak ada file yang sama ($sameName masih '0') maka nama file pakai 
+                        * nama ketika diupload, jika $sameName > 0 maka pakai format "namafile($sameName).ext */
+                        $newName = empty($sameName) ? date('d-m-Y').'-'.time().'-'.$file['name'] : date('d-m-Y').'-'.time().'-'.$extractFile['filename'].'('.$sameName.').'.$extractFile['extension'];
+
+                        // $newName = str_replace(' ', '-', $newName);
+
+                        // $newName = strtolower($newName);
+
+                        $uploadfile = $uploaddir.$id_user.$newName;
+
+
+                        fclose($fp);
+                        move_uploaded_file($tmpName,$uploaddir.$newName);
+
+                        $result=array(
+                                'name'  =>$newName,
+                                'type'  =>'image',
+                                // 'src'=>"data:".$fileType.";base64,".base64_encode($content),
+                                'src'   => base_url().'image-server/templates/'.$newName,
+                                'date'  => date('Y-m-d'),
+                                'height'=>350,
+                                'width' =>250,
+                        ); 
+
+                        $data = array(
+                            'gambar'        => $newName,
+                            'tanggal_dibuat'=> date('Y-m-d H:i:s'),
+                        );
+                        $insert = $this->ApiModelImage->insert_data_template($data);
+
+
+                        
+
+                        //     echo 'File berhasil diupload dengan nama: '.$newName;
+                        // }
+                        // else{
+                        //     echo 'File gagal diupload';
+                        // }
+
+                        // move_uploaded_file($tmpName, $uploadfile);
+
+
+                        // Upload Ke server dan database
+                        // $nama_file = $id_user.$file['name'];
+                        
+
+                        // we can also add code to save images in database here.
+                        array_push($resultArray,$result);
+            }    
+        $response = array( 'data' => $resultArray );
+        echo json_encode($response);
+        }
+    }
+
 
     function delete()
     {
@@ -149,9 +236,27 @@ class ApiGambar extends CI_Controller {
             'id'        => $id,
             'gambar'    => $nama_file,
         );
-        unlink("./image-server/website/".$nama_file);
+        unlink("./image-server/templates/".$nama_file);
 
         $this->ApiModelImage->delete_image($nama_file,$id_user);
+
+        echo json_encode($data);
+    }
+
+    function delete_template()
+    {
+        $id         = $this->input->post('id_file');
+        $nama_file  = $this->input->post('nama_file');
+        // $id_user     = $this->session->userdata('userID');
+
+
+        $data = array(
+            'id'        => $id,
+            'gambar'    => $nama_file,
+        );
+        unlink("./image-server/templates/".$nama_file);
+
+        $this->ApiModelImage->delete_image_template($nama_file);
 
         echo json_encode($data);
     }

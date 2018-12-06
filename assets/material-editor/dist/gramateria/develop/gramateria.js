@@ -67,90 +67,127 @@ var editor = grapesjs.init({
     },
 
 
-    assetManager: {
-        upload: 'https://test.page',
-        params: {
-            _token: 'pCYrSwjuiV0t5NVtZpQDY41Gn5lNUwo3it1FIkAj',
-        },
-        assets: [
-            {
-                type: 'image',
-                src: 'http://web-builder.sitedeva.com/assets/images/templates/template-0.png',
-                date: '2015-02-01',
-                height: 808,
-                width: 1440
-            },
-            {
-                type: 'image',
-                src: 'https://res.cloudinary.com/ronaldaug/image/upload/v1515419443/background_ckgyqe.jpg',
-                date: '2015-02-02',
-                height: 808,
-                width: 1440
-            },
-            {
-                type: 'image',
-                src: 'https://res.cloudinary.com/ronaldaug/image/upload/v1515419441/background2_gjvaxs.jpg',
-                date: '2015-02-01',
-                height: 800,
-                width: 1600
-            },
-            {
-                type: 'image',
-                src: 'https://res.cloudinary.com/ronaldaug/image/upload/v1515419443/background3_d0ghix.jpg',
-                date: '2015-02-01',
-                height: 743,
-                width: 1440
-            },
-            {
-                type: 'image',
-                src: 'https://res.cloudinary.com/ronaldaug/image/upload/v1515419446/background4_pzh5ou.jpg',
-                date: '2015-02-01',
-                height: 808,
-                width: 1440
-            },
-            {
-                type: 'image',
-                src: 'http://via.placeholder.com/250x350/0174DF/ffffff/',
-                height: 350,
-                width: 250
-            },
-            {
-                type: 'image',
-                src: 'http://via.placeholder.com/250x350/5FB404/ffffff/',
-                height: 350,
-                width: 250
-            },
-            {
-                type: 'image',
-                src: 'http://via.placeholder.com/250x350/BF00FF/ffffff/',
-                height: 350,
-                width: 250
-            },
-            {
-                type: 'image',
-                src: 'http://via.placeholder.com/250x350/B40431/ffffff/',
-                height: 350,
-                width: 250
-            },
-            {
-                type: 'image',
-                src: 'http://via.placeholder.com/250x350/088A68/ffffff/',
-                height: 350,
-                width: 250
-            },
-            {
-                type: 'image',
-                src: 'http://via.placeholder.com/250x350/DF7401/ffffff/',
-                height: 350,
-                width: 250
-            },
-            {
-                type: 'image',
-                src: 'http://via.placeholder.com/250x350/00BFFF/ffffff/',
-                height: 350,
-                width: 250
+    // assetManager: {
+    //     upload: 'https://test.page',
+    //     params: {
+    //         _token: 'pCYrSwjuiV0t5NVtZpQDY41Gn5lNUwo3it1FIkAj',
+    //     },
+    //     assets: [
+    //         {
+    //             type: 'image',
+    //             src: 'http://web-builder.sitedeva.com/assets/images/templates/template-0.png',
+    //             date: '2015-02-01',
+    //             height: 808,
+    //             width: 1440
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'https://res.cloudinary.com/ronaldaug/image/upload/v1515419443/background_ckgyqe.jpg',
+    //             date: '2015-02-02',
+    //             height: 808,
+    //             width: 1440
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'https://res.cloudinary.com/ronaldaug/image/upload/v1515419441/background2_gjvaxs.jpg',
+    //             date: '2015-02-01',
+    //             height: 800,
+    //             width: 1600
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'https://res.cloudinary.com/ronaldaug/image/upload/v1515419443/background3_d0ghix.jpg',
+    //             date: '2015-02-01',
+    //             height: 743,
+    //             width: 1440
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'https://res.cloudinary.com/ronaldaug/image/upload/v1515419446/background4_pzh5ou.jpg',
+    //             date: '2015-02-01',
+    //             height: 808,
+    //             width: 1440
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'http://via.placeholder.com/250x350/0174DF/ffffff/',
+    //             height: 350,
+    //             width: 250
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'http://via.placeholder.com/250x350/5FB404/ffffff/',
+    //             height: 350,
+    //             width: 250
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'http://via.placeholder.com/250x350/BF00FF/ffffff/',
+    //             height: 350,
+    //             width: 250
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'http://via.placeholder.com/250x350/B40431/ffffff/',
+    //             height: 350,
+    //             width: 250
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'http://via.placeholder.com/250x350/088A68/ffffff/',
+    //             height: 350,
+    //             width: 250
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'http://via.placeholder.com/250x350/DF7401/ffffff/',
+    //             height: 350,
+    //             width: 250
+    //         },
+    //         {
+    //             type: 'image',
+    //             src: 'http://via.placeholder.com/250x350/00BFFF/ffffff/',
+    //             height: 350,
+    //             width: 250
+    //         }
+    //     ]
+    // },
+
+     assetManager: {
+            storageType       : '',
+            storeOnChange     : true,
+            storeAfterUpload  : true,
+            uploadName: 'file',
+            upload: 'http://localhost/ci_app/web-builder-github/image-server/templates/', //for temporary storage
+            assets      : [ ],
+            uploadFile: function(e) {
+            var files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
+            var formData = new FormData();
+            for(var i in files){
+                    formData.append('file-'+i, files[i]); //containing all the selected images from local
             }
-        ]
+            $.ajax({
+                url: '../../../Apigambar/upload_template',
+                type: 'POST',
+                data: formData,
+                contentType:false,
+                crossDomain: true,
+                cache:false,
+                dataType: 'json',
+                mimeType: "multipart/form-data",
+                processData:false,
+                success: function(result){
+                    console.log(result);
+                    var myJSON = [];
+                    $.each( result['data'], function( key, value ) {
+                        myJSON[key] = value;    
+                    });
+                    var images = myJSON;    
+                    editor.AssetManager.add(images); //adding images to asset 
+                    // manager of GrapesJS
+                }
+            });
+            },
     },
     blockManager: {
         blocks: [
