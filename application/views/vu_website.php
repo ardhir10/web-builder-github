@@ -53,6 +53,15 @@
                             </div>
                            <div class="card-body" style="padding-bottom: 5px;background: #fff;">
                              <h5 class="card-title" ><?php echo $data_website->nama_website ?></h5>
+                             <?php 
+                              if($data_website->status_website == 'Published') {
+                                  echo '<span class="badge badge-success">Published</span>'; 
+                               }elseif ($data_website->status_website == 'Not Published'){ 
+                                 echo '<span class="badge badge-danger">Not Published</span>';
+                               }else{
+                                 echo '<span class="badge badge-dark">On Process</span>';
+                               }
+                              ?>
                            </div>
                            <div class="card-footer text-center">
                              <a class="card-link" href="<?php echo base_url().$controller ?>/website/<?php echo $data_website->slug_id ?>">Detail</a>

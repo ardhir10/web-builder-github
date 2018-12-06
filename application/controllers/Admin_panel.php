@@ -44,6 +44,9 @@ class Admin_panel extends CI_Controller {
             $data['jumlah_template'] =  $this->Model_template->get_data_template()->result();
             $data['data_template'] =  $this->Model_template->get_data()->num_rows();
             $data['jumlah_order'] =  $this->Model_order->get_data()->num_rows();
+            $data['total_revenue'] =  $this->db->query("SELECT SUM(harga) as total_revenue FROM table_order WHERE status = 4")->row();
+
+            // print_r($data['total_revenue']);
            
             $this->load->view('va_dashboard',$data);
 

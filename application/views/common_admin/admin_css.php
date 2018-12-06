@@ -26,6 +26,48 @@
       <link href="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
 
       <style type="text/css">
+
+       .ribbon {
+          -webkit-transform: rotate(-45deg); 
+             -moz-transform: rotate(-45deg); 
+              -ms-transform: rotate(-45deg); 
+               -o-transform: rotate(-45deg); 
+                  transform: rotate(-45deg); 
+            border: 25px solid transparent;
+            border-top: 25px solid #e59904c4;
+            position: absolute;
+            bottom: 62px;
+            right: -35px;
+            padding: 0 10px;
+            width: 120px;
+            color: white;
+            font-family: sans-serif;
+            size: 11px;
+        }
+        .ribbon .txt {
+            position: absolute;
+            top: -25px;
+            left: -1px;
+        }
+
+        .full_img_content
+        {
+         float:left;
+         width:400px; (slightly larger than image width)
+         height:400px; (slightly larger than image height)
+        }
+        .full_img_content img // your image (if your img have this size)
+        {
+         width:390px;
+         height:390px;
+         z-index: 1;
+        }
+        .img_ribbon
+        {
+         background-image: url("link to img");
+         background-positiom: x-pos y-pos bottom right;
+         z-index: 2;
+        }
            .sticky-td{
             position: sticky;left: 20;left: 0px;background: #fff;
            }

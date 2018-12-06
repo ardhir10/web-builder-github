@@ -12,6 +12,9 @@
       <!-- CSS -->
       <?php $this->load->view('common_admin/admin_css.php'); ?>
       <!-- END CSS -->
+      <style type="text/css">
+       
+      </style>
    </head>
 
 
@@ -61,7 +64,24 @@
                           <li class="list-group-item d-flex justify-content-between align-items-center">Dapibus ac facilisis in <span class="badge badge-success badge-pill">2</span></li>
                           <li class="list-group-item d-flex justify-content-between align-items-center">Vestibulum at eros <span class="badge badge-danger badge-pill">1</span></li>
                         </ul> -->
+
                         <img class="img-fluid" style="height: 206px;" src="<?php echo base_url() ?>assets/images/templates/<?php echo $row_template->photo ?>">
+
+                        <?php if ($row_template->id_type == 2){ ?>
+                          <div class="ribbon">
+                            <div class="txt">
+                                Premium
+                            </div>
+                          </div>
+                        <?php }else{?>
+                          <div class="ribbon" style="border-top: 25px solid green !important; ">
+                            <div class="txt">
+                                &nbsp;&nbsp;&nbsp;Free
+                            </div>
+                          </div>
+                        <?php } ?>
+                        
+                        
                         
                         <div class="card-body">
                           <a href="<?php echo base_url().$controller ?>/template_page/<?php echo $row_template->slug_id; ?>" class="card-link">Detail</a>

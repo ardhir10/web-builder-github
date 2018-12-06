@@ -112,9 +112,9 @@ class Email extends CI_Model{
     function email_suspend()//status = suspend 
     {
         
-         $where= array(
+        $where= array(
          'id_status' => '3'//3=suspend
-         );
+        );
         $cek = $this->Model_user->edit_data($where)->result();
         foreach ($cek as $data){
                 

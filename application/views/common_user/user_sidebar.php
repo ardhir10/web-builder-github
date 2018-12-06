@@ -25,6 +25,21 @@
           <i class="zmdi zmdi-view-web"></i> <span>Website</span> 
         </a>
       </li>
+      <li class="sidebar-header">TEMPLATES</li>
+
+      <li>
+        <a href="<?php echo base_url() ?>User_website" >
+          <i class="zmdi zmdi-view-web"></i> <span>All Templates</span> 
+        </a>
+      </li>
+
+      <li class="sidebar-header">Profile</li>
+
+      <li>
+        <a href="<?php echo base_url() ?>user_profile" >
+          <i class="fa fa-user"></i> <span>My Profile</span> 
+        </a>
+      </li>
       
 
       <!--<li>

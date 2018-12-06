@@ -8,46 +8,47 @@ public function __construct() {
            $this->load->model('Model_user');
     }
     
-    public function send_email_google($email,$content){
+    public function send_email_google($email,$content)
+    {
        
             //Load email library
-    $this->load->library('email');
+            $this->load->library('email');
 
-    //SMTP & mail configuration
-    $config = array(
-        'protocol'  => 'smtp',
-        'smtp_host' => 'ssl://smtp.googlemail.com',
-        'smtp_port' => 465,
-        'smtp_user' => 'faiznyo12@gmail.com',
-        'smtp_pass' => 'faizfawaaz12',
-        'mailtype'  => 'html',
-        'charset'   => 'utf-8'
-    );
-    $this->email->initialize($config);
-    $this->email->set_mailtype("html");
-    $this->email->set_newline("\r\n");
+            //SMTP & mail configuration
+            $config = array(
+                'protocol'  => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'faiznyo12@gmail.com',
+                'smtp_pass' => 'faizfawaaz12',
+                'mailtype'  => 'html',
+                'charset'   => 'utf-8'
+            );
+            $this->email->initialize($config);
+            $this->email->set_mailtype("html");
+            $this->email->set_newline("\r\n");
 
-    //Email content
-    $htmlContent = '<h1>Notification from Goodeva Web-Builder</h1>';
-    $htmlContent = '<hr>';
-    $htmlContent .= "<p>$content</p>";
-  
+            //Email content
+            $htmlContent = '<h1>Notification from Goodeva Web-Builder</h1>';
+            $htmlContent = '<hr>';
+            $htmlContent .= "<p>$content</p>";
+          
 
-    $this->email->to($email);
-    $this->email->from('faiznyo12@gmail,com','faiz');
-    $this->email->subject('Notification from Goodeva Web-Builder');
-    $this->email->message($htmlContent);
+            $this->email->to($email);
+            $this->email->from('faiznyo12@gmail,com','faiz');
+            $this->email->subject('Notification from Goodeva Web-Builder');
+            $this->email->message($htmlContent);
 
-    //Send email
-    $this->email->send();
+            //Send email
+            $this->email->send();
 
         
     }
     
     
 	
-  public function send_email
-      ($email,$nama,$pesan){
+    public function send_email($email,$nama,$pesan)
+    {
 				    
         $email = 'seegunsnyo@gmail.com';
         $nama = 'faiz';
@@ -65,7 +66,6 @@ public function __construct() {
                     echo "succeess";
                 }			
 //			echo "<script>window.location=history.go(-1);</script>";
-	
         
     }
     

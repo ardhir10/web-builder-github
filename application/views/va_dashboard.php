@@ -55,7 +55,7 @@
                            <div class="media align-items-center">
                               <div class="media-body">
                                  <p class="text-white">Total Revenue</p>
-                                 <h4 class="text-white line-height-5">$750</h4>
+                                 <h4 class="text-white line-height-5">Rp <?php echo $total_revenue; ?></h4>
                               </div>
                               <div class="w-circle-icon rounded-circle border border-white">
                                  <i class="fa fa-money text-white"></i>

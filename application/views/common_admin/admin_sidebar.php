@@ -57,6 +57,15 @@
         </a>
       </li>
 
+      <li class="sidebar-header">SETTING</li>
+
+      <li>
+        <a href="<?php echo base_url() ?>Admin_setting" >
+          <i class="fa fa-gear"></i> Admin Setting</span> 
+        </a>
+      </li>
+
+
 
 
      

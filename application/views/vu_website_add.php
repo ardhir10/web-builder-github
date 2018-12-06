@@ -73,6 +73,20 @@
                         <div class="card-body">
                           <h5 class="card-title text-dark"><?php echo $row_template->nama_template ?></h5>
                         </div>
+
+                         <?php if ($row_template->id_type == 2){ ?>
+                          <div class="ribbon">
+                            <div class="txt">
+                                Premium
+                            </div>
+                          </div>
+                        <?php }else{?>
+                          <div class="ribbon" style="border-top: 25px solid green !important; ">
+                            <div class="txt">
+                                &nbsp;&nbsp;&nbsp;Free
+                            </div>
+                          </div>
+                        <?php } ?>
                         <img class="img-fluid thumbnails" src="<?php echo base_url() ?>assets/images/templates/<?php echo $row_template->photo ?>">
 
                          <!-- <ul class="list-group list-group-flush list shadow-none">

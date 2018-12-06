@@ -13,9 +13,10 @@ class User_login extends CI_Controller {
     private $controller = 'User_login';
 	
    
-  public function faiz(){
-      $this->Email->email_aktiv();
-  }
+    public function faiz()
+    {
+          $this->Email->email_aktiv();
+    }
     public function register()
 	{
         $nama=$this->input->post('nama');
@@ -36,8 +37,6 @@ class User_login extends CI_Controller {
             'expired'=>$exp,
             'id_status'=> 1,
             'id_package' => 0,
-
-        
         );
         
 
