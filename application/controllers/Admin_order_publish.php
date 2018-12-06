@@ -170,6 +170,7 @@ class Admin_order_publish extends CI_Controller {
         }
 
     }
+   
 
     function do_confirm_subscription($id_order = '')
     {

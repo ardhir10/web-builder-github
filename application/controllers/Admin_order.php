@@ -184,7 +184,8 @@ class Admin_order extends CI_Controller {
             // Jika Status Order ==4 (Verified) maka Expired 1 Bulan
                 if ($status_order == 4 ) {
                     // Pengecekpan Type Order Jika Package maka Data user akan terupdate sesuai dengan subscription
-                    if ( $data_order->type_order == 'package') {
+                    if ( $data_order->type_order == 'package') 
+                    {
                         // Mengupdate Status User 
 
                         // Pengecekan Perpanjangan Paket
@@ -199,6 +200,7 @@ class Admin_order extends CI_Controller {
                             $package_terakhir = $this->Model_order->package_terakhir($data_order->id_package)->row();
                             $data_user['expired'] = date('Y-m-d H:i:s', strtotime($package_terakhir->expired) + (60 * 60 * 24 * 30));
                             $data['expired'] = date('Y-m-d H:i:s', strtotime($package_terakhir->expired) + (60 * 60 * 24 * 30));
+                            
                         }else{
                             // Expired awal Paket - Lama 1 Bulan
                             $data_user['expired'] = date('Y-m-d H:i:s', time() + (60 * 60 * 24 * 30));
@@ -206,7 +208,12 @@ class Admin_order extends CI_Controller {
                         }
                         // Update Package Baru / Awal
                         $update_status_user = $this->Model_user->update_data(array('ID' => $data_order->id_user),$data_user);
-                    }elseif($data_order->type_order == 'publish'){
+                        //jika subscription aktiv maka kirim email
+                        $this->Email->email_aktiv($id_user);
+                        
+                    }
+                    elseif($data_order->type_order == 'publish')
+                    {
                         // echo "publish";
                         $data['expired']   = date('Y-m-d H:i:s', time() + (60 * 60 * 24 * 30));
                     }

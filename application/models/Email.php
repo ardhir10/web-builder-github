@@ -1,5 +1,6 @@
 <?php
-class Email extends CI_Model{
+class Email extends CI_Model
+{
 
 
     
@@ -40,8 +41,6 @@ class Email extends CI_Model{
         
     }
     
-    
-	
     function send_email($email,$nama,$pesan)
     {
 				    
@@ -78,10 +77,10 @@ class Email extends CI_Model{
             $akhir = date_create(); // waktu sekarang
             $diff  = date_diff(  $akhir,$awal);
             
-            if ($diff->days < 3){
+            if ($diff->days == 3){
                 $email=$data->email;
                 $nama=$data->nama;
-                $content="Hi $nama Waktu trial anda kurang dari  3 hari , silahkan berlangganan layanan kami ";
+                $content="Hi $nama Waktu trial anda kurang dari 3 hari , silahkan berlangganan layanan kami ";
                 $this->send_email_google($email,$content);
             }
         }     
@@ -100,7 +99,7 @@ class Email extends CI_Model{
             $akhir = date_create(); // waktu sekarang
             $diff  = date_diff(  $akhir,$awal);
             
-            if ($diff->days < 3){
+            if ($diff->days <= 0){
                 $email=$data->email;
                 $nama=$data->nama;
                 $content="hi $nama Waktu trial anda berakhir , silahkan berlangganan layanan kami ";
@@ -109,43 +108,162 @@ class Email extends CI_Model{
         }     
     }
     
-    function email_suspend()//status = suspend 
-    {
-        
-        $where= array(
-         'id_status' => '3'//3=suspend
-        );
-        $cek = $this->Model_user->edit_data($where)->result();
-        foreach ($cek as $data){
-                
-            $email=$data->email;
-            $nama=$data->nama;
-            $content="hi $nama Akun Goodeva Web-Builder anda sudah SUSPEND , silahkan berlangganan layanan kami untuk mengaktivkannya kembali<hr>
-              <img src='https://goodeva.co.id/my-assets/images/logo.png'> ";
-            $this->send_email_google($email,$content);
-           
-        }     
-    }
-    
-    function email_aktiv()//status = aktiv 
+    function email_suspend($id)//status = suspend 
     {
         
          $where= array(
-         'id_status' => '2'//2=aktiv
+         'ID' => $id
          );
-        $cek = $this->Model_user->edit_data($where)->result();
-        foreach ($cek as $data){
-            
-            $email=$data->email;
-            $nama=$data->nama;
-            $content="hi $nama Akun Goodeva Web-Builder anda sudah AKTIV , silahkan Menikmati layanan kami<hr>
-              <img src='https://goodeva.co.id/my-assets/images/logo.png'> ";
-            $this->send_email_google($email,$content);
+        $data = $this->Model_user->edit_data($where)->row();
+        
+        $email=$data->email;
+        $nama=$data->nama;
+        $content="hi $nama Akun Goodeva Web-Builder anda SUSPEND, silahkan Berlangganan untuk menikmati layanan kami<hr>
+                  <img src='https://goodeva.co.id/my-assets/images/logo.png'> ";
+        $this->send_email_google($email,$content);
+        
+        }    
+    
+    function email_aktiv($id)//status = aktiv 
+    {
+        
+         $where= array(
+         'ID' => $id//2=aktiv
+         );
+        $data = $this->Model_user->edit_data($where)->row();
+        
+        $email=$data->email;
+        $nama=$data->nama;
+        $content="hi $nama Akun Goodeva Web-Builder anda sudah AKTIV , silahkan Menikmati layanan               kami<hr>
+                  <img src='https://goodeva.co.id/my-assets/images/logo.png'> ";
+        $this->send_email_google($email,$content);
+        
         }     
+    
+    function email_order($id_user,$pesanan)
+    {
+        
+         $where= array(
+         'ID' => $id_user
+         );
+        
+        $data = $this->Model_user->edit_data($where)->row();
+       
+                $email=$data->email;
+                $nama=$data->nama;
+                $content="
+                Hi $nama Pesanan Anda Sudah Masuk ,
+                <hr>
+                $pesanan
+                <hr>
+                silahkan tunggu kami sedang proses <hr>
+                  <img src='https://goodeva.co.id/my-assets/images/logo.png'>  ";
+                
+    
+                $this->send_email_google($email,$content);
+                $this->email_to_admin($id_user,$pesanan);
+          
+    }  
+    
+    function email_to_admin($id_user,$pesanan)
+    {
+        
+        
+        $where2= array(
+         'ID' => $id_user
+         );
+        $data = $this->db->query("SELECT * from table_admin order by ID Desc ")->row();
+        
+        $data_user = $this->Model_user->edit_data($where2)->row();
+        
+        
+                $email=$data->email;
+                $nama=$data->nama_tampilan;
+                $nama_user=$data_user->nama;
+                $content="
+                Hi $nama , $nama_user telah membuat pesanan , silahkan cek <hr>
+                $pesanan
+                <hr>
+                  <img src='https://goodeva.co.id/my-assets/images/logo.png'>  ";
+                $this->send_email_google($email,$content);
+            
     }
     
-    function goblok(){
-        echo "goblog";
+    //email for subscription
+     function email_7d()
+    {
+        
+         $where= array(
+         'type_order' => 'package'
+         );
+        $cek = $this->Model_order->edit_data($where)->result();
+         foreach ($cek as $data){
+            
+            
+            $awal  = date_create($data->update_date);
+            $akhir = date_create(); // waktu sekarang
+            $diff  = date_diff(  $akhir,$awal);
+            
+            if ($diff->days == 7){
+                
+                $id_user=$data->id_user;
+                $data_user=$this->Model_user->edit_data(array('ID' => $id_user))->row();
+                $email=$data_user->email;
+                $nama=$data_user->nama;
+                $content="Hi $nama Waktu subscription anda kurang dari 7 hari , silahkan berlangganan layanan kami ";
+                $this->send_email_google($email,$content);
+            }
+        }     
+    }
+     function email_1d()
+    {
+        
+         $where= array(
+         'type_order' => 'package'
+         );
+        $cek = $this->Model_order->edit_data($where)->result();
+       
+         
+        foreach ($cek as $data){
+            
+            
+            $awal  = date_create($data->update_date);
+            $akhir = date_create(); // waktu sekarang
+            $diff  = date_diff(  $akhir,$awal);
+            
+            if ($diff->days == 1){
+                $id_user=$data->id_user;
+                $data_user=$this->Model_user->edit_data(array('ID' => $id_user))->row();
+                $email=$data_user->email;
+                $nama=$data_user->nama;
+                $content="Hi $nama Waktu subscription anda kurang dari 1 hari , silahkan berlangganan layanan kami ";
+                $this->send_email_google($email,$content);
+            }
+        }     
+    }
+     function email_30d()
+    {
+        
+         $where= array(
+         'type_order' => 'package'
+         );
+        $cek = $this->Model_order->edit_data($where)->result();
+        foreach ($cek as $data){
+            
+            
+            $awal  = date_create($data->update_date);
+            $akhir = date_create(); // waktu sekarang
+            $diff  = date_diff(  $akhir,$awal);
+            
+            if ($diff->days == 30){
+                $id_user=$data->id_user;
+                $data_user=$this->Model_user->edit_data(array('ID' => $id_user))->row();
+                $email=$data_user->email;
+                $nama=$data_user->nama;
+                $content="Hi $nama Waktu subscription anda kurang dari 30 hari , silahkan berlangganan layanan kami ";
+                $this->send_email_google($email,$content);
+            }
+        }       
     }
     
 }

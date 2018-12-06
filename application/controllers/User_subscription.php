@@ -11,6 +11,7 @@ class User_subscription extends CI_Controller {
         $this->load->model('Model_template_page');
         $this->load->model('Model_website_page');
         $this->load->model('Model_order');
+        $this->load->model('Email');
         $this->load->model('Model_user');
         $this->load->model('Model_package');
         $this->load->model('ApiModelImage');
@@ -283,9 +284,25 @@ class User_subscription extends CI_Controller {
         );
 
         // Update Status Website
-
+        
+        //email send
+        
+        
+        $data_user = $this->Model_user->edit_data(array('ID' => $id_user))->row();
+        $email_user=$data_user->email;
         $create_order = $this->Model_order->insert_data($data);
-
+        $pesanan="
+        <pre>
+        ID user  : $id_user
+        Email    : $email_user
+        No order : $no_order
+        Package  : $data_package->nama_package
+        harga    : $data_package->harga
+        
+        </pre>        
+        ";
+        $this->Email->email_order($id_user,$pesanan);
+        
         $this->session->set_flashdata('message','add');
         echo json_encode($data);
 

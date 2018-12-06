@@ -7,6 +7,7 @@ class Admin_user extends CI_Controller {
         $this->load->model('admin_model/Model_admin');
         $this->load->model('admin_model/Model_admin_login');
         $this->load->model('Model_user');
+        $this->load->model('Email');
         $this->load->model('Model_package');
         $this->load->helper(array('Form', 'Cookie', 'String'));
 
@@ -88,12 +89,23 @@ class Admin_user extends CI_Controller {
         $where = array(
             'ID' => $id
         );
+        
+        if ($id_status==2){//2=aktiv
+            
+            $this->Email->email_aktiv($id);
+        }
+        else if ($id_status==3){//3=suspend
+            
+            $this->Email->email_suspend($id);
+            
+        }
+        
 
         $update = $this->Model_user->update_data($where,$data);
         $this->session->set_flashdata('status_update','Data Berhasil diupdate');
-        redirect(base_url().$this->controller);
+     redirect(base_url().$this->controller);
     }
-
+    
 
     public function login()
     {
