@@ -22,13 +22,13 @@
 
       <li>
         <a href="<?php echo base_url() ?>User_website" >
-          <i class="zmdi zmdi-view-web"></i> <span>Website</span> 
+          <i class="zmdi zmdi-view-web"></i> <span>My Website</span> 
         </a>
       </li>
       <li class="sidebar-header">TEMPLATES</li>
 
       <li>
-        <a href="<?php echo base_url() ?>User_website" >
+        <a href="<?php echo base_url() ?>all_templates" >
           <i class="zmdi zmdi-view-web"></i> <span>All Templates</span> 
         </a>
       </li>
