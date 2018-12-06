@@ -35,104 +35,97 @@
                <!--Start Dashboard Content-->
                <div class="row mt-3">
                   <div class="col-12 col-lg-6 col-xl-3">
-                     <div class="card bg-success">
-                        <div class="card-body">
-                           <div class="media align-items-center">
-                              <div class="media-body">
-                                 <p class="text-white">Total Orders</p>
-                                 <h4 class="text-white line-height-5">8450</h4>
-                              </div>
-                              <div class="w-circle-icon rounded-circle border border-white">
-                                 <i class="fa fa-cart-plus text-white"></i>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-12 col-lg-6 col-xl-3">
-                     <div class="card bg-primary">
-                        <div class="card-body">
-                           <div class="media align-items-center">
-                              <div class="media-body">
-                                 <p class="text-white">Total Revenue</p>
-                                 <h4 class="text-white line-height-5">$750</h4>
-                              </div>
-                              <div class="w-circle-icon rounded-circle border border-white">
-                                 <i class="fa fa-money text-white"></i>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-12 col-lg-6 col-xl-3">
-                     <div class="card bg-danger">
-                        <div class="card-body">
-                           <div class="media align-items-center">
-                              <div class="media-body">
-                                 <p class="text-white">New Users</p>
-                                 <h4 class="text-white line-height-5">620</h4>
-                              </div>
-                              <div class="w-circle-icon rounded-circle border border-white">
-                                 <i class="fa fa-users text-white"></i>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-12 col-lg-6 col-xl-3">
-                     <div class="card bg-info">
-                        <div class="card-body">
-                           <div class="media align-items-center">
-                              <div class="media-body">
-                                 <p class="text-white">Bounce Rate</p>
-                                 <h4 class="text-white line-height-5">12.80%</h4>
-                              </div>
-                              <div class="w-circle-icon rounded-circle border border-white">
-                                 <i class="fa fa-pie-chart text-white"></i>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+            <div class="card gradient-scooter">
+              <div class="card-body text-center">
+              <div class="icon-box"><i class="fa fa-rocket"></i></div>
+              <a href="javascript:void();"><h3 class="text-white mt-2"><?php echo $data_order; ?></h3></a>
+              <h6 class="text-white mt-2">Total Orders</h6>
+            </div>
+            </div>
+              </div>
+                <div class="col-12 col-lg-6 col-xl-3">
+            <div class="card gradient-bloody">
+              <div class="card-body text-center">
+              <div class="icon-box"><i class="fa fa-shopping-cart"></i></div>
+              <a href="javascript:void();"><h3 class="text-white mt-2">Rp.<?php echo $tagihan->total; ?></h3></a>
+              <h6 class="text-white mt-2">Total Tagihan</h6>
+            </div>
+            </div>
+              </div>    
+            <div class="col-12 col-lg-6 col-xl-3">
+            <div class="card gradient-quepal">
+              <div class="card-body text-center">
+              <div class="icon-box"><i class="fa fa-file-code-o"></i></div>
+              <a href="javascript:void();"><h3 class="text-white mt-2"><?php echo $jum_website; ?></h3></a>
+              <h6 class="text-white mt-2">Total Website</h6>
+            </div>
+            </div>
+              </div>
+                <div class="col-12 col-lg-6  col-xl-3">
+		  <div class="card bg-google-plus">
+		   <div class="card-body text-center">
+		     <i class="fa fa-user-circle fa-2x text-white"></i>
+			 <h5 class="mt-2 text-white"><?php echo $status_user->keterangan_status; ?></h5>
+			 <hr class="border-light-2">
+			 <div class="row">
+<!--
+			  <div class="col-12 border-right border-light-2">
+			    <p class="mb-0 text-white"></p>
+				<div class="font-weight-bold text-white"></div>
+			  </div>
+-->
+			  <div class="col-12">
+			    <p class="mb-0 text-white">Expired</p>
+				<div class="font-weight-bold text-white"><?php echo $data_user->expired; ?></div>
+			  </div>
+			 </div>
+		   </div>
+		  </div>
+        </div>
                </div>
                <!--End Row-->
-              <div class="demo-heading">WEBSITE ANDA</div>
+<!--              <div class="demo-heading">WEBSITE ANDA</div>-->
 
-               <div class="row">
-                 <div class="col-lg-12">
-                   <div class="card-deck">
-                     <div class="card">
-                       <img class="card-img-top" src="assets/images/gallery/28.jpg" alt="Card image cap">
-                       <div class="card-body">
-                         <h5 class="card-title">Card Title</h5>
-                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                       </div>
-                       <div class="card-footer">
-                         <small class="text-muted">Last updated 3 mins ago</small>
-                       </div>
-                     </div>
-                     <div class="card">
-                       <img class="card-img-top" src="assets/images/gallery/29.jpg" alt="Card image cap">
-                       <div class="card-body">
-                         <h5 class="card-title">Card Title</h5>
-                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                       </div>
-                       <div class="card-footer">
-                         <small class="text-muted">Last updated 3 mins ago</small>
-                       </div>
-                     </div>
-                     <div class="card">
-                       <img class="card-img-top" src="assets/images/gallery/30.jpg" alt="Card image cap">
-                       <div class="card-body">
-                         <h5 class="card-title">Card Title</h5>
-                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                       </div>
-                       <div class="card-footer">
-                         <small class="text-muted">Last updated 3 mins ago</small>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
+     <div class="row">
+        <div class="col-lg-12"> 
+          <div class="card">
+		   <div class="card-header text-uppercase text-primary">Status Tagihan</div>
+            <div class="card-body">
+			  <div class="table-responsive">
+                <table class="table">
+                  <thead class="thead-primary">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">No. Order</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Harga</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <?php $no=1;
+                      foreach($order as $order){
+                      ?>
+                    <tr>
+                      <th scope="row"><?php echo $no++ ?></th>
+                      <td><?php echo $order->no_order; ?></td>
+                      <td><?php 
+                            foreach ($status_order as $row_so) {
+                              if ($row_so->ID == $order->status) {
+                                echo '<span class="badge badge-pill badge-'.$row_so->atribut.' shadow-'.$row_so->atribut.' m-1">'.$row_so->nama_status.'</span>';
+                              }
+                            }
+                            ?>
+                              
+                            </td>
+                      <td><?php echo $order->harga; ?></td>
+                    </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+             </div>
+            </div>
+          </div>
+        </div>
                </div><!--End Row-->
 
                <!--End Dashboard Content-->
