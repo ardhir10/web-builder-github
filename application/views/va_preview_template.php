@@ -43,23 +43,24 @@
 </head>
 
 <body>
-<!-- <div id="preview_header" class="preview__header" data-view="ctaHeader">
+<div id="preview_header" class="preview__header" data-view="ctaHeader">
+<!-- 
+      <div class="preview__envato-logo">
+         <img src="https://goodeva.co.id/my-assets/images/logo.png" style="padding-bottom: 10px; width:90px;">
+      </div> -->
 
-  <div class="preview__envato-logo">
-    <img src="https://goodeva.co.id/my-assets/images/logo.png" style="padding-bottom: 10px; width:90px;">
-  </div>
+    <div class="preview__actions">
+      <div class="preview__action--buy">
+        <a class="btn btn-success" style="background-color:#6f9a37;" href="https://api.whatsapp.com/send?phone=6285693268369&text=Halo%20Admin%20Saya%20Mau%20Order%20Tema">Buy now</a>
+      </div>
 
-  <div class="preview__actions">
-  <div class="preview__action--buy">
-    <a class="btn btn-success" style="background-color:#6f9a37;" href="https://api.whatsapp.com/send?phone=6285693268369&text=Halo%20Admin%20Saya%20Mau%20Order%20Tema">Buy now</a>
-  </div>
-
-  <div class="preview__action--close">
-    <a href="#" id="remove-frame" >
-      <i class="fa fa-edit"></i><span style="color:white;">Remove Frame</span>
-      </a>  </div>
-  </div>
-</div> -->
+      <div class="preview__action--close">
+        <a href="#" id="remove-frame" >
+          <i class="fa fa-edit"></i><span style="color:white;">Remove Frame</span>
+          </a>  
+      </div>
+    </div>
+</div>
    
     <?php echo $data_page->html;?>
 

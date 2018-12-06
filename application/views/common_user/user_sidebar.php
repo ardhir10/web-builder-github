@@ -21,15 +21,18 @@
       </li>
 
       <li>
-        <a href="<?php echo base_url() ?>User_website" >
-          <i class="zmdi zmdi-view-web"></i> <span>My Website</span> 
+        <a href="<?php echo base_url() ?>User_all_templates" >
+          <i class="zmdi zmdi-view-web"></i> <span>All Templates</span> 
         </a>
       </li>
-      <li class="sidebar-header">TEMPLATES</li>
 
+      
+      <li class="sidebar-header">WEBSITES</li>
+
+      
       <li>
-        <a href="<?php echo base_url() ?>all_templates" >
-          <i class="zmdi zmdi-view-web"></i> <span>All Templates</span> 
+        <a href="<?php echo base_url() ?>User_website" >
+          <i class="zmdi zmdi-view-web"></i> <span>My Website</span> 
         </a>
       </li>
 

@@ -40,6 +40,17 @@ class Model_template extends CI_Model {
         return $this->db->get($this->table);
     }
 
+    function get_dataByKategori($id_kategori){
+        $this->db->where('id_kategori',$id_kategori);
+        $this->db->order_by('ID','desc');
+        return $this->db->get($this->table);
+    }
+
+    function get_data_new(){
+        $this->db->order_by('ID','desc limit 3');
+        return $this->db->get($this->table);
+    }
+
     function get_data_free(){
         $this->db->where('id_type',1);
         $this->db->order_by('ID','desc');
